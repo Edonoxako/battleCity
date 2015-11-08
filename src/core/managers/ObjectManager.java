@@ -38,7 +38,7 @@ public class ObjectManager {
 		Iterator<GameObject> iterator = objects.iterator();
 		while (iterator.hasNext()) {
 			//Если нашли, то удаляем
-			if (((Tr) iterator.next()).hasId(id)) {
+			if (iterator.next().hasId(id)) {
 				iterator.remove();
 				return;
 			}
@@ -50,7 +50,7 @@ public class ObjectManager {
 		System.out.println("Existing objects: ");
 		Iterator<GameObject> iterator = objects.iterator();
 		while (iterator.hasNext()) {
-			((Tr) iterator.next()).who();
+			iterator.next().who();
 		}
 	}
 }

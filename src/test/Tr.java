@@ -5,11 +5,15 @@ import java.awt.Graphics2D;
 import core.model.GameObject;
 
 public class Tr extends GameObject{
-	private int id;
-	
+	//private int id;
+
 	public Tr(int id) {
-		setId(id);
+		super(id);
 	}
+
+//	public Tr(int id) {
+//		setId(id);
+//	}
 	
 	public void who() {
 		System.out.println("I'm core.model, my id: #"+ getId());
@@ -27,16 +31,16 @@ public class Tr extends GameObject{
 		
 	}
 
-	public int getId() {
-		return id;
-	}
+//	public int getId() {
+//		return id;
+//	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+//	public void setId(int id) {
+//		this.id = id;
+//	}
 
-	public boolean hasId(int id) {
-        return id == this.id;
-    }
+//	public boolean hasId(int id) {
+//        return id == this.id;
+//    }
 	
 }

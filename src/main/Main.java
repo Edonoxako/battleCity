@@ -40,7 +40,7 @@ public class Main {
 //		System.out.println("============");
 //		trList.get(trList.indexOf(a)).who();
 
-        //---Тестим менеджер объектов---
+        //---РўРµСЃС‚РёРј РјРµРЅРµРґР¶РµСЂ РѕР±СЉРµРєС‚РѕРІ---
         ObjectManager manager = new ObjectManager();
         Tr obj1 = new Tr(1);
         Tr obj2 = new Tr(2);
