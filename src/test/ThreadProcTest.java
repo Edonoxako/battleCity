@@ -31,7 +31,7 @@ public class ThreadProcTest implements Runnable{
 		/*for ( int i = 0; i < 1; i++) {
 			arEn.add(new bools(rands.nextInt(Scene.content.getWidth()-50)+20, rands.nextInt(Scene.content.getHeight()-50)+20, i));
 		}*/
-		objectManager.addObject(new MovingObject(0, GameObjectType.ENEMY));
+		objectManager.addObject(new MovingObject(0, GameObjectType.ENEMY, objectManager));
 		gameThread = new Thread(this);
 	}
 	@Override

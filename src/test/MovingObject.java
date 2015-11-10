@@ -1,5 +1,6 @@
 package test;
 
+import core.managers.ObjectManager;
 import core.model.GameObject;
 import core.model.GameObjectType;
 
@@ -13,14 +14,19 @@ import java.awt.*;
 public class MovingObject extends GameObject {
 
     private Color color;
+    private int frameCount;
 
-    public MovingObject(int id, GameObjectType type) {
+    private ObjectManager objectManager;
+
+    public MovingObject(int id, GameObjectType type, ObjectManager objectManager) {
         super(id, type);
+        frameCount = 0;
 
         setX(10);
         setY(10);
 
-        color = new Color(100, 200, 128);
+        this.color = new Color(100, 200, 128);
+        this.objectManager = objectManager;
     }
 
     @Override
@@ -32,5 +38,10 @@ public class MovingObject extends GameObject {
     @Override
     public void update() {
         setX(getX() + 3);
+
+        frameCount++;
+        if (frameCount == 40) {
+            objectManager.removeObject(getId());
+        }
     }
 }
