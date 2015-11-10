@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import core.graphics.Scene;
-import test.ThreadProcTest;
+//import test.ThreadProcTest;
 
 public class App {
 
