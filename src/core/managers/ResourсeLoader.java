@@ -1,4 +1,4 @@
-package core;
+package core.managers;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 
 import org.omg.CORBA.portable.InputStream;
 
-public class ResurсeLoader {
+public class ResourСЃeLoader {
 	public static final String PATH = "res/";
 	
 	 public static String getMimeType(String fileUrl)
@@ -28,7 +28,7 @@ public class ResurсeLoader {
 				 type = uc.getContentType();
 				 return type;
 			 }
-	 //если расширение будет image/jpeg то выполнется loadImage(или спрайты, не важно)
+	 //РµСЃР»Рё СЂР°СЃС€РёСЂРµРЅРёРµ Р±СѓРґРµС‚ image/jpeg С‚Рѕ РІС‹РїРѕР»РЅРµС‚СЃСЏ loadImage(РёР»Рё СЃРїСЂР°Р№С‚С‹, РЅРµ РІР°Р¶РЅРѕ)
 
 	public static BufferedImage loadImage(String fileName){
 		
@@ -44,7 +44,7 @@ public class ResurсeLoader {
 		
 		return image;
 	}
-	//если расширение будет text/plain то выполнется loadImage
+	//РµСЃР»Рё СЂР°СЃС€РёСЂРµРЅРёРµ Р±СѓРґРµС‚ text/plain С‚Рѕ РІС‹РїРѕР»РЅРµС‚СЃСЏ loadImage
 	private String loadConfig(String fileName) {
         StringBuilder sb = new StringBuilder();
         try {
@@ -68,7 +68,7 @@ public class ResurсeLoader {
         return sb.toString();
     }
 }
-/*загрузить файл и получить объект файла, написать экземпляр класса LoadFile() и работать с ним*/
+/*Р·Р°РіСЂСѓР·РёС‚СЊ С„Р°Р№Р» Рё РїРѕР»СѓС‡РёС‚СЊ РѕР±СЉРµРєС‚ С„Р°Р№Р»Р°, РЅР°РїРёСЃР°С‚СЊ СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° LoadFile() Рё СЂР°Р±РѕС‚Р°С‚СЊ СЃ РЅРёРј*/
 /*public class ResurseLoader {
  public static final String PATH = "res/";
  public static BufferedImage loadImage(String fileName){..}
