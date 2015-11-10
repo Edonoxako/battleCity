@@ -29,6 +29,7 @@ public class ObjectManager {
 		return objects.get(id);
 	}
 
+    //Проверяет, существует ли объект по данному id
     public boolean isObjectExists(int id) {
         for (GameObject object : objects) {
             if (object.hasId(id)) return true;
