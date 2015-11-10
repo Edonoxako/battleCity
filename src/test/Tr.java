@@ -3,21 +3,22 @@ package test;
 import java.awt.Graphics2D;
 
 import core.model.GameObject;
+import core.model.GameObjectType;
 
 public class Tr extends GameObject{
 	//private int id;
 
-	public Tr(int id) {
-		super(id);
+	public Tr(int id, GameObjectType type) {
+		super(id, type);
 	}
 
 //	public Tr(int id) {
 //		setId(id);
 //	}
 	
-	public void who() {
-		System.out.println("I'm core.model, my id: #"+ getId());
-	}
+//	public void who() {
+//		System.out.println("I'm core.model, my id: #"+ getId());
+//	}
 	
 	@Override
 	public void draw(Graphics2D g) {

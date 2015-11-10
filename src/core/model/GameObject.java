@@ -3,14 +3,16 @@ package core.model;
 public abstract class GameObject implements TestInf {
 
 	private int id;
+	private GameObjectType type;
 
 
 	protected int x;
 	protected int y;
 	private boolean draw, update;
 
-    public GameObject(int id) {
+    public GameObject(int id, GameObjectType type) {
         this.id = id;
+        this.type = type;
     }
 	
 	public void setX(int x){
@@ -58,7 +60,12 @@ public abstract class GameObject implements TestInf {
         this.id = id;
     }
 
+
+    public GameObjectType getType() {
+        return type;
+    }
+
     public void who() {
-        System.out.println("I'm core.model, my id: #"+ getId());
+        System.out.println("I'm core.model, my id: #" + getId() + ", my type: " + getType());
     }
 }

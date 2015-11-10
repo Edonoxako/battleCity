@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import core.graphics.Scene;
+import core.managers.ObjectManager;
+import core.model.GameObject;
+import core.model.GameObjectType;
 import core.utils.Time;
 
 public class ThreadProcTest implements Runnable{
@@ -16,16 +19,19 @@ public class ThreadProcTest implements Runnable{
 	private static Random rands;
 	private static int max = 1000;
 	private int count = 0;
-	public static ArrayList<bools> arEn =  new ArrayList<bools>();
+	//public static ArrayList<bools> arEn =  new ArrayList<bools>();
+	//public static ArrayList<GameObject> arEn =  new ArrayList<>();
+    private ObjectManager objectManager = new ObjectManager();
 	public static final float UPDATE_RATE = 30.0f;
 	public static final float UPDATE_INTERVAL = Time.SECOND / UPDATE_RATE;
 	public static final long IDLE_TIME = 1;
 	
 	public ThreadProcTest() {
 		rands = new Random();
-		for ( int i = 0; i < max; i++) {
+		/*for ( int i = 0; i < 1; i++) {
 			arEn.add(new bools(rands.nextInt(Scene.content.getWidth()-50)+20, rands.nextInt(Scene.content.getHeight()-50)+20, i));
-		}
+		}*/
+		objectManager.addObject(new MovingObject(0, GameObjectType.ENEMY));
 		gameThread = new Thread(this);
 	}
 	@Override
@@ -51,22 +57,25 @@ public class ThreadProcTest implements Runnable{
 			delta += ( elapsedTime / UPDATE_INTERVAL );
 			// возможно delta > 1
 			while(delta > 1){
-				for ( int i = 0; i < arEn.size(); i++) {
+				for ( int i = 0; i < objectManager.getObjects().size(); i++) {
 //					Thread t = new Thread(arEn[i]);
 //					t.start();
-					if ( arEn.get(i).death == false){
+                    if (objectManager.isObjectExists(i)){
+                        objectManager.getObject(i).update();
+                    }
+					/*if ( arEn.get(i).death == false){
 						arEn.get(i).update(arEn, max);
 						if (arEn.get(i).death) {
 							arEn.remove(i);
 						}
-					}
+					}*/
 					
 				}
-				arEn.trimToSize();
-				arEn.ensureCapacity(arEn.lastIndexOf(arEn));
-				if (rands.nextInt(100) == 99) {
+//				arEn.trimToSize();
+//				arEn.ensureCapacity(arEn.lastIndexOf(arEn));
+				/*if (rands.nextInt(100) == 99) {
 					arEn.add(new bools(rands.nextInt(Scene.content.getWidth()-50)+20, rands.nextInt(Scene.content.getHeight()-50)+20, arEn.get(arEn.size()-1).id+1));
-				}
+				}*/
 				delta--;
 				upd++;
 				if (render) {
@@ -77,10 +86,14 @@ public class ThreadProcTest implements Runnable{
 			}
 			if (render) {
 				Scene.clear();
-				for ( int i = 0; i < arEn.size(); i++) {
-					if ( arEn.get(i).death == false){
+				for ( int i = 0; i < objectManager.getObjects().size(); i++) {
+                    if (objectManager.isObjectExists(i)) {
+                        objectManager.getObject(i).draw(Scene.getGraphics());
+                    }
+                    //arEn.get(i).draw(Scene.getGraphics());
+					/*if ( arEn.get(i).death == false){
 						arEn.get(i).draw(Scene.getGraphics());
-					}
+					}*/
 					
 				}
 				Scene.swapBuffers();

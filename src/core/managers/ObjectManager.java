@@ -4,6 +4,8 @@ import core.model.GameObject;
 import test.Tr;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class ObjectManager {
@@ -23,9 +25,16 @@ public class ObjectManager {
 		this.objects = objects;
 	}
 	
-	public Object getObject(int id){
-		return 0;
+	public GameObject getObject(int id){
+		return objects.get(id);
 	}
+
+    public boolean isObjectExists(int id) {
+        for (GameObject object : objects) {
+            if (object.hasId(id)) return true;
+        }
+        return false;
+    }
 
 	//Добавляет объект на сцену
 	public void addObject(GameObject obj) {
@@ -51,6 +60,21 @@ public class ObjectManager {
 		Iterator<GameObject> iterator = objects.iterator();
 		while (iterator.hasNext()) {
 			iterator.next().who();
+		}
+	}
+
+    //Сортирует объекты по их типу
+    public void sortObjects() {
+        Collections.sort(objects, new GameObjectComparator());
+    }
+
+	//Внутрений класс-компаратор для сортировки списка объектов
+	public class GameObjectComparator implements Comparator<GameObject> {
+
+		@Override
+		public int compare(GameObject o1, GameObject o2) {
+			//Сортируется в порядке, в котором определены значения в GameObjectType
+			return o1.getType().compareTo(o2.getType());
 		}
 	}
 }
