@@ -6,19 +6,19 @@ import core.model.Process;
 import core.model.Process.ProcessState;
 
 public class ProcessManager{
-private ArrayList<Process> ProcList;
+private ArrayList<Process> ProcessList;
 	
 	public ProcessManager() {
-		ProcList = new ArrayList<Process>(5);
+		ProcessList = new ArrayList<Process>(5);
 	}
 	
 	public ArrayList<Process> getProcList(){
-		return ProcList;
+		return ProcessList;
 	}
 	//Добавляет процесс в список, возвращая true. Если в списке есть такой процесс вернет false.
 	public boolean addProc(Process p) {
-		if(!ProcList.contains(p)){
-			ProcList.add(p);
+		if(!ProcessList.contains(p)){
+			ProcessList.add(p);
 			return true;
 		}else{
 			return false;
@@ -26,18 +26,18 @@ private ArrayList<Process> ProcList;
 	}
 	
 	public boolean removeProc(Process p) {
-		return ProcList.remove(p);	
+		return ProcessList.remove(p);	
 	}
 	//Возвращает индекс процесса в списке, если такого процесса нет вернет -1;
 	public int getIndexOf(Process p){
-		return ProcList.indexOf(p);
+		return ProcessList.indexOf(p);
 	}
 	//Запустит все процессы из списка, вернув true. Если список пуст вернет false.
 	public boolean startAll() {
-		if(ProcList.isEmpty())
+		if(ProcessList.isEmpty())
 			return false;
 		
-		for(Process p: ProcList){
+		for(Process p: ProcessList){
 			p.start();
 		}
 		return true;
@@ -45,21 +45,21 @@ private ArrayList<Process> ProcList;
 	
 	//Уничтожает все процессы из списка вернув true. Вернет false если список был пуст.
 	public boolean killAll() {
-		if(ProcList.isEmpty())
+		if(ProcessList.isEmpty())
 			return false;
-		for(Process p: ProcList){
+		for(Process p: ProcessList){
 			p.stop();
 		}
-		return ProcList.removeAll(ProcList);
+		return ProcessList.removeAll(ProcessList);
 	}
 	
 	
 	//Приостанавливает все процессы вернув true. Вернет false если список был пуст.
 	public boolean stopAll() {
-		if(ProcList.isEmpty())
+		if(ProcessList.isEmpty())
 			return false;
 		
-		for(Process p: ProcList){
+		for(Process p: ProcessList){
 				if(p.getProcessState() != ProcessState.waiting.getState())
 				p.pause();
 		}
@@ -68,7 +68,7 @@ private ArrayList<Process> ProcList;
 	
 	//Приостанавливает процесс
 	public void stop(Process p){
-		if(ProcList.contains(p)){
+		if(ProcessList.contains(p)){
 			if(p.getProcessState() != ProcessState.waiting.getState())
 				p.pause();
 		}
@@ -76,7 +76,7 @@ private ArrayList<Process> ProcList;
 	}
 	//Запускает процесс
 	public void start(Process p){
-		if(ProcList.contains(p)){
+		if(ProcessList.contains(p)){
 				p.start();
 		}
 		return;
@@ -84,7 +84,7 @@ private ArrayList<Process> ProcList;
 	
 	//Уничтожает процесс
 	public void kill(Process p){
-		if(ProcList.contains(p)){
+		if(ProcessList.contains(p)){
 				p.stop();
 		}
 		return;
