@@ -4,54 +4,53 @@ import java.util.ArrayList;
 import core.model.Process;
 
 public class ProcessManager extends Thread{
-	private ArrayList<Process> ProcList;
+private ArrayList<Process> ProcessList;
 	
 	public ProcessManager() {
-		ProcList = new ArrayList<Process>(5);
+		ProcessList = new ArrayList<Process>(5);
 	}
 	
 	public ArrayList<Process> getProcList(){
-		return ProcList;
+		return ProcessList;
 	}
 	
 	public void addProc(Process p) {
-		if(!ProcList.contains(p)){
-			ProcList.add(p);
+		if(!ProcessList.contains(p)){
+			ProcessList.add(p);
 		}else{
-			System.out.println("this elemen enter is list");
+			System.out.println("This element is already in the list");
 		}
 	}
 	
 	public void removeProc(Process p) {
-		if(ProcList.remove(p)){
-			System.out.println("Remoce Pro: ");
+		if(ProcessList.remove(p)){
 		}
 		
 	}
 	
 	public int getIndexOf(Process p){
-		return ProcList.indexOf(p);
+		return ProcessList.indexOf(p);
 	}
 	
 	public void startAll() {
-		if(ProcList.isEmpty()){
-			System.out.println("not start");
+		if(ProcessList.isEmpty()){
+			System.out.println("ProcessLIst is empty");
 			return;
 		}
-		for(Process p: ProcList){
+		for(Process p: ProcessList){
 			p.start();
 		}
 	}
 	
 	public void killAll() {
-		for(Process p: ProcList){
+		for(Process p: ProcessList){
 			p.stop();
 		}
-		ProcList.removeAll(ProcList);
+		ProcessList.removeAll(ProcessList);
 	}
 	
 	public void stopAll() {
-		for(Process p: ProcList){
+		for(Process p: ProcessList){
 			try {
 				p.wait();
 			} catch (InterruptedException e) {
