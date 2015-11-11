@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 
 import org.omg.CORBA.portable.InputStream;
 
-public class Resour—ÅeLoader {
+public class ResourÒeLoader {
 	public static final String PATH = "res/";
 	
 	 public static String getMimeType(String fileUrl)
