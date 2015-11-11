@@ -2,7 +2,6 @@ package core.managers;
 
 import core.graphics.Scene;
 import core.model.GameObject;
-import test.Tr;
 
 import java.util.ArrayList;
 import java.util.Collections;
