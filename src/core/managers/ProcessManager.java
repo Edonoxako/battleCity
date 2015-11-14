@@ -6,15 +6,16 @@ import core.model.Process;
 import core.model.Process.ProcessState;
 
 public class ProcessManager{
-private ArrayList<Process> ProcessList;
+	private ArrayList<Process> ProcessList;
 	
 	public ProcessManager() {
 		ProcessList = new ArrayList<Process>(5);
 	}
 	
-	public ArrayList<Process> getProcList(){
+	public ArrayList<Process> getProcessList(){
 		return ProcessList;
 	}
+	
 	//Добавляет процесс в список, возвращая true. Если в списке есть такой процесс вернет false.
 	public boolean addProc(Process p) {
 		if(!ProcessList.contains(p)){
@@ -28,18 +29,19 @@ private ArrayList<Process> ProcessList;
 	public boolean removeProc(Process p) {
 		return ProcessList.remove(p);	
 	}
+	
 	//Возвращает индекс процесса в списке, если такого процесса нет вернет -1;
 	public int getIndexOf(Process p){
 		return ProcessList.indexOf(p);
 	}
+	
 	//Запустит все процессы из списка, вернув true. Если список пуст вернет false.
 	public boolean startAll() {
 		if(ProcessList.isEmpty())
 			return false;
 		
-		for(Process p: ProcessList){
-			p.start();
-		}
+		for(Process p: ProcessList)
+				p.start();
 		return true;
 	}
 	
@@ -74,6 +76,7 @@ private ArrayList<Process> ProcessList;
 		}
 		return;
 	}
+	
 	//Запускает процесс
 	public void start(Process p){
 		if(ProcessList.contains(p)){
@@ -89,4 +92,5 @@ private ArrayList<Process> ProcessList;
 		}
 		return;
 	}
+	
 }
