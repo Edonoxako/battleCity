@@ -55,7 +55,6 @@ public class ProcessManager{
 		return ProcessList.removeAll(ProcessList);
 	}
 	
-	
 	//Приостанавливает все процессы вернув true. Вернет false если список был пуст.
 	public boolean stopAll() {
 		if(ProcessList.isEmpty())
