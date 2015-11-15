@@ -15,13 +15,11 @@ import javax.swing.JFrame;
 public class Scene {
 		private static boolean created = false;
 		public static Canvas content;
-		//private static Dimension size;
-			
+		
 		private static BufferedImage buffer;
 		private static int[] bufferData;
 		private static Graphics bufferGraphics;
 		private static int clearColor = 0xffffffff;
-//		public static JFrame window;
 		
 		private static BufferStrategy bufferStrategy;
 			
@@ -31,7 +29,6 @@ public class Scene {
 			content = new Canvas();
 			content.setSize(win.getRootPane().getSize());
 			win.getContentPane().add(content);
-			//debagDialog.setVisible(true);
 			created = true;
 			content.setFocusable(false);
 			buffer = new BufferedImage(win.getWidth(), 
@@ -40,7 +37,6 @@ public class Scene {
 			bufferGraphics = buffer.getGraphics();
 			((Graphics2D) bufferGraphics).setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
 					RenderingHints.VALUE_ANTIALIAS_ON);
-			//clearColor = _clearColor; 
 			
 			content.createBufferStrategy(2); 
 			bufferStrategy = content.getBufferStrategy();
@@ -53,29 +49,20 @@ public class Scene {
 
 		public static void swapBuffers(){
 			try {
-				try {
-					Graphics g = bufferStrategy.getDrawGraphics();
-					g.drawImage(buffer, 0, 0, null);
-				} catch (IllegalStateException e) {
-					// TODO: handle exception
-				}
-				
-			} catch (NullPointerException e) {
-				System.out.println("Чпок");
-			}
-			
-			
-			try {
+				Graphics g = bufferStrategy.getDrawGraphics();
+				g.drawImage(buffer, 0, 0, null);
 				bufferStrategy.show();
-			} catch (NullPointerException e) {
-				System.out.println("Чпок");
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
-			
-			
 		}
-		//Апофеоз гения
+		//Получение буфера рисования
 		public static Graphics2D getGraphics(){
-			return (Graphics2D) bufferGraphics;
+			if (created){
+				return (Graphics2D) bufferGraphics;
+			}else{
+				return null;
+			}
 		}
 
 		public static void destroy(){
@@ -83,24 +70,25 @@ public class Scene {
 				return;
 
 		}
-		
+		//Изменение размера сцены
 		public static void resize(Dimension size){
 			try {
 				content.setSize(size);
-			} catch (NullPointerException e) {
-				// TODO: handle exception
+				if(created){
+					buffer = new BufferedImage(content.getWidth(), 
+							content.getHeight(), BufferedImage.TYPE_INT_ARGB);
+					bufferData = ((DataBufferInt) buffer.getRaster().getDataBuffer()).getData(); 
+					bufferGraphics = buffer.getGraphics();
+					((Graphics2D) bufferGraphics).setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
+							RenderingHints.VALUE_ANTIALIAS_ON);
+					content.createBufferStrategy(2); 
+					bufferStrategy = content.getBufferStrategy();
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
 			
-			buffer = new BufferedImage(content.getWidth(), 
-					content.getHeight(), BufferedImage.TYPE_INT_ARGB);
-			bufferData = ((DataBufferInt) buffer.getRaster().getDataBuffer()).getData(); 
-			bufferGraphics = buffer.getGraphics();
-			((Graphics2D) bufferGraphics).setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
-					RenderingHints.VALUE_ANTIALIAS_ON);
-			//clearColor = _clearColor; 
 			
-			content.createBufferStrategy(2); 
-			bufferStrategy = content.getBufferStrategy();
 			
 		}
 
