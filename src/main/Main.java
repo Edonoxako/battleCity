@@ -16,7 +16,6 @@ public class Main {
         //---Запуск приложения---
 		App app = new App();
 		app.init();
-		Scene.create(app.window);
 		app.start();
         //-----------------------
 

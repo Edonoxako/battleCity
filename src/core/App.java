@@ -32,6 +32,10 @@ public class App {
 //		window.setLayout(bl);
 //		p = new JPanel();
 //		window.getContentPane().add(p, BorderLayout.CENTER);
+		//Инициализация менеджеров
+		
+		
+		
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -115,6 +119,7 @@ public class App {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
+		Scene.create(window);
 	}
 	public void start(){
 		ThreadProcTest procTest = new ThreadProcTest();
