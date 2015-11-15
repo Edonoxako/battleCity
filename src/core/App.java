@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import core.graphics.Scene;
+import core.managers.ObjectManager;
+import core.managers.ProcessManager;
 import test.ThreadProcTest;
 //import test.ThreadProcTest;
 
@@ -23,22 +25,18 @@ public class App {
 	private boolean sizeFlag = false;
 
 	public void init(){
+		//TODO убрать, или доделать выбор дисплея.
 		device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		//Создание и задание параметров главного окна приложения
 		window = new JFrame();
 		window.setSize(new Dimension(600, 400));
-//		BorderLayout bl = new BorderLayout();
-//		bl.setHgap(0);
-//		bl.setVgap(0);
-//		window.setLayout(bl);
-//		p = new JPanel();
-//		window.getContentPane().add(p, BorderLayout.CENTER);
-		//Инициализация менеджеров
-		
-		
-		
+
+		//Инициализация менеджеров.
+		ProcessManager processManager = new ProcessManager();
+		ObjectManager objectManager = new ObjectManager();
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		//Обработка событий окна.
 		window.addComponentListener(new ComponentListener() {
 			
 			@Override
@@ -68,7 +66,7 @@ public class App {
 				// TODO Auto-generated method stub
 			}
 		});
-		
+		//Обработка глобальных "горячих клавиш".
 		window.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -119,6 +117,7 @@ public class App {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
+		//Создание сцены
 		Scene.create(window);
 	}
 	public void start(){
