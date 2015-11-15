@@ -1,4 +1,6 @@
 package test;
+import core.App;
+import core.graphics.Scene;
 import core.model.Process;
 import core.utils.Time;
 public class Game extends Process{
@@ -34,7 +36,14 @@ public class Game extends Process{
 				delta += ( elapsedTime / UPDATE_INTERVAL );
 				
 				while(delta > 1){
-					//update
+					//Update using of ObjectManager
+					for ( int i = 0; i < App.objectManager.getObjects().size(); i++) {
+	                    if (App.objectManager.isObjectExists(i)){
+	                        App.objectManager.getObject(i).update();
+	                    }
+						
+					}
+					//-------
 					delta--;
 					upd++;
 					if (render) {
@@ -51,7 +60,14 @@ public class Game extends Process{
 				}
 				
 				if (render) {
-					//draw
+					Scene.clear();
+					//render using ObjectManager
+					for ( int i = 0; i < App.objectManager.getObjects().size(); i++) {
+	                    if (App.objectManager.isObjectExists(i)) {
+	                    	App.objectManager.getObject(i).draw(Scene.getGraphics());
+	                    }
+					}
+					Scene.swapBuffers();
 					fps++;
 				} else {
 					try {

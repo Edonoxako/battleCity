@@ -15,8 +15,6 @@ import core.graphics.Scene;
 import core.managers.ObjectManager;
 import core.managers.ProcessManager;
 import core.managers.StateManager;
-import test.ThreadProcTest;
-//import test.ThreadProcTest;
 
 public class App {
 	
@@ -42,24 +40,25 @@ public class App {
 		
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//—оздание сцены
+		Scene.create(window);
+		
 		//ќбработка событий окна.
 		window.addComponentListener(new ComponentListener() {
 			
 			@Override
 			public void componentShown(ComponentEvent arg0) {
-//				tScene.clear();
-//				tScene.swapBuffers();
+				processManager.startAll();
 				
 			}
-			
 			@Override
 			public void componentResized(ComponentEvent arg0) {
 				if (Scene.isCreated()){
-					processManager.startAll();
+					processManager.stopAll();
 					Scene.resize(window.getRootPane().getSize());
+					processManager.startAll();
 				}
-//				tScene.clear();
-//				tScene.swapBuffers();
 			}
 			
 			@Override
@@ -71,6 +70,7 @@ public class App {
 			@Override
 			public void componentHidden(ComponentEvent arg0) {
 				// TODO Auto-generated method stub
+				processManager.stopAll();
 			}
 		});
 		//ќбработка глобальных "гор€чих клавиш".
@@ -82,6 +82,7 @@ public class App {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_F11) {
+					processManager.stopAll();
 					if (!sizeFlag){
 						window.dispose();
 		            	window.setUndecorated(true);
@@ -103,20 +104,20 @@ public class App {
 					            }
 					        });	
 	            		} finally {
-	            			
+	            			sizeFlag = true;
 	            		}
-						
-						sizeFlag = true;
 					}else {
 						//window.setUndecorated(false);
 						//window.setAlwaysOnTop(false);
+						processManager.stopAll();
 						window.dispose();
 						window.setUndecorated(false);
 						device.setFullScreenWindow(null);
 						window.setVisible(true);
 						sizeFlag = false;
-						
+						//processManager.startAll();
 					}
+					processManager.startAll();
 				}
 			}
 
@@ -124,12 +125,10 @@ public class App {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
-		//—оздание сцены
-		Scene.create(window);
 	}
+	
 	public void start(){
-		ThreadProcTest procTest = new ThreadProcTest();
-		procTest.start();
+		processManager.startAll();
 	}
 }
 

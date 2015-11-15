@@ -37,10 +37,10 @@ public class MovingObject extends GameObject {
 
     @Override
     public void update() {
-        setX(getX() + 3);
+        setX(getX() + 1);
 
         frameCount++;
-        if (frameCount == 40) {
+        if (frameCount == 360) {
             objectManager.removeObject(getId());
         }
     }
