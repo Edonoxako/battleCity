@@ -4,8 +4,10 @@ import core.App;
 import core.graphics.Scene;
 //import test.Tr;
 import core.managers.ObjectManager;
+import core.managers.ProcessManager;
 import core.model.GameObjectType;
 import test.Tr;
+import test.Game;
 
 public class Main {
 
@@ -71,6 +73,80 @@ public class Main {
         manager.sortObjects();
         manager.showObjects();
         //-------------------------------
+        //-----TEST PROCESS MANAGER------
+        //used example class test Game
+        ProcessManager processmanager = new ProcessManager();
+		Game gm1 = new Game("Игра 1");
+		Game gm2 = new Game("Игра 2");
+		Game gm3 = new Game("Игра 3");
+		processmanager.addProc(gm1);
+		processmanager.addProc(gm2);
+		processmanager.addProc(gm3);
+		System.out.println("Start all proc:.. Control thread wait 3 seconds");
+		processmanager.startAll();
+		
+		try {
+			Thread.sleep(3000l);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Pause all proc:.. Control thread wait 3 seconds");
+		processmanager.stopAll();
+		
+		try {
+			int i = 0;
+			while(i<3){
+				Thread.sleep(1000l);
+				System.out.print(".");
+				i++;
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Start all proc:.. Control thread wait 3 seconds");
+		processmanager.startAll();
+		
+		try {
+			Thread.sleep(3000l);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		System.out.println("Pause all proc:.. Control thread wait 3 seconds");
+		processmanager.stopAll();
+		
+		try {
+			int i = 0;
+			while(i<3){
+				Thread.sleep(1000l);
+				System.out.print(".");
+				i++;
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		System.out.println("Start proc gm1:.. Control thread wait 3 seconds");
+		processmanager.start(gm2);
+		try {
+			int i = 0;
+			while(i<3){
+				Thread.sleep(1000l);
+				System.out.print(".");
+				i++;
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//---TEST PROCESS MANAGER END---------
 	}
 
 }
