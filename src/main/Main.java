@@ -6,8 +6,8 @@ import core.graphics.Scene;
 import core.managers.ObjectManager;
 import core.managers.ProcessManager;
 import core.model.GameObjectType;
-import test.Game;
 import test.Tr;
+import test.Game;
 
 public class Main {
 
