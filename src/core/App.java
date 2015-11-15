@@ -14,16 +14,19 @@ import javax.swing.JPanel;
 import core.graphics.Scene;
 import core.managers.ObjectManager;
 import core.managers.ProcessManager;
+import core.managers.StateManager;
 import test.ThreadProcTest;
 //import test.ThreadProcTest;
 
 public class App {
-
+	
 	public JFrame window;
 	public JPanel p;
 	private GraphicsDevice device;
 	private boolean sizeFlag = false;
-
+	public static ProcessManager processManager;
+	public static ObjectManager objectManager;
+	public static StateManager stateManager;
 	public void init(){
 		//TODO убрать, или доделать выбор дисплея.
 		device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -32,8 +35,11 @@ public class App {
 		window.setSize(new Dimension(600, 400));
 
 		//Инициализация менеджеров.
-		ProcessManager processManager = new ProcessManager();
-		ObjectManager objectManager = new ObjectManager();
+		
+		processManager = new ProcessManager();
+		objectManager = new ObjectManager();
+		stateManager = new StateManager();
+		
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//Обработка событий окна.
@@ -49,6 +55,7 @@ public class App {
 			@Override
 			public void componentResized(ComponentEvent arg0) {
 				if (Scene.isCreated()){
+					processManager.startAll();
 					Scene.resize(window.getRootPane().getSize());
 				}
 //				tScene.clear();
