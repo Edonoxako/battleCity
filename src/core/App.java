@@ -12,13 +12,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import core.graphics.Scene;
+import test.ThreadProcTest;
 //import test.ThreadProcTest;
 
 public class App {
+
 	public JFrame window;
 	public JPanel p;
 	private GraphicsDevice device;
 	private boolean sizeFlag = false;
+
 	public void init(){
 		device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 		window = new JFrame();
@@ -114,7 +117,8 @@ public class App {
 		});
 	}
 	public void start(){
-
+		ThreadProcTest procTest = new ThreadProcTest();
+		procTest.start();
 	}
 }
 
