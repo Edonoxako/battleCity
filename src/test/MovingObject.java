@@ -13,6 +13,10 @@ import java.awt.*;
  */
 public class MovingObject extends GameObject {
 
+    public static final int START_FRAME_COUNT = 40;
+    public static final int END_FRAME_COUNT = 100;
+    public static final int VELOCITY = 6;
+
     private Color color;
     private int frameCount;
 
@@ -31,17 +35,21 @@ public class MovingObject extends GameObject {
 
     @Override
     public void draw(Graphics2D g) {
-        g.setColor(color);
-        g.fillRect(getX(), getY(), 20, 20);
+        if (frameCount > START_FRAME_COUNT) {
+            g.setColor(color);
+            g.fillRect(getX(), getY(), 20, 20);
+        }
     }
 
     @Override
     public void update() {
-        setX(getX() + 3);
+        if (frameCount > START_FRAME_COUNT) {
+            setX(getX() + VELOCITY);
 
-        frameCount++;
-        if (frameCount == 40) {
-            objectManager.removeObject(getId());
+            if (frameCount > END_FRAME_COUNT) {
+                objectManager.removeObject(getId());
+            }
         }
+        frameCount++;
     }
 }
