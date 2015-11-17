@@ -58,7 +58,7 @@ public class Scene {
 				bufferStrategy.show();
 			}
 		} catch (Exception e) {
-			//
+			e.printStackTrace();
 		}
 	}
 	//Получение буфера рисования
