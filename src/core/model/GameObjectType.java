@@ -6,5 +6,5 @@ package core.model;
  * Типы игровых объектов (игрок, враг и т.д.)
  */
 public enum GameObjectType {
-    PLAYER, ENEMY, WALL
+    PLAYER, ENEMY, WALL, OTHER
 }
