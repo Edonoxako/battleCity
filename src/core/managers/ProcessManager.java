@@ -1,6 +1,7 @@
 package core.managers;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import core.model.Process;
 import core.model.Process.ProcessState;
@@ -91,5 +92,19 @@ public class ProcessManager{
 		}
 		return;
 	}
-	
+	public int generateID(){
+		if(ProcessList.isEmpty()){
+			return 1;
+		}
+		int id = new Random().nextInt(ProcessList.size()+3);
+		boolean checkunique = false;
+		while(!checkunique){
+			checkunique = true;
+			for(Process p: ProcessList)
+				if(p.getId() == id) 
+					checkunique=false;
+			id = new Random().nextInt(ProcessList.size()+3);
+		}
+		return id;
+	}
 }
