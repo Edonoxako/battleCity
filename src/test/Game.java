@@ -7,9 +7,8 @@ public class Game extends Process{
 	public static final float UPDATE_RATE = 60.0f;
 	public static final float UPDATE_INTERVAL = Time.SECOND / UPDATE_RATE;
 	public static final long IDLE_TIME = 1;
-	public Game(String name){
-		super();
-		thread.setName(name);
+	public Game(String name, int id){
+		super(id, name);
 	}
 	@Override
 	public void run() {
@@ -54,9 +53,15 @@ public class Game extends Process{
 				}
 				
 				if (this.getProcessState() == ProcessState.waiting.getState()){
+					long timePause = Time.get();
 					synchronized (monitor) {
 						monitor.wait();
-					}	
+					}
+					if(this.getProcessState() == ProcessState.waiting.getState()){
+						this.start();
+					}
+					timePause = Time.get() - timePause;
+					lastTime += timePause; 
 				}
 				
 				if (render) {
