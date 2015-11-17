@@ -7,10 +7,11 @@ import core.model.Process;
 import core.model.Process.ProcessState;
 
 public class ProcessManager{
+	private int INIT_SIZE_PROCESSLIST = 5;
 	private ArrayList<Process> ProcessList;
 	
 	public ProcessManager() {
-		ProcessList = new ArrayList<Process>(5);
+		ProcessList = new ArrayList<Process>(INIT_SIZE_PROCESSLIST);
 	}
 	
 	public ArrayList<Process> getProcessList(){
@@ -90,20 +91,21 @@ public class ProcessManager{
 		if(ProcessList.contains(p)){
 				p.stop();
 		}
+		ProcessList.remove(p);
 		return;
 	}
 	public int generateID(){
 		if(ProcessList.isEmpty()){
-			return 1;
+			return 0;
 		}
-		int id = new Random().nextInt(ProcessList.size()+3);
+		int id = new Random().nextInt(ProcessList.size()+INIT_SIZE_PROCESSLIST);
 		boolean checkunique = false;
 		while(!checkunique){
+			id = new Random().nextInt(ProcessList.size()+INIT_SIZE_PROCESSLIST);
 			checkunique = true;
 			for(Process p: ProcessList)
 				if(p.getId() == id) 
 					checkunique=false;
-			id = new Random().nextInt(ProcessList.size()+3);
 		}
 		return id;
 	}
