@@ -1,9 +1,7 @@
 package main;
 
 import core.App;
-import core.model.GameObjectType;
-import test.Game;
-import test.MovingObject;
+import test.TestStateGame;
 
 public class Main {
 
@@ -14,9 +12,9 @@ public class Main {
 		app.init();
 		
 		//add test object
-		App.objectManager.addObject(new MovingObject(0, GameObjectType.ENEMY, App.objectManager));
-		Game gm = new Game("GameProcessTest");
-		App.processManager.addProc(gm);
+		TestStateGame gm = new TestStateGame();
+		App.stateManager.push(gm);
+		
         //-----------------------
 		app.start();
 		
