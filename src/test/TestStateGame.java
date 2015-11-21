@@ -18,6 +18,7 @@ public class TestStateGame extends State{
 	}
 	
 	public void init(){
+		App.objectManager.addObject(new TestPlayer(1, 50, 50, App.input, GameObjectType.PLAYER));
 		App.objectManager.addObject(new MovingObject(0, GameObjectType.ENEMY, App.objectManager));
 		App.processManager.start(gm);
 		setInit(true);
