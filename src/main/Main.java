@@ -1,6 +1,7 @@
 package main;
 
 import core.App;
+import core.managers.TileMapManager;
 import core.model.GameObjectType;
 import test.Game;
 import test.MovingObject;
@@ -10,15 +11,15 @@ public class Main {
 	public static void main(String[] args) {
 
         //---Запуск приложения---
-		App app = new App();
-		app.init();
-		
-		//add test object
-		App.objectManager.addObject(new MovingObject(0, GameObjectType.ENEMY, App.objectManager));
-		Game gm = new Game("GameProcessTest");
-		App.processManager.addProc(gm);
-        //-----------------------
-		app.start();
+//		App app = new App();
+//		app.init();
+//
+//		//add test object
+//		App.objectManager.addObject(new MovingObject(0, GameObjectType.ENEMY, App.objectManager));
+//		Game gm = new Game("GameProcessTest");
+//		App.processManager.addProc(gm);
+//        //-----------------------
+//		app.start();
 		
 		
 		
@@ -78,9 +79,9 @@ public class Main {
 //        //-----TEST PROCESS MANAGER------
 //        //used example class test Game
 //        ProcessManager processmanager = new ProcessManager();
-//		Game gm1 = new Game("���� 1");
-//		Game gm2 = new Game("���� 2");
-//		Game gm3 = new Game("���� 3");
+//		Game gm1 = new Game("���� 1");
+//		Game gm2 = new Game("���� 2");
+//		Game gm3 = new Game("���� 3");
 //		processmanager.addProc(gm1);
 //		processmanager.addProc(gm2);
 //		processmanager.addProc(gm3);
@@ -149,6 +150,13 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		//---TEST PROCESS MANAGER END---------
+
+		//---Тестим Тайл Мап------------------
+        TileMapManager mapManager = new TileMapManager();
+        mapManager.loadMap("res/testmap.txt");
+        mapManager.getTileMap().showDump();
+        System.out.println("If you see this line than it works!");
+        //---Закончили тестить Тайл Мап-------
 	}
 
 }
