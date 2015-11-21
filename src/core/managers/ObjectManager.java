@@ -1,5 +1,6 @@
 package core.managers;
 
+import core.graphics.Scene;
 import core.model.GameObject;
 import test.Tr;
 
@@ -63,6 +64,23 @@ public class ObjectManager {
 			iterator.next().who();
 		}
 	}
+	//Обновляет объекты
+    public void updateObject() {
+    	Iterator<GameObject> iterator = objects.iterator();
+		while (iterator.hasNext()) {
+			iterator.next().update();
+		}
+    }
+    
+    //Отрисовывает объекты
+    public void drawObject() {
+    	Scene.clear();
+    	Iterator<GameObject> iterator = objects.iterator();
+		while (iterator.hasNext()) {
+			iterator.next().draw(Scene.getGraphics());
+		}
+		Scene.swapBuffers();
+    }
 
     //Сортирует объекты по их типу
     public void sortObjects() {
