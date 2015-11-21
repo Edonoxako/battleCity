@@ -15,6 +15,7 @@ import core.graphics.Scene;
 import core.managers.ObjectManager;
 import core.managers.ProcessManager;
 import core.managers.StateManager;
+import core.utils.Input;
 import test.TetstStatePause;
 
 public class App {
@@ -24,6 +25,7 @@ public class App {
 	private GraphicsDevice device;
 	private boolean sizeFlag = false;
 	private boolean pauseFlag = false;
+	public static Input input;
 	public static ProcessManager processManager;
 	public static ObjectManager objectManager;
 	public static StateManager stateManager;
@@ -39,29 +41,29 @@ public class App {
 		processManager = new ProcessManager();
 		objectManager = new ObjectManager();
 		stateManager = new StateManager();
+		input = new Input();
+		
 		
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		TetstStatePause ps = new TetstStatePause();
 		//—оздание сцены
 		Scene.create(window);
-		
+		window.add(input);
 		//ќбработка событий окна.
 		window.addComponentListener(new ComponentListener() {
 			
 			@Override
 			public void componentShown(ComponentEvent arg0) {
-				processManager.startAll();
+				//processManager.startAll();
 				
 			}
 			@Override
 			public void componentResized(ComponentEvent arg0) {
-				if (Scene.isCreated()){
-					processManager.stopAll();
+					//processManager.stopAll();
 					Scene.resize(window.getRootPane().getSize());
 					
 					//processManager.startAll();
-				}
 			}
 			
 			@Override
@@ -73,7 +75,7 @@ public class App {
 			@Override
 			public void componentHidden(ComponentEvent arg0) {
 				// TODO Auto-generated method stub
-				processManager.stopAll();
+				//processManager.stopAll();
 			}
 		});
 		//ќбработка глобальных "гор€чих клавиш".
@@ -85,7 +87,7 @@ public class App {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_F11) {
-					processManager.stopAll();
+					//processManager.stopAll();
 					if (!sizeFlag){
 						window.dispose();
 		            	window.setUndecorated(true);
@@ -112,7 +114,7 @@ public class App {
 					}else {
 						//window.setUndecorated(false);
 						//window.setAlwaysOnTop(false);
-						processManager.stopAll();
+						//processManager.stopAll();
 						window.dispose();
 						window.setUndecorated(false);
 						device.setFullScreenWindow(null);
@@ -120,7 +122,7 @@ public class App {
 						sizeFlag = false;
 						//processManager.startAll();
 					}
-					processManager.startAll();
+					//processManager.startAll();
 				}
 				
 				if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
