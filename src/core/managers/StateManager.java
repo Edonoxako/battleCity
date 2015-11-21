@@ -26,11 +26,13 @@ public class StateManager {
 	}
 	
 	public State pop() {
+		StateStack.peek().destroy();
 		return StateStack.pop();
 	}
 	
 	public State push(State s) {
-		return StateStack.push(s);
+		StateStack.push(s).init();
+		return s;
 	}
 	/*ћетод ищет заданный элемент в стеке, возвраща€ количество операций pop, 
 	которые требуютс€ дл€ того чтобы перевести искомый элемент в вершину стека. 

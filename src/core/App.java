@@ -15,6 +15,7 @@ import core.graphics.Scene;
 import core.managers.ObjectManager;
 import core.managers.ProcessManager;
 import core.managers.StateManager;
+import test.TetstStatePause;
 
 public class App {
 	
@@ -22,6 +23,7 @@ public class App {
 	public JPanel p;
 	private GraphicsDevice device;
 	private boolean sizeFlag = false;
+	private boolean pauseFlag = false;
 	public static ProcessManager processManager;
 	public static ObjectManager objectManager;
 	public static StateManager stateManager;
@@ -40,7 +42,7 @@ public class App {
 		
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		TetstStatePause ps = new TetstStatePause();
 		//Создание сцены
 		Scene.create(window);
 		
@@ -57,7 +59,8 @@ public class App {
 				if (Scene.isCreated()){
 					processManager.stopAll();
 					Scene.resize(window.getRootPane().getSize());
-					processManager.startAll();
+					
+					//processManager.startAll();
 				}
 			}
 			
@@ -119,6 +122,18 @@ public class App {
 					}
 					processManager.startAll();
 				}
+				
+				if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+					if(!pauseFlag){
+						stateManager.peek().block();
+						stateManager.push(ps);
+						pauseFlag = true;
+					}else{
+						stateManager.pop();
+						stateManager.peek().unBlock();
+						pauseFlag = false;
+					}
+				}
 			}
 
 			@Override
@@ -128,7 +143,7 @@ public class App {
 	}
 	
 	public void start(){
-		processManager.startAll();
+		System.out.println("APP init");
 	}
 }
 

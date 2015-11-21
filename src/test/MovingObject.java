@@ -15,7 +15,7 @@ public class MovingObject extends GameObject {
 
     private Color color;
     private int frameCount;
-
+    private int dx = 1;
     private ObjectManager objectManager;
 
     public MovingObject(int id, GameObjectType type, ObjectManager objectManager) {
@@ -37,11 +37,12 @@ public class MovingObject extends GameObject {
 
     @Override
     public void update() {
-        setX(getX() + 1);
+        setX(getX() + dx);
 
         frameCount++;
         if (frameCount == 360) {
-            objectManager.removeObject(getId());
+           frameCount=0;
+           dx = -dx;
         }
     }
 }
