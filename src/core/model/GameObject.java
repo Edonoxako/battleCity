@@ -1,6 +1,6 @@
 package core.model;
 
-public abstract class GameObject implements TestInf {
+public abstract class GameObject implements GameObjectInf {
 
 	private int id;
 	private GameObjectType type;
@@ -59,7 +59,6 @@ public abstract class GameObject implements TestInf {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public GameObjectType getType() {
         return type;
