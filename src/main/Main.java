@@ -1,6 +1,7 @@
 package main;
 
 import core.App;
+import core.managers.ResourceLoader;
 import test.TestStateGame;
 import core.managers.TileMapManager;
 import core.model.GameObjectType;
@@ -47,7 +48,7 @@ public class Main {
 //		System.out.println("============");
 //		trList.get(trList.indexOf(a)).who();
 
-//        //---Тестим менеджер объектов---
+//        //---РўРµСЃС‚РёРј РјРµРЅРµРґР¶РµСЂ РѕР±СЉРµРєС‚РѕРІ---
 //        ObjectManager manager = new ObjectManager();
 //        Tr obj1 = new Tr(1, GameObjectType.PLAYER);
 //        Tr obj2 = new Tr(2, GameObjectType.ENEMY);
@@ -150,6 +151,11 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		//---TEST PROCESS MANAGER END---------
+
+		//---РўРµСЃС‚РёРј РўР°Р№Р» РњР°Рї------------------
+        /*ResourceLoader.loadMap("res/testmap.txt").showDump();
+        System.out.println("If you see this line than it works!");*/
+        //---Р—Р°РєРѕРЅС‡РёР»Рё С‚РµСЃС‚РёС‚СЊ РўР°Р№Р» РњР°Рї-------
 	}
 
 }

@@ -8,12 +8,18 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
 import org.omg.CORBA.portable.InputStream;
+import test.TileMap;
 
 public class ResourceLoader {
 	public static final String PATH = "res/";
@@ -44,6 +50,40 @@ public class ResourceLoader {
 		
 		return image;
 	}
+
+    public static TileMap loadMap(String mapFile) {
+
+        URL url = TileMap.class.getClassLoader().getResource(mapFile);
+        Path path = null;
+        try {
+            path = Paths.get(url.toURI());
+
+            TileMap tileMap = null;
+            Charset charset = Charset.forName("UTF-8");
+            try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+                String line = null;
+
+                int mapHeight = Integer.parseInt(reader.readLine());
+                int mapWidth = Integer.parseInt(reader.readLine());
+                tileMap = new TileMap(mapHeight, mapWidth);
+
+                while ((line = reader.readLine()) != null) {
+                    tileMap.addLine(line);
+                }
+
+                return tileMap;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 	//если расширение будет text/plain то выполнется loadImage
 	private String loadConfig(String fileName) {
         StringBuilder sb = new StringBuilder();

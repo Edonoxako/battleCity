@@ -2,6 +2,9 @@ package core.managers;
 
 import core.graphics.Scene;
 import core.model.GameObject;
+import core.utils.IdService;
+import test.TileMap;
+import test.WallObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -88,6 +91,14 @@ public class ObjectManager {
     //Сортирует объекты по их типу
     public void sortObjects() {
         Collections.sort(objects, new GameObjectComparator());
+    }
+
+	public void createMap(TileMap map) {
+        map.getMapObjects().stream()
+                .forEach(obj -> objects.add(
+                                new WallObject(IdService.generateId(), obj.getCoordX(), obj.getCoordY())
+                        )
+                );
     }
 
 	//Внутрений класс-компаратор для сортировки списка объектов
