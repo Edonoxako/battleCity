@@ -3,6 +3,8 @@ package core.model;
 public abstract class Process implements Runnable{
 	public Thread thread;
 	public Object monitor;//Обьект синхронизации.
+	private int id;
+	private String name;
 	public enum ProcessState{
 		init(0), 		//Процесс создан, но не запущен;
 		running(2),		//Процесс выполняется;
@@ -20,15 +22,16 @@ public abstract class Process implements Runnable{
 		}
 		
 	}
-	
 	private ProcessState state;
-	public Process(){
+	public Process(int id, String name){
 		monitor = new Object();
+		this.id = id;
+		this.name = name;
 		init();
 	}
 	protected void init(){
 		state = ProcessState.init;
-		thread = new Thread(this);
+		thread = new Thread(this, name);
 	}
 	//Запускает процесс, инициализируя его снова если того требует состояние.
 	public void start(){
@@ -75,9 +78,15 @@ public abstract class Process implements Runnable{
 		state = ProcessState.waiting;
 		
 	}
+	
 	public int getProcessState(){
 		return state.getState();
 	}
+	
+	public int getId(){
+		return id;
+	}
+	
 //TODO исправить этот метод или убрать его.
 //	//Приостанавливает процесс на заданное время.
 //	public synchronized void pause(long mils){

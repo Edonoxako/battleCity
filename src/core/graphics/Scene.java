@@ -58,7 +58,6 @@ public class Scene {
 				bufferStrategy.show();
 			}
 		} catch (Exception e) {
-			//
 		}
 	}
 	//Получение буфера рисования
@@ -79,19 +78,16 @@ public class Scene {
 	//Изменение размера сцены
 	public static void resize(Dimension size){
 		try {
+			Scene.size = size;
 			content.setSize(size);
-			if(content.getBufferStrategy()!=null){
-				if(created){
-					buffer = new BufferedImage(content.getWidth(), 
-							content.getHeight(), BufferedImage.TYPE_INT_ARGB);
-					bufferData = ((DataBufferInt) buffer.getRaster().getDataBuffer()).getData(); 
-					bufferGraphics = buffer.getGraphics();
-					((Graphics2D) bufferGraphics).setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
-							RenderingHints.VALUE_ANTIALIAS_ON);
-					content.createBufferStrategy(2); 
-					bufferStrategy = content.getBufferStrategy();
-				}
-			}
+			buffer = new BufferedImage(content.getWidth(), 
+			content.getHeight(), BufferedImage.TYPE_INT_ARGB);
+			bufferData = ((DataBufferInt) buffer.getRaster().getDataBuffer()).getData(); 
+			bufferGraphics = buffer.getGraphics();
+			((Graphics2D) bufferGraphics).setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
+					RenderingHints.VALUE_ANTIALIAS_ON);
+			content.createBufferStrategy(2); 
+			bufferStrategy = content.getBufferStrategy();
 		} catch (Exception e) {
 			//Нечего не делать
 		}

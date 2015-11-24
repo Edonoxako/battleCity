@@ -1,6 +1,7 @@
 package main;
 
 import core.App;
+import test.TestStateGame;
 import core.managers.TileMapManager;
 import core.model.GameObjectType;
 import test.Game;
@@ -11,16 +12,15 @@ public class Main {
 	public static void main(String[] args) {
 
         //---Запуск приложения---
-//		App app = new App();
-//		app.init();
-//
-//		//add test object
-//		App.objectManager.addObject(new MovingObject(0, GameObjectType.ENEMY, App.objectManager));
-//		Game gm = new Game("GameProcessTest");
-//		App.processManager.addProc(gm);
-//        //-----------------------
-//		app.start();
+		App app = new App();
+		app.init();
 		
+		//add test object
+		TestStateGame gm = new TestStateGame();
+		App.stateManager.push(gm);
+		
+        //-----------------------
+		app.start();
 		
 		
 //		Tclass t = new Tclass();
@@ -150,13 +150,6 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		//---TEST PROCESS MANAGER END---------
-
-		//---Тестим Тайл Мап------------------
-        TileMapManager mapManager = new TileMapManager();
-        mapManager.loadMap("res/testmap.txt");
-        mapManager.getTileMap().showDump();
-        System.out.println("If you see this line than it works!");
-        //---Закончили тестить Тайл Мап-------
 	}
 
 }

@@ -16,10 +16,10 @@ public class MovingObject extends GameObject {
     public static final int START_FRAME_COUNT = 40;
     public static final int END_FRAME_COUNT = 100;
     public static final int VELOCITY = 6;
-
+    
     private Color color;
     private int frameCount;
-
+    private int dx = 1;
     private ObjectManager objectManager;
 
     public MovingObject(int id, GameObjectType type, ObjectManager objectManager) {
@@ -43,13 +43,12 @@ public class MovingObject extends GameObject {
 
     @Override
     public void update() {
-        if (frameCount > START_FRAME_COUNT) {
-            setX(getX() + VELOCITY);
+        setX(getX() + dx);
 
-            if (frameCount > END_FRAME_COUNT) {
-                objectManager.removeObject(getId());
-            }
-        }
         frameCount++;
+        if (frameCount == 360) {
+           frameCount=0;
+           dx = -dx;
+        }
     }
 }

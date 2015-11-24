@@ -54,6 +54,10 @@ public class ObjectManager {
 			}
 		}
 	}
+	
+	public void removeAllObject(){
+		objects.removeAll(objects);
+	}
 
 	//Выводит инфу о всех объектах сцены в консоль
 	public void showObjects() {
