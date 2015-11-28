@@ -7,21 +7,22 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.util.Properties;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import core.graphics.Scene;
 import core.managers.ObjectManager;
 import core.managers.ProcessManager;
 import core.managers.StateManager;
 import core.utils.Input;
+import core.utils.ResourсeLoader;
 import test.TetstStatePause;
 
 public class App {
 	
 	public JFrame window;
-	public JPanel p;
 	private GraphicsDevice device;
 	private boolean sizeFlag = false;
 	private boolean pauseFlag = false;
@@ -29,12 +30,23 @@ public class App {
 	public static ProcessManager processManager;
 	public static ObjectManager objectManager;
 	public static StateManager stateManager;
+	public static Dimension defaultFrameSize;
+	private Properties property;
 	public void init(){
+		property = new Properties();
+	    try {
+	        property.load(ResourсeLoader.loadConfigDefault());
+	        defaultFrameSize = new Dimension(Integer.parseInt(property.getProperty("default.window.width")), 
+	        		Integer.parseInt(property.getProperty("default.window.height")));
+	        System.out.println(defaultFrameSize.toString());
+	    } catch (IOException e) {
+	        System.err.println("ОШИБКА: Файл свойств отсуствует!");
+	    }
 		//TODO убрать, или доделать выбор дисплея.
 		device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 		//Создание и задание параметров главного окна приложения
 		window = new JFrame();
-		window.setSize(new Dimension(600, 400));
+		window.setSize(defaultFrameSize);
 
 		//Инициализация менеджеров.
 		
