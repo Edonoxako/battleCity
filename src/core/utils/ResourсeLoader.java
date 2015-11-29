@@ -1,14 +1,22 @@
 package core.utils;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
+
+import test.TileMap;
 
 public class Resour�eLoader {
 	public static final String PATH = "res/";
@@ -24,8 +32,39 @@ public class Resour�eLoader {
 				 type = uc.getContentType();
 				 return type;
 			 }
-	 //если расширение будет image/jpeg то выполнется loadImage(или спрайты, не важно)
+	
+    public static TileMap loadMap(String mapFile) {
 
+        URL url = TileMap.class.getClassLoader().getResource(mapFile);
+        Path path = null;
+        try {
+            path = Paths.get(url.toURI());
+
+            TileMap tileMap = null;
+            Charset charset = Charset.forName("UTF-8");
+            try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+                String line = null;
+
+                int mapHeight = Integer.parseInt(reader.readLine());
+                int mapWidth = Integer.parseInt(reader.readLine());
+                tileMap = new TileMap(mapHeight, mapWidth);
+
+                while ((line = reader.readLine()) != null) {
+                    tileMap.addLine(line);
+                }
+
+                return tileMap;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 	public static BufferedImage loadImage(String fileName){
 		
 		BufferedImage image = null;

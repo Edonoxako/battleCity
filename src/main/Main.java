@@ -1,18 +1,13 @@
 package main;
 
 import core.App;
-import core.managers.ResourceLoader;
 import test.TestStateGame;
-import core.managers.TileMapManager;
-import core.model.GameObjectType;
-import test.Game;
-import test.MovingObject;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-        //---Запуск приложения---
+        //---Р—Р°РїСѓСЃРє РїСЂРёР»РѕР¶РµРЅРёСЏ---
 		App app = new App();
 		app.init();
 		
@@ -48,7 +43,7 @@ public class Main {
 //		System.out.println("============");
 //		trList.get(trList.indexOf(a)).who();
 
-//        //---РўРµСЃС‚РёРј РјРµРЅРµРґР¶РµСЂ РѕР±СЉРµРєС‚РѕРІ---
+//        //---Р СћР ВµРЎРѓРЎвЂљР С‘Р С� Р С�Р ВµР Р…Р ВµР Т‘Р В¶Р ВµРЎР‚ Р С•Р В±РЎР‰Р ВµР С”РЎвЂљР С•Р Р†---
 //        ObjectManager manager = new ObjectManager();
 //        Tr obj1 = new Tr(1, GameObjectType.PLAYER);
 //        Tr obj2 = new Tr(2, GameObjectType.ENEMY);
@@ -80,9 +75,9 @@ public class Main {
 //        //-----TEST PROCESS MANAGER------
 //        //used example class test Game
 //        ProcessManager processmanager = new ProcessManager();
-//		Game gm1 = new Game("���� 1");
-//		Game gm2 = new Game("���� 2");
-//		Game gm3 = new Game("���� 3");
+//		Game gm1 = new Game("пїЅпїЅпїЅпїЅ 1");
+//		Game gm2 = new Game("пїЅпїЅпїЅпїЅ 2");
+//		Game gm3 = new Game("пїЅпїЅпїЅпїЅ 3");
 //		processmanager.addProc(gm1);
 //		processmanager.addProc(gm2);
 //		processmanager.addProc(gm3);
@@ -152,10 +147,10 @@ public class Main {
 //		}
 		//---TEST PROCESS MANAGER END---------
 
-		//---РўРµСЃС‚РёРј РўР°Р№Р» РњР°Рї------------------
+		//---Р СћР ВµРЎРѓРЎвЂљР С‘Р С� Р СћР В°Р в„–Р В» Р СљР В°Р С—------------------
         /*ResourceLoader.loadMap("res/testmap.txt").showDump();
         System.out.println("If you see this line than it works!");*/
-        //---Р—Р°РєРѕРЅС‡РёР»Рё С‚РµСЃС‚РёС‚СЊ РўР°Р№Р» РњР°Рї-------
+        //---Р вЂ”Р В°Р С”Р С•Р Р…РЎвЂЎР С‘Р В»Р С‘ РЎвЂљР ВµРЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ Р СћР В°Р в„–Р В» Р СљР В°Р С—-------
 	}
 
 }
