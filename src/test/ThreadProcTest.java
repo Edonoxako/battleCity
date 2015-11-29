@@ -1,15 +1,14 @@
 package test;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import core.graphics.Scene;
 import core.managers.ObjectManager;
-import core.model.GameObject;
 import core.model.GameObjectType;
 import core.utils.Time;
 
 public class ThreadProcTest implements Runnable{
+	
 //	private static final int WIDTH = 600;
 //	private static final int HEIGHT = 400;
 //	private static final String TITLE = " вадратишь";
@@ -31,7 +30,7 @@ public class ThreadProcTest implements Runnable{
 		/*for ( int i = 0; i < 1; i++) {
 			arEn.add(new bools(rands.nextInt(Scene.content.getWidth()-50)+20, rands.nextInt(Scene.content.getHeight()-50)+20, i));
 		}*/
-		objectManager.addObject(new MovingObject(0, GameObjectType.ENEMY, objectManager));
+		objectManager.addObject(new MovingObject(0, GameObjectType.Entity, objectManager));
 		gameThread = new Thread(this);
 	}
 	@Override

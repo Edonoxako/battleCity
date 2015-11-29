@@ -24,8 +24,8 @@ public class TestStateGame extends State{
 		TileMap map = ResourñeLoader.loadMap("res/testmap.txt");
 		App.objectManager.createMap(map);
 
-		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 50, 50, App.input, GameObjectType.PLAYER));
-		App.objectManager.addObject(new MovingObject(IdService.generateId(), GameObjectType.ENEMY, App.objectManager));
+		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 50, 50, App.input, GameObjectType.Entity));
+		App.objectManager.addObject(new MovingObject(IdService.generateId(), GameObjectType.Entity, App.objectManager));
 		App.processManager.start(gm);
 
 		setInit(true);

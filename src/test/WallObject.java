@@ -18,7 +18,7 @@ public class WallObject extends GameObject {
     private int y;
 
     public WallObject(int id, int x, int y) {
-        super(id, GameObjectType.WALL);
+        super(id, GameObjectType.Environment);
         this.x = x;
         this.y = y;
     }

@@ -21,7 +21,7 @@ public class TetstStatePause extends State{
 	public void init(){
 		App.processManager.addProc(ps);
 		App.objectManager.removeAllObject();
-		App.objectManager.addObject(new PauseObjectText(0, GameObjectType.ENEMY, App.objectManager));
+		App.objectManager.addObject(new PauseObjectText(0, GameObjectType.UI, App.objectManager));
 		setInit(true);
 		App.processManager.start(ps);
 	}
