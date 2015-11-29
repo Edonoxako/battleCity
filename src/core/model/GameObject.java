@@ -1,9 +1,19 @@
 package core.model;
 
-public abstract class GameObject implements TestInf{
+public abstract class GameObject implements GameObjectInf {
+
+	private int id;
+	private GameObjectType type;
+
+
 	protected int x;
 	protected int y;
 	private boolean draw, update;
+
+    public GameObject(int id, GameObjectType type) {
+        this.id = id;
+        this.type = type;
+    }
 	
 	public void setX(int x){
 		this.x = x;
@@ -36,4 +46,25 @@ public abstract class GameObject implements TestInf{
 	public void setUpdate(boolean update) {
 		this.update = update;
 	}
+
+
+    public boolean hasId(int id) {
+        return id == this.id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public GameObjectType getType() {
+        return type;
+    }
+
+    public void who() {
+        System.out.println("I'm core.model, my id: #" + getId() + ", my type: " + getType());
+    }
 }

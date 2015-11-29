@@ -1,4 +1,4 @@
-package core.model;
+package test;
 
 import java.awt.Graphics2D;
 
