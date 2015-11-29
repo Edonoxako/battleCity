@@ -24,7 +24,7 @@ public class App {
 	
 	public JFrame window;
 	private GraphicsDevice device;
-	private boolean sizeFlag = false;
+	private boolean fullSize;
 	private boolean pauseFlag = false;
 	public static Input input;
 	public static ProcessManager processManager;
@@ -38,6 +38,7 @@ public class App {
 	        property.load(ResourÒeLoader.loadConfigDefault());
 	        defaultFrameSize = new Dimension(Integer.parseInt(property.getProperty("default.window.width")), 
 	        		Integer.parseInt(property.getProperty("default.window.height")));
+	        fullSize = Boolean.getBoolean(property.getProperty("window.fullsize"));
 	        System.out.println(defaultFrameSize.toString());
 	    } catch (IOException e) {
 	        System.err.println("Œÿ»¡ ¿: ‘‡ÈÎ Ò‚ÓÈÒÚ‚ ÓÚÒÛÒÚ‚ÛÂÚ!");
@@ -100,7 +101,7 @@ public class App {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_F11) {
 					//processManager.stopAll();
-					if (!sizeFlag){
+					if (!fullSize){
 						window.dispose();
 		            	window.setUndecorated(true);
 		            	//window.setAlwaysOnTop(true);
@@ -121,7 +122,7 @@ public class App {
 					            }
 					        });	
 	            		} finally {
-	            			sizeFlag = true;
+	            			fullSize = true;
 	            		}
 					}else {
 						//window.setUndecorated(false);
@@ -131,7 +132,7 @@ public class App {
 						window.setUndecorated(false);
 						device.setFullScreenWindow(null);
 						window.setVisible(true);
-						sizeFlag = false;
+						fullSize = false;
 						//processManager.startAll();
 					}
 					//processManager.startAll();

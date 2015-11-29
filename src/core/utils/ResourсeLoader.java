@@ -1,22 +1,14 @@
 package core.utils;
 
-import java.awt.Dimension;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Properties;
 
 import javax.imageio.ImageIO;
-
-import org.omg.CORBA.portable.InputStream;
 
 public class ResourÒeLoader {
 	public static final String PATH = "res/";
@@ -48,7 +40,7 @@ public class ResourÒeLoader {
 		
 		return image;
 	}
-	//–µ—Å–ª–∏ —Ä–∞—Å—à–∏—Ä–µ–Ω–∏–µ –±—É–¥–µ—Ç text/plain —Ç–æ –≤—ã–ø–æ–ª–Ω–µ—Ç—Å—è loadImage
+	//«‡„ÛÊ‡ÂÚ Ù‡ÈÎ Ò Ì‡ÒÚÓÈÍ‡ÏË.
 	public static FileInputStream loadConfigDefault(){
 	    try {
 	    	return  new FileInputStream(DEFAULT_CONFIG_PATH);
