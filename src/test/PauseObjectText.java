@@ -21,7 +21,7 @@ public class PauseObjectText extends GameObject{
 		int width, height;
 		width = Scene.getSize().width;
 		height = Scene.getSize().height;
-		g.setColor(new Color(0xff340101));
+		g.setColor(new Color(0xffffffff));
 		g.fillRect(0, 0, width, height);
 		g.setFont(new Font("Verdana", Font.BOLD, 48));
 		g.setColor(Color.red);

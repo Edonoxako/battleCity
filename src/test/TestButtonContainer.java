@@ -1,19 +1,23 @@
 package test;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import core.graphics.Scene;
 import core.model.GameObject;
 import core.model.GameObjectType;
 import core.utils.Input;
+import core.utils.ResourñeLoader;
 
 public class TestButtonContainer extends GameObject{
 	private int key = 0;
 	private ArrayList<TestButton> menuList;
 	private int delay = 10;
 	private int delay_check = 0;
+	private Image title;
 	private boolean active;
 	private TestButton bt1;
 	private TestButton bt2;
@@ -21,10 +25,12 @@ public class TestButtonContainer extends GameObject{
 	private Input input;
 	public TestButtonContainer(int id, GameObjectType type, Input in) {
 		super(id, type);
+		title = ResourñeLoader.loadImage("UI/logo_sample.png");
 		int dY = 50;
 		this.input = in;
 		menuList = new ArrayList<TestButton>();
 		bt1 = new TestButton(1000);
+		bt1.setY((Scene.getSize().height/2)+dY);
 		bt1.setActive(true);
 		menuList.add(bt1);
 		bt2 = new TestButton(1001);
@@ -41,6 +47,7 @@ public class TestButtonContainer extends GameObject{
 
 	@Override
 	public void draw(Graphics2D g) {
+		g.drawImage(title, (Scene.getSize().width/2)-(title.getWidth(null)/2), 0, null);
 		Iterator<TestButton> iterator = menuList.iterator();
 		while (iterator.hasNext()) {
 			iterator.next().draw(g);
