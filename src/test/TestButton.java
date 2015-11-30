@@ -1,5 +1,6 @@
 package test;
 
+import java.awt.Event;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
@@ -44,7 +45,7 @@ public class TestButton extends GameObject{
 	}
 	public void setActive(boolean active) {
 		if(active){
-			body = body_active;
+			body = body_active.getScaledInstance(body.getWidth(null)+10, body.getHeight(null)+10, Image.SCALE_SMOOTH);
 		}else{
 			body = body_deactive;
 		}

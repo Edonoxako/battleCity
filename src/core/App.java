@@ -22,7 +22,7 @@ import test.TetstStatePause;
 
 public class App {
 	
-	public JFrame window;
+	public static JFrame window;
 	private GraphicsDevice device;
 	private boolean fullSize;
 	public static boolean pauseFlag = false;

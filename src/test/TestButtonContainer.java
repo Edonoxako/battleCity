@@ -23,6 +23,10 @@ public class TestButtonContainer extends GameObject{
 	private TestButton bt2;
 	private TestButton bt3;
 	private Input input;
+	private double x, nx;
+	private double y, ny;
+	private double dx = 0.05;
+	private double dy = 0.03;
 	public TestButtonContainer(int id, GameObjectType type, Input in) {
 		super(id, type);
 		title = ResourñeLoader.loadImage("UI/logo_sample.png");
@@ -42,12 +46,17 @@ public class TestButtonContainer extends GameObject{
 		menuList.add(bt3);
 		bt3.setY(bt2.getY()+dY);
 		menuList.trimToSize();
+		x = (Scene.getSize().width/2)-(title.getWidth(null)/2);
+		y = 50;
+		nx = x;
+		ny = y;
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.drawImage(title, (Scene.getSize().width/2)-(title.getWidth(null)/2), 0, null);
+		//nx = (Scene.getSize().width/2)-(title.getWidth(null)/2);
+		g.drawImage(title, (int)nx, (int)ny, null);
 		Iterator<TestButton> iterator = menuList.iterator();
 		while (iterator.hasNext()) {
 			iterator.next().draw(g);
@@ -57,6 +66,7 @@ public class TestButtonContainer extends GameObject{
 
 	@Override
 	public void update() {
+		animateTitle();
 		if(input.getKey(KeyEvent.VK_ENTER) ||
 				input.getKey(KeyEvent.VK_SPACE)	){
 			menuList.get(key).action();
@@ -96,5 +106,30 @@ public class TestButtonContainer extends GameObject{
 			}
 		}
 	}
-	
+	public void animateTitle(){
+		x = (Scene.getSize().width/2)-(title.getWidth(null)/2);
+		if(x - nx >= 0){
+			if(x - nx > 5){
+				dx = -dx;
+			}
+			nx +=dx;
+		}else{
+			if(x - nx < -5){
+				dx = -dx;
+			}
+			nx +=dx;
+		}
+		
+		if(y - ny >= 0){
+			if(y - ny > 5){
+				dy = -dy;
+			}
+			ny +=dy;
+		}else{
+			if(y - ny < -5){
+				dy = -dy;
+			}
+			ny +=dy;
+		}
+	}
 }

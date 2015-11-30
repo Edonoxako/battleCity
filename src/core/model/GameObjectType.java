@@ -17,6 +17,7 @@ public enum GameObjectType {
 		GameObjectType(int value){
 			this.value = value;
 		}
+		
 		//Возвращает int значение типа объекта.
 		public int getState(){
 			return value;
