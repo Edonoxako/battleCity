@@ -32,7 +32,6 @@ public class PauseObjectText extends GameObject{
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

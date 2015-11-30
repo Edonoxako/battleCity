@@ -22,6 +22,7 @@ public class TetstStatePause extends State{
 		App.processManager.addProc(ps);
 		App.objectManager.removeAllObject();
 		App.objectManager.addObject(new PauseObjectText(0, GameObjectType.UI, App.objectManager));
+		App.objectManager.addObject(new TestButtonContainer(9990, GameObjectType.UI, App.input));
 		setInit(true);
 		App.processManager.start(ps);
 	}
