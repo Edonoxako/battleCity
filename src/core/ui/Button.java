@@ -20,6 +20,7 @@ public abstract class Button extends GameObject{
 		super(id, GameObjectType.UI);
 		this.activateImage = activateImage;
 		this.deactivateImage = deactivateImage;
+		scaleSize = 5;
 		setActivated(false);
 		// TODO Auto-generated constructor stub
 	}

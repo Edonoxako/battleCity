@@ -3,7 +3,6 @@ package test;
 import java.awt.Graphics2D;
 
 import core.App;
-import core.graphics.Scene;
 import core.ui.Button;
 import core.utils.ResourñeLoader;
 
@@ -15,12 +14,12 @@ public class TestButton extends Button{
 	 */
 	public TestButton(int id) {
 		super(id, ResourñeLoader.loadImage("UI/options_active.png"), ResourñeLoader.loadImage("UI/options.png"));
-		setActivated(false);
+		//setActivated(false);
 	}
 	@Override
 	public void draw(Graphics2D g) {
 		// TODO Auto-generated method stub
-			g.drawImage(bodyImage, (Scene.getSize().width/2)-(bodyImage.getWidth(null)/2), this.getY(), null);
+			g.drawImage(bodyImage, this.getX()-(bodyImage.getWidth(null)/2), this.getY(), null);
 	}
 	@Override
 	public void update() {
