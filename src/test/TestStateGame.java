@@ -3,7 +3,7 @@ package test;
 import java.util.ArrayList;
 
 import core.App;
-import core.utils.ResourñeLoader;
+import core.utils.ResourceLoader;
 import core.model.GameObject;
 import core.model.GameObjectType;
 import core.model.State;
@@ -21,7 +21,7 @@ public class TestStateGame extends State{
 	
 	public void init(){
 
-		TileMap map = ResourñeLoader.loadMap("res/testmap.txt");
+		TileMap map = ResourceLoader.loadMap("res/testmap.txt");
 		App.objectManager.createMap(map);
 
 		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 50, 50, App.input, GameObjectType.Entity));

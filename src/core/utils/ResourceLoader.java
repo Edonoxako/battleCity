@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
 
 import test.TileMap;
 
-public class ResourñeLoader {
+public class ResourceLoader {
 	public static final String PATH = "res/";
 	private static String DEFAULT_CONFIG_PATH = "src/res/config/config.properties";
 	
