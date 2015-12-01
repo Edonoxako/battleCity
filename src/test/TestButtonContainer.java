@@ -35,14 +35,14 @@ public class TestButtonContainer extends GameObject{
 		menuList = new ArrayList<TestButton>();
 		bt1 = new TestButton(1000);
 		bt1.setY((Scene.getSize().height/2)+dY);
-		bt1.setActive(true);
+		bt1.setActivated(true);
 		menuList.add(bt1);
 		bt2 = new TestButton(1001);
 		bt2.setY(bt1.getY()+dY);
-		bt2.setActive(false);
+		bt2.setActivated(false);
 		menuList.add(bt2);
 		bt3 = new TestButton(1002);
-		bt3.setActive(false);
+		bt3.setActivated(false);
 		menuList.add(bt3);
 		bt3.setY(bt2.getY()+dY);
 		menuList.trimToSize();
@@ -100,9 +100,9 @@ public class TestButtonContainer extends GameObject{
 			if(t_key!=key){
 				Iterator<TestButton> iterator = menuList.iterator();
 				while (iterator.hasNext()) {
-					iterator.next().setActive(false);
+					iterator.next().setActivated(false);
 				}
-				menuList.get(key).setActive(true);
+				menuList.get(key).setActivated(true);
 			}
 		}
 	}
