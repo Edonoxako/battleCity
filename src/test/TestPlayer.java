@@ -6,14 +6,14 @@ import java.awt.event.KeyEvent;
 
 import core.graphics.Scene;
 import core.model.GameObject;
-import core.model.GameObjectType;
+import core.model.GameObjectCategory;
 import core.utils.Input;
 
 public class TestPlayer extends GameObject{
 	private Input in;
 	private double dx, dy;
 	private int h = 10;
-	public TestPlayer(int id, int x, int y, Input inp, GameObjectType type){
+	public TestPlayer(int id, int x, int y, Input inp, GameObjectCategory type){
 		//adadad
 		super(id, type);
 		this.x = x;

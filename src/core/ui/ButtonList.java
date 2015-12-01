@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import core.model.GameObject;
-import core.model.GameObjectType;
+import core.model.GameObjectCategory;
 import core.utils.Input;
 
 public class ButtonList extends GameObject{
@@ -18,7 +18,7 @@ public class ButtonList extends GameObject{
 	private boolean active;
 	private Input input;
 	private Point position;
-	public ButtonList(int id, GameObjectType type, Input in, int x, int y) {
+	public ButtonList(int id, GameObjectCategory type, Input in, int x, int y) {
 		super(id, type);
 		setPosition(new Point(x,y));
 		active = false;

@@ -3,12 +3,12 @@ package test;
 import java.awt.Graphics2D;
 
 import core.model.GameObject;
-import core.model.GameObjectType;
+import core.model.GameObjectCategory;
 
 public class Tr extends GameObject{
 	//private int id;
 
-	public Tr(int id, GameObjectType type) {
+	public Tr(int id, GameObjectCategory type) {
 		super(id, type);
 	}
 

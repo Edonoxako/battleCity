@@ -5,8 +5,8 @@ import java.awt.Image;
 import java.awt.Point;
 
 import core.model.GameObject;
-import core.model.GameObjectType;
-import core.utils.ResourñeLoader;
+import core.model.GameObjectCategory;
+import core.utils.ResourceLoader;
 
 public class TestTitle extends GameObject{
 	private double nx;
@@ -16,9 +16,9 @@ public class TestTitle extends GameObject{
 	private Image bodyImage;
 	private Point position;
 	public TestTitle(int id, int x, int y) {
-		super(id, GameObjectType.UI);
+		super(id, GameObjectCategory.UI);
 		// TODO Auto-generated constructor stub
-		bodyImage = ResourñeLoader.loadImage("UI/logo_sample.png");
+		bodyImage = ResourceLoader.loadImage("UI/logo_sample.png");
 		position = new Point(x, y);
 		setX(x);
 		setY(y);

@@ -45,14 +45,14 @@ public class Main {
 
 //        //---Р СћР ВµРЎРѓРЎвЂљР С‘Р С� Р С�Р ВµР Р…Р ВµР Т‘Р В¶Р ВµРЎР‚ Р С•Р В±РЎР‰Р ВµР С”РЎвЂљР С•Р Р†---
 //        ObjectManager manager = new ObjectManager();
-//        Tr obj1 = new Tr(1, GameObjectType.PLAYER);
-//        Tr obj2 = new Tr(2, GameObjectType.ENEMY);
-//        Tr obj3 = new Tr(3, GameObjectType.WALL);
-//        Tr obj4 = new Tr(4, GameObjectType.WALL);
-//        Tr obj5 = new Tr(5, GameObjectType.PLAYER);
-//        Tr obj6 = new Tr(6, GameObjectType.ENEMY);
-//        Tr obj7 = new Tr(7, GameObjectType.ENEMY);
-//        Tr obj8 = new Tr(8, GameObjectType.ENEMY);
+//        Tr obj1 = new Tr(1, GameObjectCategory.PLAYER);
+//        Tr obj2 = new Tr(2, GameObjectCategory.ENEMY);
+//        Tr obj3 = new Tr(3, GameObjectCategory.WALL);
+//        Tr obj4 = new Tr(4, GameObjectCategory.WALL);
+//        Tr obj5 = new Tr(5, GameObjectCategory.PLAYER);
+//        Tr obj6 = new Tr(6, GameObjectCategory.ENEMY);
+//        Tr obj7 = new Tr(7, GameObjectCategory.ENEMY);
+//        Tr obj8 = new Tr(8, GameObjectCategory.ENEMY);
 //
 //        manager.addObject(obj1);
 //        manager.addObject(obj2);

@@ -17,8 +17,8 @@ import core.managers.ObjectManager;
 import core.managers.ProcessManager;
 import core.managers.StateManager;
 import core.utils.Input;
-import core.utils.ResourñeLoader;
-import test.TetstStatePause;
+import core.utils.ResourceLoader;
+import test.TestStatePause;
 
 public class App {
 	
@@ -36,7 +36,7 @@ public class App {
 	public void init(){
 		property = new Properties();
 	    try {
-	        property.load(ResourñeLoader.loadConfigDefault());
+	        property.load(ResourceLoader.loadConfigDefault());
 	        defaultFrameSize = new Dimension(Integer.parseInt(property.getProperty("default.window.width")), 
 	        		Integer.parseInt(property.getProperty("default.window.height")));
 	        fullSize = Boolean.getBoolean(property.getProperty("window.fullsize"));
@@ -60,7 +60,7 @@ public class App {
 		
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TetstStatePause ps = new TetstStatePause();
+		TestStatePause ps = new TestStatePause();
 		//Ñîçäàíèå ñöåíû
 		Scene.create(window);
 		window.add(input);

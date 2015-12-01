@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 
 import core.model.GameObject;
-import core.model.GameObjectType;
+import core.model.GameObjectCategory;
 
 public abstract class Button extends GameObject{
 	/*Int id - ID элемента для ObjectManagera, 
@@ -17,7 +17,7 @@ public abstract class Button extends GameObject{
 	private boolean activated;
 	private int scaleSize;
 	public  Button(int id, Image activateImage, Image deactivateImage) {
-		super(id, GameObjectType.UI);
+		super(id, GameObjectCategory.UI);
 		this.activateImage = activateImage;
 		this.deactivateImage = deactivateImage;
 		scaleSize = 5;

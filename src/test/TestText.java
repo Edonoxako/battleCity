@@ -6,8 +6,8 @@ import java.awt.Point;
 import java.awt.geom.AffineTransform;
 
 import core.model.GameObject;
-import core.model.GameObjectType;
-import core.utils.ResourñeLoader;
+import core.model.GameObjectCategory;
+import core.utils.ResourceLoader;
 
 public class TestText extends GameObject{
 	private Image bodyImage;
@@ -15,9 +15,9 @@ public class TestText extends GameObject{
 	private AffineTransform af;
 	public TestText(int id, int x, int y) {
 		
-		super(id, GameObjectType.UI);
+		super(id, GameObjectCategory.UI);
 		// TODO Auto-generated constructor stub
-		bodyImage = ResourñeLoader.loadImage("UI/pause.png");
+		bodyImage = ResourceLoader.loadImage("UI/pause.png");
 		position = new Point(x, y);
 		af = AffineTransform.getTranslateInstance(position.x - bodyImage.getWidth(null)/2
 				, position.y - bodyImage.getHeight(null)/2);

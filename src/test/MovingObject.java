@@ -2,7 +2,7 @@ package test;
 
 import core.managers.ObjectManager;
 import core.model.GameObject;
-import core.model.GameObjectType;
+import core.model.GameObjectCategory;
 
 import java.awt.*;
 
@@ -22,7 +22,7 @@ public class MovingObject extends GameObject {
     private int dx = 1;
     private ObjectManager objectManager;
 
-    public MovingObject(int id, GameObjectType type, ObjectManager objectManager) {
+    public MovingObject(int id, GameObjectCategory type, ObjectManager objectManager) {
         super(id, type);
         frameCount = 0;
 

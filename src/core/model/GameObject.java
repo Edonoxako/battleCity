@@ -1,17 +1,24 @@
 package core.model;
 
+import java.lang.reflect.GenericArrayType;
+
 public abstract class GameObject implements GameObjectInf {
 
 	private int id;
+	private GameObjectCategory category;
 	private GameObjectType type;
-
 
 	protected int x;
 	protected int y;
 	private boolean draw, update;
 
-    public GameObject(int id, GameObjectType type) {
+    public GameObject(int id, GameObjectCategory category) {
         this.id = id;
+        this.category = category;
+    }
+
+    public GameObject(int id, GameObjectCategory category, GameObjectType type) {
+        this(id, category);
         this.type = type;
     }
 	
@@ -60,11 +67,15 @@ public abstract class GameObject implements GameObjectInf {
         this.id = id;
     }
 
+    public GameObjectCategory getCategory() {
+        return category;
+    }
+
     public GameObjectType getType() {
         return type;
     }
 
     public void who() {
-        System.out.println("I'm core.model, my id: #" + getId() + ", my type: " + getType());
+        System.out.println("I'm core.model, my id: #" + getId() + ", my category: " + getCategory());
     }
 }

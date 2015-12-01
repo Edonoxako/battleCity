@@ -8,9 +8,9 @@ import java.util.Iterator;
 
 import core.graphics.Scene;
 import core.model.GameObject;
-import core.model.GameObjectType;
+import core.model.GameObjectCategory;
 import core.utils.Input;
-import core.utils.ResourñeLoader;
+import core.utils.ResourceLoader;
 
 public class TestButtonContainer extends GameObject{
 	private int key = 0;
@@ -27,9 +27,9 @@ public class TestButtonContainer extends GameObject{
 	private double y, ny;
 	private double dx = 0.05;
 	private double dy = 0.03;
-	public TestButtonContainer(int id, GameObjectType type, Input in) {
+	public TestButtonContainer(int id, GameObjectCategory type, Input in) {
 		super(id, type);
-		title = ResourñeLoader.loadImage("UI/logo_sample.png");
+		title = ResourceLoader.loadImage("UI/logo_sample.png");
 		int dY = 50;
 		this.input = in;
 		menuList = new ArrayList<TestButton>();

@@ -3,12 +3,12 @@ package test;
 import java.awt.Graphics2D;
 
 import core.ui.Button;
-import core.utils.ResourñeLoader;
+import core.utils.ResourceLoader;
 
 public class ExitButton extends Button{
 
 	public ExitButton(int id) {
-		super(id, ResourñeLoader.loadImage("UI/exit_active.png"), ResourñeLoader.loadImage("UI/exit.png"));
+		super(id, ResourceLoader.loadImage("UI/exit_active.png"), ResourceLoader.loadImage("UI/exit.png"));
 		//setActivated(false);
 	}
 	@Override
