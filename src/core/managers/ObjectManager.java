@@ -2,10 +2,15 @@ package core.managers;
 
 import core.graphics.Scene;
 import core.model.GameObject;
+import core.model.GameObjectCategory;
+import core.model.GameObjectType;
 import core.utils.IdService;
+import core.utils.ResourceLoader;
+import test.GameObjectFactory;
 import test.TileMap;
 import test.WallObject;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -95,10 +100,16 @@ public class ObjectManager {
 
 	public void createMap(TileMap map) {
         map.getMapObjects().stream()
-                .forEach(obj -> objects.add(
-                                new WallObject(IdService.generateId(), obj.getCoordX(), obj.getCoordY())
-                        )
-                );
+                .forEach(obj -> {
+                    GameObjectCategory category = GameObjectCategory.toCategory(obj.getCategory());
+                    GameObjectType type = GameObjectType.toType(obj.getType());
+                    GameObject object = GameObjectFactory.createObject(category, type, obj.getSubtype());
+
+                    object.setX(obj.getCoordX());
+                    object.setY(obj.getCoordY());
+
+                    objects.add(object);
+                });
     }
 
 	//Внутрений класс-компаратор для сортировки списка объектов
@@ -106,8 +117,8 @@ public class ObjectManager {
 
 		@Override
 		public int compare(GameObject o1, GameObject o2) {
-			//Сортируется в порядке, в котором определены значения в GameObjectType
-			return o1.getType().compareTo(o2.getType());
+			//Сортируется в порядке, в котором определены значения в GameObjectCategory
+			return o1.getCategory().compareTo(o2.getCategory());
 		}
 	}
 }

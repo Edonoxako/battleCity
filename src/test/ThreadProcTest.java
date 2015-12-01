@@ -4,7 +4,7 @@ import java.util.Random;
 
 import core.graphics.Scene;
 import core.managers.ObjectManager;
-import core.model.GameObjectType;
+import core.model.GameObjectCategory;
 import core.utils.Time;
 
 public class ThreadProcTest implements Runnable{
@@ -30,7 +30,7 @@ public class ThreadProcTest implements Runnable{
 		/*for ( int i = 0; i < 1; i++) {
 			arEn.add(new bools(rands.nextInt(Scene.content.getWidth()-50)+20, rands.nextInt(Scene.content.getHeight()-50)+20, i));
 		}*/
-		objectManager.addObject(new MovingObject(0, GameObjectType.Entity, objectManager));
+		objectManager.addObject(new MovingObject(0, GameObjectCategory.Entity, objectManager));
 		gameThread = new Thread(this);
 	}
 	@Override

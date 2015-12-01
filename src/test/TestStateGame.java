@@ -3,9 +3,9 @@ package test;
 import java.util.ArrayList;
 
 import core.App;
+import core.model.GameObjectCategory;
 import core.utils.ResourceLoader;
 import core.model.GameObject;
-import core.model.GameObjectType;
 import core.model.State;
 import core.utils.IdService;
 
@@ -24,8 +24,8 @@ public class TestStateGame extends State{
 		TileMap map = ResourceLoader.loadMap("res/testmap.txt");
 		App.objectManager.createMap(map);
 
-		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 50, 50, App.input, GameObjectType.Entity));
-		App.objectManager.addObject(new MovingObject(IdService.generateId(), GameObjectType.Entity, App.objectManager));
+		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 50, 50, App.input, GameObjectCategory.Entity));
+		App.objectManager.addObject(new MovingObject(IdService.generateId(), GameObjectCategory.Entity, App.objectManager));
 		App.processManager.start(gm);
 
 		setInit(true);

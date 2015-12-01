@@ -7,11 +7,11 @@ import java.awt.Graphics2D;
 import core.graphics.Scene;
 import core.managers.ObjectManager;
 import core.model.GameObject;
-import core.model.GameObjectType;
+import core.model.GameObjectCategory;
 
 public class PauseObjectText extends GameObject{
 
-	public PauseObjectText(int id, GameObjectType type,ObjectManager obm) {
+	public PauseObjectText(int id, GameObjectCategory type,ObjectManager obm) {
 		super(id, type);
 		// TODO Auto-generated constructor stub
 	}

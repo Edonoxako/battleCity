@@ -43,14 +43,13 @@ public class TileMap {
         if (linesCount < height) {
 
             //Превращаем текстовую строку в целочисленный массив. Слава stream api!
-            int[] mapLine = Arrays.stream(line.split(" "))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
+            String[] mapLine = line.split(" ");
 
             //Ищем статичные объекты в массиве
             for (int i = 0; i < mapLine.length; i++) {
-                if (mapLine[i] == 0) {
-                    mapObjects.add(new MapObject(mapLine[i], i, linesCount));
+                if (!mapLine[i].equals("0")) {
+                    int[] params = Arrays.stream(mapLine[i].split(":")).mapToInt(Integer::parseInt).toArray();
+                    mapObjects.add(new MapObject(params[0], params[1], params[2], i, linesCount));
                 }
             }
 
@@ -65,12 +64,16 @@ public class TileMap {
     //Класс, содержащий в себе мета-данные о статичном объекте карты (координаты и тип)
     public class MapObject {
 
+        private int category;
         private int type;
+        private int subtype;
         private int coordX;
         private int coordY;
 
-        public MapObject(int type, int x, int y) {
+        public MapObject(int category, int type, int subtype, int x, int y) {
+            this.category = category;
             this.type = type;
+            this.subtype = subtype;
             this.coordX = x;
             this.coordY = y;
         }
@@ -85,6 +88,14 @@ public class TileMap {
 
         public int getType() {
             return type;
+        }
+
+        public int getCategory() {
+            return category;
+        }
+
+        public int getSubtype() {
+            return subtype;
         }
 
         @Override
