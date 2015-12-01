@@ -1,20 +1,16 @@
 package core.managers;
 
-import core.graphics.Scene;
-import core.model.GameObject;
-import core.model.GameObjectCategory;
-import core.model.GameObjectType;
-import core.utils.IdService;
-import core.utils.ResourceLoader;
-import test.GameObjectFactory;
-import test.TileMap;
-import test.WallObject;
-
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+
+import core.graphics.Scene;
+import core.model.GameObject;
+import core.model.GameObjectCategory;
+import core.model.GameObjectType;
+import test.GameObjectFactory;
+import test.TileMap;
 
 public class ObjectManager {
 

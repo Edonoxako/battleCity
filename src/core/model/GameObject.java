@@ -1,7 +1,5 @@
 package core.model;
 
-import java.lang.reflect.GenericArrayType;
-
 public abstract class GameObject implements GameObjectInf {
 
 	private int id;
