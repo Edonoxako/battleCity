@@ -26,8 +26,9 @@ public class TestStateGame extends State{
 
 		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 50, 50, App.input, GameObjectCategory.Entity));
 		App.objectManager.addObject(new MovingObject(IdService.generateId(), GameObjectCategory.Entity, App.objectManager));
+		App.objectManager.sortObjects();
 		App.processManager.start(gm);
-
+		
 		setInit(true);
 	}
 	public void block(){
