@@ -22,10 +22,10 @@ import test.TetstStatePause;
 
 public class App {
 	
-	public JFrame window;
+	public static JFrame window;
 	private GraphicsDevice device;
 	private boolean fullSize;
-	private boolean pauseFlag = false;
+	public static boolean pauseFlag = false;
 	public static Input input;
 	public static ProcessManager processManager;
 	public static ObjectManager objectManager;

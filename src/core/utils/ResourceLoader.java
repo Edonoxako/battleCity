@@ -20,6 +20,7 @@ import test.TileMap;
 
 public class ResourceLoader {
 	public static final String PATH = "res/";
+	public static final String DEFAULT_TEXTURE_PATH = "src/res/sprite/48/";
 	private static String DEFAULT_CONFIG_PATH = "src/res/config/config.properties";
 	
 	 public static String getMimeType(String fileUrl)
@@ -71,7 +72,7 @@ public class ResourceLoader {
 		
 		try {
 			
-			image = ImageIO.read(new File(PATH + fileName));
+			image = ImageIO.read(new File(DEFAULT_TEXTURE_PATH + fileName));
 			
 		}catch (IOException e) {
 			e.printStackTrace();

@@ -39,10 +39,7 @@ public class Pause extends Process{
 				while(delta > 1){
 					//Update using of ObjectManager
 					for ( int i = 0; i < App.objectManager.getObjects().size(); i++) {
-	                    if (App.objectManager.isObjectExists(i)){
 	                        App.objectManager.getObject(i).update();
-	                    }
-						
 					}
 					//-------
 					delta--;
@@ -70,9 +67,7 @@ public class Pause extends Process{
 					Scene.clear();
 					//render using ObjectManager
 					for ( int i = 0; i < App.objectManager.getObjects().size(); i++) {
-	                    if (App.objectManager.isObjectExists(i)) {
-	                    	App.objectManager.getObject(i).draw(Scene.getGraphics());
-	                    }
+	                    App.objectManager.getObject(i).draw(Scene.getGraphics());
 					}
 					Scene.swapBuffers();
 					fps++;
