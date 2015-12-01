@@ -17,7 +17,6 @@ public class TetstStatePause extends State{
 		super();
 		ps = new Pause("PauseProcessTest", App.processManager.generateID());
 		System.out.println(ps.getId());
-		
 	}
 	
 	public void init(){
@@ -26,11 +25,10 @@ public class TetstStatePause extends State{
 		App.objectManager.addObject(new PauseObjectText(0, GameObjectType.UI, App.objectManager));
 		ButtonList btList = new ButtonList(9990, GameObjectType.UI, App.input, Scene.getSize().width/2,
 				Scene.getSize().height/2); 
-		
 		btList.add(new TestButton(1001));
-		btList.add(new TestButton(1003));
 		btList.add(new TestButton(1004));
 		btList.add(new TestButton(1005));
+		btList.add(new ExitButton(1003));
 		App.objectManager.addObject(btList);
 		setInit(true);
 		App.processManager.start(ps);
