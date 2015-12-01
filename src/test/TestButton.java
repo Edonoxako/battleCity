@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 import core.App;
 import core.ui.Button;
-import core.utils.ResourñeLoader;
+import core.utils.ResourceLoader;
 
 public class TestButton extends Button{
 
@@ -13,7 +13,7 @@ public class TestButton extends Button{
 	 * 
 	 */
 	public TestButton(int id) {
-		super(id, ResourñeLoader.loadImage("UI/options_active.png"), ResourñeLoader.loadImage("UI/options.png"));
+		super(id, ResourceLoader.loadImage("UI/options_active.png"), ResourceLoader.loadImage("UI/options.png"));
 		//setActivated(false);
 	}
 	@Override
