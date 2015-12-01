@@ -32,6 +32,7 @@ public class App {
 	public static StateManager stateManager;
 	public static Dimension defaultFrameSize;
 	private Properties property;
+	
 	public void init(){
 		property = new Properties();
 	    try {

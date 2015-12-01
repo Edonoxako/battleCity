@@ -22,12 +22,11 @@ public class TetstStatePause extends State{
 	public void init(){
 		App.processManager.addProc(ps);
 		App.objectManager.removeAllObject();
-		App.objectManager.addObject(new PauseObjectText(0, GameObjectType.UI, App.objectManager));
+		App.objectManager.addObject(new TestTitle(9091, Scene.getSize().width/2, 100));
+		App.objectManager.addObject(new TestText(9090, Scene.getSize().width/2, Scene.getSize().height/2));
 		ButtonList btList = new ButtonList(9990, GameObjectType.UI, App.input, Scene.getSize().width/2,
-				Scene.getSize().height/2); 
+				(Scene.getSize().height/2)+50);
 		btList.add(new TestButton(1001));
-		btList.add(new TestButton(1004));
-		btList.add(new TestButton(1005));
 		btList.add(new ExitButton(1003));
 		App.objectManager.addObject(btList);
 		setInit(true);
@@ -48,4 +47,5 @@ public class TetstStatePause extends State{
 		App.processManager.kill(ps);
 		App.objectManager.removeAllObject();
 	}
+	
 }
