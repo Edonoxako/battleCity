@@ -9,7 +9,10 @@ import core.model.GameObjectType;
 import core.utils.ResourñeLoader;
 
 public class TestTitle extends GameObject{
-	
+	private double nx;
+	private double ny;
+	private double dx = 0.2;
+	private double dy = 0.1;
 	private Image bodyImage;
 	private Point position;
 	public TestTitle(int id, int x, int y) {
@@ -17,6 +20,10 @@ public class TestTitle extends GameObject{
 		// TODO Auto-generated constructor stub
 		bodyImage = ResourñeLoader.loadImage("UI/logo_sample.png");
 		position = new Point(x, y);
+		setX(x);
+		setY(y);
+		nx = x;
+		ny = y;
 	}
 
 	@Override
@@ -28,7 +35,28 @@ public class TestTitle extends GameObject{
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+		if(this.getX() - nx >= 0){
+			if(this.getX() - nx > 5){
+				dx = -dx;
+			}
+			nx += dx;
+		}else{
+			if(this.getX() - nx < -5){
+				dx = -dx;
+			}
+			nx += dx;
+		}
+		if(this.getY() - ny >= 0){
+			if(this.getY() - ny > 5){
+				dy = -dy;
+			}
+			ny +=dy;
+		}else{
+			if(this.getY() - ny < -5){
+				dy = -dy;
+			}
+			ny += dy;
+		}
+		position.setLocation(nx, ny);
 	}
-
 }

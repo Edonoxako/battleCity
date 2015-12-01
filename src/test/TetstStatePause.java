@@ -22,7 +22,7 @@ public class TetstStatePause extends State{
 	public void init(){
 		App.processManager.addProc(ps);
 		App.objectManager.removeAllObject();
-		App.objectManager.addObject(new TestTitle(9091, Scene.getSize().width/2, 100));
+		App.objectManager.addObject(new TestTitle(9091, Scene.getSize().width/2, 50));
 		App.objectManager.addObject(new TestText(9090, Scene.getSize().width/2, Scene.getSize().height/2));
 		ButtonList btList = new ButtonList(9990, GameObjectType.UI, App.input, Scene.getSize().width/2,
 				(Scene.getSize().height/2)+50);
