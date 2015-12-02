@@ -6,14 +6,13 @@ import core.App;
 import core.ui.Button;
 import core.utils.ResourceLoader;
 
-public class TestButton extends Button{
-
+public class MainButton extends Button{
 	/**
 	 *
 	 * 
 	 */
-	public TestButton(int id) {
-		super(id, ResourceLoader.loadImage("UI/options_active.png"), ResourceLoader.loadImage("UI/options.png"));
+	public MainButton(int id) {
+		super(id, ResourceLoader.loadImage("UI/menu_pause_active.png"), ResourceLoader.loadImage("UI/menu_pause.png"));
 		//setActivated(false);
 	}
 	@Override

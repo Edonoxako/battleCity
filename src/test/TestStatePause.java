@@ -26,7 +26,9 @@ public class TestStatePause extends State{
 		App.objectManager.addObject(new TestText(9090, Scene.getSize().width/2, Scene.getSize().height/2));
 		ButtonList btList = new ButtonList(9990, GameObjectCategory.UI, App.input, Scene.getSize().width/2,
 				(Scene.getSize().height/2)+50);
-		btList.add(new TestButton(1001));
+		btList.add(new BackButton(1005));
+		btList.add(new MainButton(1006));
+		btList.add(new OptionsButton(1001));
 		btList.add(new ExitButton(1003));
 		App.objectManager.addObject(btList);
 		setInit(true);
