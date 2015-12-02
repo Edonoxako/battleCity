@@ -1,14 +1,18 @@
-package test;
+package game.ui.button;
 
 import java.awt.Graphics2D;
 
+import core.App;
 import core.ui.Button;
 import core.utils.ResourceLoader;
 
-public class ExitButton extends Button{
-
-	public ExitButton(int id) {
-		super(id, ResourceLoader.loadImage("UI/exit_active.png"), ResourceLoader.loadImage("UI/exit.png"));
+public class BackButton extends Button{
+	/**
+	 *
+	 * 
+	 */
+	public BackButton(int id) {
+		super(id, ResourceLoader.loadImage("UI/back_active.png"), ResourceLoader.loadImage("UI/back.png"));
 		//setActivated(false);
 	}
 	@Override
@@ -22,7 +26,8 @@ public class ExitButton extends Button{
 	}
 	@Override
 	public void action(){
-		System.exit(0);
+		App.stateManager.pop();
+		App.stateManager.peek().unBlock();
+		App.pauseFlag = false;
 	}
-
 }

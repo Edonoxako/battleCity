@@ -1,18 +1,18 @@
-package test;
+package game.ui.button;
 
 import java.awt.Graphics2D;
 
-import core.App;
 import core.ui.Button;
 import core.utils.ResourceLoader;
 
-public class BackButton extends Button{
+public class OptionsButton extends Button{
+
 	/**
 	 *
 	 * 
 	 */
-	public BackButton(int id) {
-		super(id, ResourceLoader.loadImage("UI/back_active.png"), ResourceLoader.loadImage("UI/back.png"));
+	public OptionsButton(int id) {
+		super(id, ResourceLoader.loadImage("UI/options_active.png"), ResourceLoader.loadImage("UI/options.png"));
 		//setActivated(false);
 	}
 	@Override
@@ -26,8 +26,6 @@ public class BackButton extends Button{
 	}
 	@Override
 	public void action(){
-		App.stateManager.pop();
-		App.stateManager.peek().unBlock();
-		App.pauseFlag = false;
+		
 	}
 }

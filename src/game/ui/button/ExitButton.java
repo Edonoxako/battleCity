@@ -1,18 +1,14 @@
-package test;
+package game.ui.button;
 
 import java.awt.Graphics2D;
 
 import core.ui.Button;
 import core.utils.ResourceLoader;
 
-public class OptionsButton extends Button{
+public class ExitButton extends Button{
 
-	/**
-	 *
-	 * 
-	 */
-	public OptionsButton(int id) {
-		super(id, ResourceLoader.loadImage("UI/options_active.png"), ResourceLoader.loadImage("UI/options.png"));
+	public ExitButton(int id) {
+		super(id, ResourceLoader.loadImage("UI/exit_active.png"), ResourceLoader.loadImage("UI/exit.png"));
 		//setActivated(false);
 	}
 	@Override
@@ -26,6 +22,7 @@ public class OptionsButton extends Button{
 	}
 	@Override
 	public void action(){
-		
+		System.exit(0);
 	}
+
 }

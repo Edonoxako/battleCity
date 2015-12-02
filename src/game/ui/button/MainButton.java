@@ -1,4 +1,4 @@
-package test;
+package game.ui.button;
 
 import java.awt.Graphics2D;
 

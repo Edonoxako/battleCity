@@ -1,4 +1,4 @@
-package test;
+package game.object;
 
 import core.managers.ObjectManager;
 import core.model.GameObject;

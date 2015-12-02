@@ -1,4 +1,4 @@
-package test;
+package game.ui.text;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -8,14 +8,14 @@ import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.utils.ResourceLoader;
 
-public class TestTitle extends GameObject{
+public class PauseAnimatedTitle extends GameObject{
 	private double nx;
 	private double ny;
 	private double dx = 0.2;
 	private double dy = 0.1;
 	private Image bodyImage;
 	private Point position;
-	public TestTitle(int id, int x, int y) {
+	public PauseAnimatedTitle(int id, int x, int y) {
 		super(id, GameObjectCategory.UI);
 		// TODO Auto-generated constructor stub
 		bodyImage = ResourceLoader.loadImage("UI/logo_sample.png");

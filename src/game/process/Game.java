@@ -1,4 +1,4 @@
-package test;
+package game.process;
 import core.App;
 import core.graphics.Scene;
 import core.model.Process;

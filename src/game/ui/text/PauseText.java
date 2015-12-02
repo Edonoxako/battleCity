@@ -1,4 +1,4 @@
-package test;
+package game.ui.text;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -9,11 +9,11 @@ import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.utils.ResourceLoader;
 
-public class TestText extends GameObject{
+public class PauseText extends GameObject{
 	private Image bodyImage;
 	private Point position;
 	private AffineTransform af;
-	public TestText(int id, int x, int y) {
+	public PauseText(int id, int x, int y) {
 		
 		super(id, GameObjectCategory.UI);
 		// TODO Auto-generated constructor stub

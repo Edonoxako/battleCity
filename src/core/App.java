@@ -18,7 +18,7 @@ import core.managers.ProcessManager;
 import core.managers.StateManager;
 import core.utils.Input;
 import core.utils.ResourceLoader;
-import test.TestStatePause;
+import game.state.PauseState;
 
 public class App {
 	
@@ -40,7 +40,6 @@ public class App {
 	        defaultFrameSize = new Dimension(Integer.parseInt(property.getProperty("default.window.width")), 
 	        		Integer.parseInt(property.getProperty("default.window.height")));
 	        fullSize = Boolean.getBoolean(property.getProperty("window.fullsize"));
-	        System.out.println(defaultFrameSize.toString());
 	    } catch (IOException e) {
 	        System.err.println("ОШИБКА: Файл свойств отсуствует!");
 	    }
@@ -60,7 +59,7 @@ public class App {
 		
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TestStatePause ps = new TestStatePause();
+		PauseState ps = new PauseState();
 		//Создание сцены
 		Scene.create(window);
 		window.add(input);
