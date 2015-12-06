@@ -1,10 +1,11 @@
 package test;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+
 import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.utils.ResourceLoader;
-
-import java.awt.*;
 
 /**
  * Created by Евгений on 24.11.2015.
@@ -66,7 +67,15 @@ public class WallObject extends GameObject {
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(wallImage, x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
+    	/*AlphaComposite ac =
+				  AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.7);
+		AlphaComposite tc = (AlphaComposite) g.getComposite();
+		g.setComposite(ac);
+		g.drawImage(wallImage, x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
+		g.setComposite(tc);*/
+
+		g.drawImage(wallImage, x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
+        
     }
 
     @Override
