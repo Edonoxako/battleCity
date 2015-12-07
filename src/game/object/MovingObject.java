@@ -19,14 +19,14 @@ public class MovingObject extends GameObject {
 		west, westNext, current, currentNext;
 		
 		public Animator(){
-			north = ResourceLoader.loadImage("enemy/enemy_up.png");
-			northNext = ResourceLoader.loadImage("enemy/enemy_up1.png");
-			south = ResourceLoader.loadImage("enemy/enemy_down.png");
+			north = ResourceLoader.loadImage("enemy/enemy_up1.png");
+			northNext = ResourceLoader.loadImage("enemy/enemy_up2.png");
+			south = ResourceLoader.loadImage("enemy/enemy_down1.png");
 			southNext = ResourceLoader.loadImage("enemy/enemy_down2.png");
-			east = ResourceLoader.loadImage("enemy/enemy_right.png");
-			eastNext = ResourceLoader.loadImage("enemy/enemy_right1.png");
-			west = ResourceLoader.loadImage("enemy/enemy_left.png");
-			westNext = ResourceLoader.loadImage("enemy/enemy_left1.png");
+			east = ResourceLoader.loadImage("enemy/enemy_right1.png");
+			eastNext = ResourceLoader.loadImage("enemy/enemy_right2.png");
+			west = ResourceLoader.loadImage("enemy/enemy_left1.png");
+			westNext = ResourceLoader.loadImage("enemy/enemy_left2.png");
 			animate_frame = 0;
 			current = north;
 			currentNext = northNext;
