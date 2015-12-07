@@ -3,10 +3,7 @@ package game.object;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-import org.omg.CORBA.Current;
-
 import core.App;
-import core.managers.ObjectManager;
 import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.utils.ResourceLoader;
@@ -19,10 +16,10 @@ public class shell extends GameObject {
 		west, westNext, current, currentInit, currentNext, northInit, southInit, eastInit, westInit;
 		
 		public Animator(){
-			init = false;
+			init = true;
 			northInit = ResourceLoader.loadImage("object/shell_unactive_up.png");
-			north = ResourceLoader.loadImage("object/shell_up1.png");
-			northNext = ResourceLoader.loadImage("object/shell_up2.png");
+			north = ResourceLoader.loadImage("object/shell_up_active1.png");
+			northNext = ResourceLoader.loadImage("object/shell_up_active2.png");
 			southInit = ResourceLoader.loadImage("object/shell_unactive_down.png");
 			south = ResourceLoader.loadImage("object/shell_down_active1.png");
 			southNext = ResourceLoader.loadImage("object/shell_down_active2.png");
@@ -70,13 +67,14 @@ public class shell extends GameObject {
 		
 		public Image nextState(){
 			animate_frame++;
-			if (init && animate_frame < 6){
-				return currentInit;
-			} else {
-				animate_frame = 0;
-				init = false;
+			if(init){
+				if(animate_frame > 60){
+					animate_frame = 0;
+					init = false;
+					return current;
+				}else return currentInit;
 			}
-			if (animate_frame % 5 != 0){
+			if (animate_frame / 15 != 0){
 				animate_frame = 0;
 				Image tmp = current;
 				current = currentNext;
@@ -121,18 +119,18 @@ public class shell extends GameObject {
 	private Image body;
 	private Animator anim;
     private int frameCount;
-    private int dx = 1;
-    private int dy = 1;
+    private int dx = 4;
+    private int dy = 4;
     //private ObjectManager objectManager;
 
     //public MovingObject(int id, GameObjectCategory type, ObjectManager objectManager) {
-    public shell(int id, GameObjectCategory type, int x, int y, Course cs) {
+    public shell(int id, GameObjectCategory type, int x, int y, int cs) {
         super(id, type);
         frameCount = 0;
 		anim = new Animator();
         setX(x);
         setY(y);
-        Start(cs);
+        Start(Course.toCourse(cs));
         //this.objectManager = objectManager;
 		
     }
@@ -141,28 +139,32 @@ public class shell extends GameObject {
     public void draw(Graphics2D g) {
     	
         if (frameCount > START_FRAME_COUNT) {
-        	g.drawImage(body, x - body.getWidth(null)/2, 
-    				y - body.getHeight(null)/2, null);
+        	g.drawImage(body, getX() - body.getWidth(null)/2, 
+    				getY() - body.getHeight(null)/2, null);
         }
     }
     private void Start(Course cs){
+    	int increment = (int) ((60 * dx)* 0.55f);
     	switch (cs.value){
 	    	case 0: {
 	    		course = cs;
 	    		anim.setCourse(cs);
 	    		dy = -dy;
+	    		setY(getY()+ increment);
 	    		body = anim.nextState();
 	    		break;
 	    	}
 			case 1: {
 				course = cs;
 	    		anim.setCourse(cs);
+	    		setY(getY()- increment);
 	    		body = anim.nextState();
 				break;
 			}
 			case 2: {
 				course = cs;
 	    		anim.setCourse(cs);
+	    		setX(getX()- increment);
 	    		body = anim.nextState();
 				break;
 			}
@@ -170,6 +172,7 @@ public class shell extends GameObject {
 				course = cs;
 	    		anim.setCourse(cs);
 	    		dx = -dx;
+	    		setX(getX() + increment);
 	    		body = anim.nextState();
 				break;
 			}
@@ -178,14 +181,14 @@ public class shell extends GameObject {
     }
     @Override
     public void update() {
-        setX(getX() + dx);
+    	//System.out.println("shlee");
         frameCount++;
         if (course.value <= 1){
         	setY(getY()+dy);
         }else{
         	setX(getX()+dx);
         }
-        if (frameCount == 360) {
+        if (frameCount == 600) {
         	App.objectManager.removeObject(this.getId());
         	return;
 //           frameCount=0;
@@ -201,5 +204,6 @@ public class shell extends GameObject {
 //           }
         }
         body = anim.nextState();
+        
     }
 }
