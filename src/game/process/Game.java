@@ -42,6 +42,11 @@ public class Game extends Process{
 	                    }
 						
 					}
+//					Iterator<GameObject> iterator = App.objectManager.getObjects().iterator();
+//					while (iterator.hasNext()) {
+//						//Если нашли, то удаляем
+//							iterator.next().update();
+//					}
 					//-------
 					delta--;
 					upd++;
@@ -72,6 +77,11 @@ public class Game extends Process{
 	                    	App.objectManager.getObject(i).draw(Scene.getGraphics());
 	                    }
 					}
+//					Iterator<GameObject> iterator = App.objectManager.getObjects().iterator();
+//					while (iterator.hasNext()) {
+//						//Если нашли, то удаляем
+//							iterator.next().draw(Scene.getGraphics());
+//					}
 					Scene.swapBuffers();
 					fps++;
 				} else {
