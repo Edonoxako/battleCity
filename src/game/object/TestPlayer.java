@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 
+import core.App;
 import core.graphics.Scene;
 import core.model.GameObject;
 import core.model.GameObjectCategory;
@@ -101,16 +102,20 @@ public class TestPlayer extends GameObject{
 	private Course course;
 	private Image body;
 	private Animator anim;
+	private int count_push;
+	private boolean tank_fire;
 	public TestPlayer(int id, int x, int y, Input inp, GameObjectCategory type){
 		//adadad
 		super(id, type);
 		this.x = x;
 		this.y = y;
+		count_push = 0;
 		in = inp;
 		course = Course.North;
 		anim = new Animator();
 		anim.setCourse(course);
 		body = anim.current;
+		tank_fire = false;
 	}
 	
 	@Override
@@ -123,34 +128,38 @@ public class TestPlayer extends GameObject{
 	public void update() {
 		int width = Scene.content.getSize().width;
 		int height = Scene.content.getSize().height;
+		if (count_push == 30){
+			count_push = 0;
+			tank_fire = false;
+		}
 		if(in.getKey(KeyEvent.VK_A)){
 			if(course.getCourse() != Course.West.getCourse()){
 				course = Course.West;
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dx = -2f;
+			dx = -1f;
 		}else if(in.getKey(KeyEvent.VK_W)){
 			if(course.getCourse() != Course.North.getCourse()){
 				course = Course.North;
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dy = -2f;
+			dy = -1f;
 		}else if(in.getKey(KeyEvent.VK_D)){
 			if(course.getCourse() != Course.East.getCourse()){
 				course = Course.East;
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dx = 2f;
+			dx = 1f;
 		}else if(in.getKey(KeyEvent.VK_S)){
 			if(course.getCourse() != Course.South.getCourse()){
 				course = Course.South;
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dy = 2f;
+			dy = 1f;
 		}
 		
 		if(x+dx>=width -h/2){
@@ -167,6 +176,19 @@ public class TestPlayer extends GameObject{
 		dy = 0;
 		
 		body = anim.nextState();
+		if(in.getKey(KeyEvent.VK_SPACE)){
+			if (count_push == 0){
+					App.objectManager.addObject(new shell(800, GameObjectCategory.Entity,
+							x, y, course.value));
+					App.objectManager.getObjects().trimToSize();
+					App.objectManager.sortObjects();
+					tank_fire = true;
+			}
+		}
+		if(tank_fire){
+			count_push++;
+		}
+		
 	}
 	
 }
