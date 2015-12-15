@@ -11,17 +11,18 @@ import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.utils.Input;
 import core.utils.ResourceLoader;
+import game.ui.button.OptionsButton;
 
 public class TestButtonContainer extends GameObject{
 	private int key = 0;
-	private ArrayList<TestButton> menuList;
+	private ArrayList<OptionsButton> menuList;
 	private int delay = 10;
 	private int delay_check = 0;
 	private Image title;
 	private boolean active;
-	private TestButton bt1;
-	private TestButton bt2;
-	private TestButton bt3;
+	private OptionsButton bt1;
+	private OptionsButton bt2;
+	private OptionsButton bt3;
 	private Input input;
 	private double x, nx;
 	private double y, ny;
@@ -32,16 +33,16 @@ public class TestButtonContainer extends GameObject{
 		title = ResourceLoader.loadImage("UI/logo_sample.png");
 		int dY = 50;
 		this.input = in;
-		menuList = new ArrayList<TestButton>();
-		bt1 = new TestButton(1000);
+		menuList = new ArrayList<OptionsButton>();
+		bt1 = new OptionsButton(1000);
 		bt1.setY((Scene.getSize().height/2)+dY);
 		bt1.setActivated(true);
 		menuList.add(bt1);
-		bt2 = new TestButton(1001);
+		bt2 = new OptionsButton(1001);
 		bt2.setY(bt1.getY()+dY);
 		bt2.setActivated(false);
 		menuList.add(bt2);
-		bt3 = new TestButton(1002);
+		bt3 = new OptionsButton(1002);
 		bt3.setActivated(false);
 		menuList.add(bt3);
 		bt3.setY(bt2.getY()+dY);
@@ -57,7 +58,7 @@ public class TestButtonContainer extends GameObject{
 	public void draw(Graphics2D g) {
 		//nx = (Scene.getSize().width/2)-(title.getWidth(null)/2);
 		g.drawImage(title, (int)nx, (int)ny, null);
-		Iterator<TestButton> iterator = menuList.iterator();
+		Iterator<OptionsButton> iterator = menuList.iterator();
 		while (iterator.hasNext()) {
 			iterator.next().draw(g);
 		}
@@ -98,7 +99,7 @@ public class TestButtonContainer extends GameObject{
 				}
 			}
 			if(t_key!=key){
-				Iterator<TestButton> iterator = menuList.iterator();
+				Iterator<OptionsButton> iterator = menuList.iterator();
 				while (iterator.hasNext()) {
 					iterator.next().setActivated(false);
 				}

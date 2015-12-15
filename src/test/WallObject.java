@@ -1,10 +1,11 @@
 package test;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+
 import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.utils.ResourceLoader;
-
-import java.awt.*;
 
 /**
  * Created by Евгений on 24.11.2015.
@@ -13,7 +14,7 @@ import java.awt.*;
  */
 public class WallObject extends GameObject {
 
-    public static final int WALL_SIZE = 22;
+    public static final int WALL_SIZE = 48;
 
     public static final int LEFT_UP_CORNER_BRICK_WALL = 0;
     public static final int UP_BRICK_WALL = 1;
@@ -39,7 +40,7 @@ public class WallObject extends GameObject {
                 break;
 
             case RIGHT_UP_CORNER_BRICK_WALL:
-                wallImage = ResourceLoader.loadImage("blocks/cornerup_right_tr.png");
+                wallImage = ResourceLoader.loadImage("blocks/cornerup_right_tr_shadow.png");
                 break;
 
             case RIGHT_BRICK_WALL:
@@ -47,7 +48,7 @@ public class WallObject extends GameObject {
                 break;
 
             case RIGHT_DOWN_CORNER_BRICK_WALL:
-                wallImage = ResourceLoader.loadImage("blocks/cornerdown_right_tr_shadow.png");
+                wallImage = ResourceLoader.loadImage("blocks/cornerdown_right_tr.png");
                 break;
 
             case DOWN_BRICK_WALL:
@@ -55,18 +56,26 @@ public class WallObject extends GameObject {
                 break;
 
             case LEFT_DOWN_CORNER_BRICK_WALL:
-                wallImage = ResourceLoader.loadImage("blocks/cornerdown_ left_tr_shadow.png");
+                wallImage = ResourceLoader.loadImage("blocks/cornerdown_ left_tr.png");
                 break;
 
             case LEFT_BRICK_WALL:
-                wallImage = ResourceLoader.loadImage("blocks/wallvert_right_tr.png");
+                wallImage = ResourceLoader.loadImage("blocks/wallvert_left_tr(26).png");
                 break;
         }
     }
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(wallImage, x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
+    	/*AlphaComposite ac =
+				  AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.7);
+		AlphaComposite tc = (AlphaComposite) g.getComposite();
+		g.setComposite(ac);
+		g.drawImage(wallImage, x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
+		g.setComposite(tc);*/
+
+		g.drawImage(wallImage, x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
+        
     }
 
     @Override

@@ -1,4 +1,4 @@
-package test;
+package game.ui.button;
 
 import java.awt.Graphics2D;
 
@@ -6,14 +6,13 @@ import core.App;
 import core.ui.Button;
 import core.utils.ResourceLoader;
 
-public class TestButton extends Button{
-
+public class BackButton extends Button{
 	/**
 	 *
 	 * 
 	 */
-	public TestButton(int id) {
-		super(id, ResourceLoader.loadImage("UI/options_active.png"), ResourceLoader.loadImage("UI/options.png"));
+	public BackButton(int id) {
+		super(id, ResourceLoader.loadImage("UI/back_active.png"), ResourceLoader.loadImage("UI/back.png"));
 		//setActivated(false);
 	}
 	@Override

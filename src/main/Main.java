@@ -1,7 +1,7 @@
 package main;
 
 import core.App;
-import test.TestStateGame;
+import game.state.GameState;
 
 public class Main {
 
@@ -12,7 +12,7 @@ public class Main {
 		app.init();
 		
 		//add test object
-		TestStateGame gm = new TestStateGame();
+		GameState gm = new GameState();
 		App.stateManager.push(gm);
 		
         //-----------------------
