@@ -184,7 +184,7 @@ public class TestPlayer extends GameObject{
 					//Эта штука работала, когда в ObjectManager был ArrayList
 					//App.objectManager.getObjects().trimToSize();
 
-					App.objectManager.sortObjects();
+					//App.objectManager.sortObjects();
 					tank_fire = true;
 			}
 		}

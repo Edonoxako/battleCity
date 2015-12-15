@@ -92,7 +92,7 @@ public class TestObjectManager {
 
         objects = manager.getObjects();
         assertEquals("Middle entity object", 8, objects.get(3).getId());
-        assertEquals("Middle environment object", 9, objects.get(8).getId());
+        assertEquals("Middle environment object", 9, objects.get(7).getId());
 
     }
 

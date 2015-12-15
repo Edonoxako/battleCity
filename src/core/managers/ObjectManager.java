@@ -12,7 +12,12 @@ import test.TileMap;
 public class ObjectManager {
 
 	private LinkedList<GameObject> objects;
-	
+
+//	private int backgroundObjectsCount = 0;
+//	private int entityObjectsCount = 0;
+//	private int environmentObjectsCount = 0;
+//	private int uiObjectsCount = 0;
+
 	public ObjectManager() {
 		objects = new LinkedList<>();
 	}
@@ -40,7 +45,50 @@ public class ObjectManager {
 
 	//Добавляет объект на сцену
 	public void addObject(GameObject obj) {
-		objects.add(obj);
+
+		int backgroundObjectsCount = 0;
+		int entityObjectsCount = 0;
+		int environmentObjectsCount = 0;
+
+		switch (obj.getCategory()) {
+
+			case Background:
+				backgroundObjectsCount = (int) objects.stream()
+						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Background)
+						.count();
+				objects.add(backgroundObjectsCount, obj);
+				break;
+			case Entity:
+				backgroundObjectsCount = (int) objects.stream()
+						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Background)
+						.count();
+
+				entityObjectsCount = (int) objects.stream()
+						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Entity)
+						.count();
+
+				objects.add(backgroundObjectsCount + entityObjectsCount, obj);
+				break;
+			case Environment:
+				backgroundObjectsCount = (int) objects.stream()
+						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Background)
+						.count();
+
+				entityObjectsCount = (int) objects.stream()
+						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Entity)
+						.count();
+
+				environmentObjectsCount = (int) objects.stream()
+						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Environment)
+						.count();
+
+				objects.add(backgroundObjectsCount + entityObjectsCount + environmentObjectsCount, obj);
+				break;
+			case UI:
+				objects.add(obj);
+				break;
+
+		}
 	}
 
 	//Удаляет объекты из сцены
