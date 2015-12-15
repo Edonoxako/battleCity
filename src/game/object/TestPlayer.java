@@ -180,7 +180,10 @@ public class TestPlayer extends GameObject{
 			if (count_push == 0){
 					App.objectManager.addObject(new shell(800, GameObjectCategory.Entity,
 							x, y, course.value));
-					App.objectManager.getObjects().trimToSize();
+
+					//Эта штука работала, когда в ObjectManager был ArrayList
+					//App.objectManager.getObjects().trimToSize();
+
 					App.objectManager.sortObjects();
 					tank_fire = true;
 			}

@@ -42,7 +42,9 @@ public class MainState extends State{
 	public void destroy(){
 		App.processManager.kill(mp);
 		App.objectManager.removeAllObject();
-		App.objectManager.getObjects().trimToSize();
+
+		//Эта штука работала, когда в ObjectManager был ArrayList
+		//App.objectManager.getObjects().trimToSize();
 	}
 	
 	public void block(){

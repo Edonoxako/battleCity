@@ -1,9 +1,6 @@
 package core.managers;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
+import java.util.*;
 
 import core.graphics.Scene;
 import core.model.GameObject;
@@ -14,18 +11,18 @@ import test.TileMap;
 
 public class ObjectManager {
 
-	private ArrayList<GameObject> objects;
+	private LinkedList<GameObject> objects;
 	
 	public ObjectManager() {
-		objects = new ArrayList<GameObject>(200);
+		objects = new LinkedList<>();
 	}
 
 
-	public ArrayList<GameObject> getObjects() {
+	public LinkedList<GameObject> getObjects() {
 		return objects;
 	}
 
-	public void setObjects(ArrayList<GameObject> objects) {
+	public void setObjects(LinkedList<GameObject> objects) {
 		this.objects = objects;
 	}
 	

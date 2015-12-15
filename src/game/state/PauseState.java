@@ -1,6 +1,7 @@
 package game.state;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import core.App;
 import core.graphics.Scene;
@@ -19,7 +20,7 @@ import game.ui.text.PauseAnimatedTitle;
 
 public class PauseState extends State{
 	private Process ps;
-	private ArrayList<GameObject> tObjectList;
+	private LinkedList<GameObject> tObjectList;
 	public PauseState(){
 		super();
 		ps = new Pause("PauseProcessTest", App.processManager.generateID());
