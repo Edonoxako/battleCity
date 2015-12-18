@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<projectDescription>
-	<name>tCore</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
+<project name = "tCore">
+	<build>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
-	</buildSpec>
+		<buildCommand>
+			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+			<triggers>full,incremental,</triggers>
+			<arguments>
+				<dictionary>
+					<key>LaunchConfigHandle</key>
+					<value>&lt;project&gt;/.externalToolBuilders/New_Builder (1).launch</value>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+	</build>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-</projectDescription>
+</project>
