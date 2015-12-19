@@ -26,6 +26,6 @@ public class OptionsButton extends Button{
 	}
 	@Override
 	public void action(){
-		
+		System.out.println("Êðÿÿÿÿÿÿÿ");
 	}
 }

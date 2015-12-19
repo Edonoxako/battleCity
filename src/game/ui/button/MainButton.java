@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import core.App;
 import core.ui.Button;
 import core.utils.ResourceLoader;
+import game.state.MainState;
 
 public class MainButton extends Button{
 	/**
@@ -26,8 +27,10 @@ public class MainButton extends Button{
 	}
 	@Override
 	public void action(){
-		App.stateManager.pop();
-		App.stateManager.peek().unBlock();
+		while(!App.stateManager.empty()){
+			App.stateManager.pop();
+		}
+		App.stateManager.push(new MainState());
 		App.pauseFlag = false;
 	}
 }

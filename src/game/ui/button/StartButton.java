@@ -27,7 +27,9 @@ public class StartButton extends Button{
 	}
 	@Override
 	public void action(){
+		GameState gs = new GameState();
 		App.stateManager.peek().block();
-		App.stateManager.push(new GameState());
+		App.stateManager.pop();
+		App.stateManager.push(gs);
 	}
 }
