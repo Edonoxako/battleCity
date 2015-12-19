@@ -1,7 +1,7 @@
 package game;
 
 import core.App;
-import game.state.GameState;
+import game.state.MainState;
 
 public class GameMain {
 
@@ -11,8 +11,9 @@ public class GameMain {
 		app.init();
 		
 		//add test object
-		GameState gm = new GameState();
-		App.stateManager.push(gm);
+		//GameState gm = new GameState();
+		MainState ms = new MainState();
+		App.stateManager.push(ms);
 		App.window.setTitle("Battlefield city");
         //-----------------------
 		app.start();

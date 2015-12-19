@@ -1,13 +1,15 @@
 package game.process;
+
 import core.App;
 import core.graphics.Scene;
 import core.model.Process;
 import core.utils.Time;
+
 public class Game extends Process{
 	public static final float UPDATE_RATE = 60.0f;
 	public static final float UPDATE_INTERVAL = Time.SECOND / UPDATE_RATE;
 	public static final long IDLE_TIME = 1;
-	public Game(String name, int id){
+	public Game  (String name, int id){
 		super(id, name);
 	}
 	@Override
@@ -37,16 +39,8 @@ public class Game extends Process{
 				while(delta > 1){
 					//Update using of ObjectManager
 					for ( int i = 0; i < App.objectManager.getObjects().size(); i++) {
-	                    if (App.objectManager.isObjectExists(i)){
 	                        App.objectManager.getObject(i).update();
-	                    }
-						
 					}
-//					Iterator<GameObject> iterator = App.objectManager.getObjects().iterator();
-//					while (iterator.hasNext()) {
-//						//Если нашли, то удаляем
-//							iterator.next().update();
-//					}
 					//-------
 					delta--;
 					upd++;
@@ -73,15 +67,8 @@ public class Game extends Process{
 					Scene.clear();
 					//render using ObjectManager
 					for ( int i = 0; i < App.objectManager.getObjects().size(); i++) {
-	                    if (App.objectManager.isObjectExists(i)) {
-	                    	App.objectManager.getObject(i).draw(Scene.getGraphics());
-	                    }
+	                    App.objectManager.getObject(i).draw(Scene.getGraphics());
 					}
-//					Iterator<GameObject> iterator = App.objectManager.getObjects().iterator();
-//					while (iterator.hasNext()) {
-//						//Если нашли, то удаляем
-//							iterator.next().draw(Scene.getGraphics());
-//					}
 					Scene.swapBuffers();
 					fps++;
 				} else {
@@ -109,7 +96,5 @@ public class Game extends Process{
 			} catch (InterruptedException e) {
 				return;
 			}
-		
 	}
-
 }

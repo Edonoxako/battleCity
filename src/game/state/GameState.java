@@ -16,23 +16,26 @@ import core.utils.IdService;
 public class GameState extends State{
 	private Game gm;
 	private ArrayList<GameObject> tObjectList;
+	private TileMap map;
 	public GameState(){
 		super();
-		gm = new Game("GameProcessTest", App.processManager.generateID());
-		App.processManager.addProc(gm);
+		map = ResourceLoader.loadMap("res/testmap.txt");
 	}
 	
 	public void init(){
-
-		TileMap map = ResourceLoader.loadMap("res/testmap.txt");
-		App.objectManager.createMap(map);
-
+		
+		if(!App.objectManager.getObjects().isEmpty()){
+			App.objectManager.removeAllObject();
+		}
 		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 100, 100, App.input, GameObjectCategory.Entity));
 		App.objectManager.addObject(new MovingObject(IdService.generateId(), GameObjectCategory.Entity, App.objectManager));
-		App.objectManager.sortObjects();
+		App.objectManager.createMap(map);
+		gm = new Game("GameProcessTest", IdService.generateId());
+		App.processManager.addProc(gm);
+		setInit(true);
 		App.processManager.start(gm);
 		
-		setInit(true);
+		
 	}
 	public void block(){
 		tObjectList = new ArrayList<GameObject>(App.objectManager.getObjects());

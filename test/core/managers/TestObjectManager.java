@@ -1,17 +1,15 @@
 package core.managers;
 
-import core.model.GameObject;
-import core.model.GameObjectCategory;
-import game.object.MovingObject;
-import game.process.Game;
-import org.junit.Test;
-import test.WallObject;
+import static org.junit.Assert.assertEquals;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import org.junit.Test;
+
+import core.model.GameObject;
+import core.model.GameObjectCategory;
+import test.WallObject;
 
 /**
  * Created by Евгений on 15.12.2015.

@@ -34,7 +34,7 @@ public class ResourceLoader {
 				 return type;
 			 }
 	
-    public static TileMap loadMap(String mapFile) {
+    public synchronized static TileMap loadMap(String mapFile) {
 
         URL url = TileMap.class.getClassLoader().getResource(mapFile);
         Path path = null;

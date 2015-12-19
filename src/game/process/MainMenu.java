@@ -40,7 +40,9 @@ public class MainMenu extends Process{
 					//Update using of ObjectManager
 					if(!App.objectManager.getObjects().isEmpty()){
 						for ( int i = 0; i < App.objectManager.getObjects().size(); i++) {
+							
 		                        App.objectManager.getObject(i).update();
+		                 
 						}
 					}
 					//-------
@@ -56,7 +58,7 @@ public class MainMenu extends Process{
 				if (this.getProcessState() == ProcessState.waiting.getState()){
 					long timePause = Time.get();
 					synchronized (monitor) {
-						monitor.wait(5000l);
+						monitor.wait();
 					}
 					if(this.getProcessState() == ProcessState.waiting.getState()){
 						this.start();
@@ -68,11 +70,9 @@ public class MainMenu extends Process{
 				if (render) {
 					Scene.clear();
 					//render using ObjectManager
-					if(!App.objectManager.getObjects().isEmpty()){
 						for ( int i = 0; i < App.objectManager.getObjects().size(); i++) {
-		                    App.objectManager.getObject(i).draw(Scene.getGraphics());
+		                        App.objectManager.getObject(i).draw(Scene.getGraphics());
 						}
-					}
 					Scene.swapBuffers();
 					fps++;
 				} else {

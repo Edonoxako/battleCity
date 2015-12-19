@@ -9,12 +9,12 @@ import core.model.GameObjectCategory;
 import core.model.Process;
 import core.model.State;
 import core.ui.ButtonList;
+import core.utils.IdService;
 import game.process.MainMenu;
 import game.ui.button.ExitButton;
 import game.ui.button.OptionsButton;
 import game.ui.button.StartButton;
 import game.ui.text.PauseAnimatedTitle;
-import game.ui.text.PauseText;
 
 public class MainState extends State{
 	private Process mp;
@@ -25,31 +25,27 @@ public class MainState extends State{
 	}
 	
 	public void init(){
-		App.processManager.addProc(mp);
 		App.objectManager.removeAllObject();
-		App.objectManager.addObject(new PauseAnimatedTitle(9091, Scene.getSize().width/2, 50));
-		App.objectManager.addObject(new PauseText(9090, Scene.getSize().width/2, Scene.getSize().height/2));
-		ButtonList btList = new ButtonList(9990, GameObjectCategory.UI, App.input, Scene.getSize().width/2,
+		App.pauseBlockKey = true;
+		App.processManager.addProc(mp);
+		
+		App.objectManager.addObject(new PauseAnimatedTitle(IdService.generateId(), Scene.getSize().width/2, 50));
+		//App.objectManager.addObject(new PauseText(IdService.generateId(), Scene.getSize().width/2, Scene.getSize().height/2));
+		ButtonList btList = new ButtonList(IdService.generateId(), GameObjectCategory.UI, App.input, Scene.getSize().width/2,
 				(Scene.getSize().height/2)+50);
-		btList.add(new StartButton(1005));
-		btList.add(new OptionsButton(1001));
-		btList.add(new ExitButton(1003));
+		btList.add(new StartButton(IdService.generateId()));
+		btList.add(new OptionsButton(IdService.generateId()));
+		btList.add(new ExitButton(IdService.generateId()));
 		App.objectManager.addObject(btList);
 		setInit(true);
 		App.processManager.start(mp);
 	}
 	
-	public void destroy(){
-		App.processManager.kill(mp);
-		App.objectManager.removeAllObject();
-
-		//Эта штука работала, когда в ObjectManager был ArrayList
-		//App.objectManager.getObjects().trimToSize();
-	}
-	
 	public void block(){
 		tObjectList = new ArrayList<GameObject>(App.objectManager.getObjects());
+		//App.objectManager.removeAllObject();
 		App.processManager.stop(mp);
+		App.pauseBlockKey = false;
 	}
 	
 	public void unBlock(){
@@ -57,7 +53,14 @@ public class MainState extends State{
 		for(GameObject o: tObjectList){
 			App.objectManager.addObject(o);
 		}
+		App.pauseBlockKey = true;
 		App.processManager.start(mp);
 		
+	}
+	
+	public synchronized void destroy(){
+		
+		App.processManager.kill(mp);
+		App.pauseBlockKey = false;
 	}
 }
