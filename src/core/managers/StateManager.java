@@ -25,7 +25,7 @@ public class StateManager {
 		return StateStack.peek();
 	}
 	
-	public State pop() {
+	public synchronized State pop() {
 		StateStack.peek().destroy();
 		return StateStack.pop();
 	}
