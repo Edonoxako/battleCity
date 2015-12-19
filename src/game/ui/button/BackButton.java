@@ -11,9 +11,11 @@ public class BackButton extends Button{
 	 *
 	 * 
 	 */
+	//private GameState gm ;
 	public BackButton(int id) {
 		super(id, ResourceLoader.loadImage("UI/back_active.png"), ResourceLoader.loadImage("UI/back.png"));
 		//setActivated(false);
+		//gm  = new GameState();
 	}
 	@Override
 	public void draw(Graphics2D g) {
@@ -28,6 +30,8 @@ public class BackButton extends Button{
 	public void action(){
 		App.stateManager.pop();
 		App.stateManager.peek().unBlock();
+		
+		//App.stateManager.push(gm);
 		App.pauseFlag = false;
 	}
 }

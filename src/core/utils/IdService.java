@@ -12,5 +12,4 @@ public class IdService {
     public static int generateId() {
         return lastId++;
     }
-
 }
