@@ -26,6 +26,7 @@ public class App {
 	private GraphicsDevice device;
 	private boolean fullSize;
 	public static boolean pauseFlag = false;
+	public static boolean pauseBlockKey = false;
 	public static Input input;
 	public static ProcessManager processManager;
 	public static ObjectManager objectManager;
@@ -137,16 +138,17 @@ public class App {
 					}
 					//processManager.startAll();
 				}
-				
-				if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
-					if(!pauseFlag){
-						stateManager.peek().block();
-						stateManager.push(ps);
-						pauseFlag = true;
-					}else{
-						stateManager.pop();
-						stateManager.peek().unBlock();
-						pauseFlag = false;
+				if(!pauseBlockKey){
+					if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+						if(!pauseFlag){
+							stateManager.peek().block();
+							stateManager.push(ps);
+							pauseFlag = true;
+						}else{
+							stateManager.pop();
+							stateManager.peek().unBlock();
+							pauseFlag = false;
+						}
 					}
 				}
 			}
