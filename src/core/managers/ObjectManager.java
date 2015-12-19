@@ -139,7 +139,8 @@ public class ObjectManager {
         Collections.sort(objects, new GameObjectComparator());
     }
 
-	public void createMap(TileMap map) {
+	public boolean createMap(TileMap map) {
+		if (map == null) return false;
         map.getMapObjects().stream()
                 .forEach(obj -> {
                     GameObjectCategory category = GameObjectCategory.toCategory(obj.getCategory());
@@ -151,6 +152,7 @@ public class ObjectManager {
 
                     objects.add(object);
                 });
+        return true;
     }
 
 	//Внутрений класс-компаратор для сортировки списка объектов
