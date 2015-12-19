@@ -16,12 +16,14 @@ public class ButtonList extends GameObject{
 	private int key;
 	private int spacing;
 	private boolean active;
+	private boolean push;
 	private Input input;
 	private Point position;
 	public ButtonList(int id, GameObjectCategory type, Input in, int x, int y) {
 		super(id, type);
 		setPosition(new Point(x,y));
 		active = false;
+		push = true;
 		input = in;
 		delay = 10;
 		delayCounter = 0;
@@ -47,10 +49,18 @@ public class ButtonList extends GameObject{
 
 	@Override
 	public void update() {
-		if(input.getKey(KeyEvent.VK_ENTER) ||
-				input.getKey(KeyEvent.VK_SPACE)	){
-			buttonList.get(key).action();
+		if(!input.getKey(KeyEvent.VK_ENTER) &&
+				!input.getKey(KeyEvent.VK_SPACE)){
+			push = false;
 		}
+		if(input.getKey(KeyEvent.VK_ENTER) ||
+				input.getKey(KeyEvent.VK_SPACE)){
+			if(!push) {
+				buttonList.get(key).action();
+				push = true;
+			}
+		}
+		
 		if(active){
 			if(delay == delayCounter){
 				delayCounter = 0;
