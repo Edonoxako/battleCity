@@ -17,8 +17,22 @@ public class GameObjectFactory {
             switch (type) {
                 case WALL:
                     return new WallObject(IdService.generateId(), subtype);
-            }
+			case BG:
+				break;
+			default:
+				break;
+                }
 
+        }
+        if (category == GameObjectCategory.Background) {
+        	switch (type) {
+             case BG:
+            	return new BgObject(IdService.generateId(), subtype);
+			case WALL:
+				break;
+			default:
+				break;
+        	}
         }
 
         return null;

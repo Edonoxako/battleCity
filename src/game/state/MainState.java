@@ -28,9 +28,7 @@ public class MainState extends State{
 		App.objectManager.removeAllObject();
 		App.pauseBlockKey = true;
 		App.processManager.addProc(mp);
-		
 		App.objectManager.addObject(new PauseAnimatedTitle(IdService.generateId(), Scene.getSize().width/2, 50));
-		//App.objectManager.addObject(new PauseText(IdService.generateId(), Scene.getSize().width/2, Scene.getSize().height/2));
 		ButtonList btList = new ButtonList(IdService.generateId(), GameObjectCategory.UI, App.input, Scene.getSize().width/2,
 				(Scene.getSize().height/2)+50);
 		btList.add(new StartButton(IdService.generateId()));
@@ -43,7 +41,6 @@ public class MainState extends State{
 	
 	public void block(){
 		tObjectList = new ArrayList<GameObject>(App.objectManager.getObjects());
-		//App.objectManager.removeAllObject();
 		App.processManager.stop(mp);
 		App.pauseBlockKey = false;
 	}

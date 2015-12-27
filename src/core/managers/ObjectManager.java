@@ -141,8 +141,7 @@ public class ObjectManager {
 
 	public boolean createMap(TileMap map) {
 		if (map == null) return false;
-        map.getMapObjects().stream()
-                .forEach(obj -> {
+        map.getMapObjects().stream().forEach(obj -> {
                     GameObjectCategory category = GameObjectCategory.toCategory(obj.getCategory());
                     GameObjectType type = GameObjectType.toType(obj.getType());
                     GameObject object = GameObjectFactory.createObject(category, type, obj.getSubtype());
@@ -150,7 +149,7 @@ public class ObjectManager {
                     object.setX(obj.getCoordX());
                     object.setY(obj.getCoordY());
 
-                    objects.add(object);
+                    addObject(object);
                 });
         return true;
     }

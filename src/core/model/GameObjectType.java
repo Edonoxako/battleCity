@@ -5,7 +5,7 @@ package core.model;
  */
 public enum GameObjectType {
 
-    WALL(1);
+    BG(0), WALL(1);
 
     private int type;
 
@@ -19,6 +19,7 @@ public enum GameObjectType {
 
     public static GameObjectType toType(int value) {
         switch (value) {
+            case 0: return BG;
             case 1: return WALL;
         }
         return null;

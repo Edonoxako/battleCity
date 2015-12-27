@@ -48,8 +48,13 @@ public class TileMap {
             //Р�С‰РµРј СЃС‚Р°С‚РёС‡РЅС‹Рµ РѕР±СЉРµРєС‚С‹ РІ РјР°СЃСЃРёРІРµ
             for (int i = 0; i < mapLine.length; i++) {
                 if (!mapLine[i].equals("0")) {
-                    int[] params = Arrays.stream(mapLine[i].split(":")).mapToInt(Integer::parseInt).toArray();
-                    mapObjects.add(new MapObject(params[0], params[1], params[2], i, linesCount));
+                	String[] allparams = mapLine[i].split(";");
+                	for(int j = 0; j < allparams.length; j++){
+                		if (!allparams[j].equals("0")) {
+                			int[] params = Arrays.stream(allparams[j].split(":")).mapToInt(Integer::parseInt).toArray();
+	                    	mapObjects.add(new MapObject(params[0], params[1], params[2], i, linesCount));
+                		}
+                	}
                 }
             }
 

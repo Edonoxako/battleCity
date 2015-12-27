@@ -137,34 +137,32 @@ public class shell extends GameObject {
     
     @Override
     public void draw(Graphics2D g) {
-    	
-        if (frameCount > START_FRAME_COUNT) {
-        	g.drawImage(body, getX() - body.getWidth(null)/2, 
-    				getY() - body.getHeight(null)/2, null);
-        }
+
+		g.drawImage(body, getX() - body.getWidth(null)/2,
+				getY() - body.getHeight(null)/2, null);
+
     }
     private void Start(Course cs){
-    	int increment = (int) ((60 * dx)* 0.55f);
     	switch (cs.value){
 	    	case 0: {
 	    		course = cs;
 	    		anim.setCourse(cs);
 	    		dy = -dy;
-	    		setY(getY()+ increment);
+	    		setY(getY());
 	    		body = anim.nextState();
 	    		break;
 	    	}
 			case 1: {
 				course = cs;
 	    		anim.setCourse(cs);
-	    		setY(getY()- increment);
+	    		setY(getY());
 	    		body = anim.nextState();
 				break;
 			}
 			case 2: {
 				course = cs;
 	    		anim.setCourse(cs);
-	    		setX(getX()- increment);
+	    		setX(getX());
 	    		body = anim.nextState();
 				break;
 			}
@@ -172,7 +170,7 @@ public class shell extends GameObject {
 				course = cs;
 	    		anim.setCourse(cs);
 	    		dx = -dx;
-	    		setX(getX() + increment);
+	    		setX(getX());
 	    		body = anim.nextState();
 				break;
 			}
