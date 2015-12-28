@@ -3,11 +3,13 @@ package game.state;
 import java.util.ArrayList;
 
 import core.App;
+import core.graphics.Scene;
 import core.model.GameObjectCategory;
 import core.utils.ResourceLoader;
 import game.object.MovingObject;
 import game.object.TestPlayer;
 import game.process.Game;
+import game.ui.frame.UiFrame;
 import test.TileMap;
 import core.model.GameObject;
 import core.model.State;
@@ -30,6 +32,7 @@ public class GameState extends State{
 		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 100, 100, App.input, GameObjectCategory.Entity));
 		App.objectManager.addObject(new MovingObject(IdService.generateId(), GameObjectCategory.Entity, App.objectManager));
 		App.objectManager.createMap(map);
+		App.objectManager.addObject(new UiFrame(Scene.getSize().width, Scene.getSize().height, 100));
 		gm = new Game("GameProcessTest", IdService.generateId());
 		App.processManager.addProc(gm);
 		setInit(true);
