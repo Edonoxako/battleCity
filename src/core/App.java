@@ -48,6 +48,7 @@ public class App {
 		device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 		//Создание и задание параметров главного окна приложения
 		window = new JFrame();
+		window.setResizable(false);
 		window.setSize(defaultFrameSize);
 
 		//Инициализация менеджеров.
@@ -100,44 +101,44 @@ public class App {
 			}
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_F11) {
-					//processManager.stopAll();
-					if (!fullSize){
-						window.dispose();
-		            	window.setUndecorated(true);
-		            	//window.setAlwaysOnTop(true);
-		            	window.setVisible(true);
-						try{
-							java.awt.EventQueue.invokeLater(new Runnable() {
-					            @Override
-					            public void run() {
-					            	
-					                if(window != null) {
-					                	window.toFront();
-					                	window.repaint();
-					                	//get over here, focus!
-				            			device.setFullScreenWindow(window);
-				            			
-				            			
-					                }
-					            }
-					        });	
-	            		} finally {
-	            			fullSize = true;
-	            		}
-					}else {
-						//window.setUndecorated(false);
-						//window.setAlwaysOnTop(false);
-						//processManager.stopAll();
-						window.dispose();
-						window.setUndecorated(false);
-						device.setFullScreenWindow(null);
-						window.setVisible(true);
-						fullSize = false;
-						//processManager.startAll();
-					}
-					//processManager.startAll();
-				}
+//				if(e.getKeyCode() == KeyEvent.VK_F11) {
+//					//processManager.stopAll();
+//					if (!fullSize){
+//						window.dispose();
+//		            	window.setUndecorated(true);
+//		            	//window.setAlwaysOnTop(true);
+//		            	window.setVisible(true);
+//						try{
+//							java.awt.EventQueue.invokeLater(new Runnable() {
+//					            @Override
+//					            public void run() {
+//					            	
+//					                if(window != null) {
+//					                	window.toFront();
+//					                	window.repaint();
+//					                	//get over here, focus!
+//				            			device.setFullScreenWindow(window);
+//				            			
+//				            			
+//					                }
+//					            }
+//					        });	
+//	            		} finally {
+//	            			fullSize = true;
+//	            		}
+//					}else {
+//						//window.setUndecorated(false);
+//						//window.setAlwaysOnTop(false);
+//						//processManager.stopAll();
+//						window.dispose();
+//						window.setUndecorated(false);
+//						device.setFullScreenWindow(null);
+//						window.setVisible(true);
+//						fullSize = false;
+//						//processManager.startAll();
+//					}
+//					//processManager.startAll();
+//				}
 				if(!pauseBlockKey){
 					if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 						if(!pauseFlag){
