@@ -139,6 +139,7 @@ public class TestPlayer extends GameObject{
 				body = anim.nextState();
 			}
 			dx = -1f;
+			body = anim.nextState();
 		}else if(in.getKey(KeyEvent.VK_W)){
 			if(course.getCourse() != Course.North.getCourse()){
 				course = Course.North;
@@ -146,6 +147,7 @@ public class TestPlayer extends GameObject{
 				body = anim.nextState();
 			}
 			dy = -1f;
+			body = anim.nextState();
 		}else if(in.getKey(KeyEvent.VK_D)){
 			if(course.getCourse() != Course.East.getCourse()){
 				course = Course.East;
@@ -153,6 +155,7 @@ public class TestPlayer extends GameObject{
 				body = anim.nextState();
 			}
 			dx = 1f;
+			body = anim.nextState();
 		}else if(in.getKey(KeyEvent.VK_S)){
 			if(course.getCourse() != Course.South.getCourse()){
 				course = Course.South;
@@ -160,6 +163,7 @@ public class TestPlayer extends GameObject{
 				body = anim.nextState();
 			}
 			dy = 1f;
+			body = anim.nextState();
 		}
 		
 		if(x+dx>=width -h/2){
@@ -175,7 +179,7 @@ public class TestPlayer extends GameObject{
 		}else y +=dy;
 		dy = 0;
 		
-		body = anim.nextState();
+		
 		if(in.getKey(KeyEvent.VK_SPACE)){
 			if (count_push == 0){
 					App.objectManager.addObject(new shell(800, GameObjectCategory.Entity,
