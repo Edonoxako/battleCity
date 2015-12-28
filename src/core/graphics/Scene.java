@@ -27,7 +27,8 @@ public class Scene {
 		if (created)
 			return;
 		content = new Canvas();
-		size = win.getRootPane().getSize();
+		size = win.getContentPane().getSize();
+		System.out.println(size);
 		content.setSize(size);
 		win.getContentPane().add(content);
 		created = true;
