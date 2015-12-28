@@ -148,21 +148,21 @@ public class shell extends GameObject {
 	    		course = cs;
 	    		anim.setCourse(cs);
 	    		dy = -dy;
-	    		setY(getY());
+	    		setY(getY()-24);
 	    		body = anim.nextState();
 	    		break;
 	    	}
 			case 1: {
 				course = cs;
 	    		anim.setCourse(cs);
-	    		setY(getY());
+	    		setY(getY()+24);
 	    		body = anim.nextState();
 				break;
 			}
 			case 2: {
 				course = cs;
 	    		anim.setCourse(cs);
-	    		setX(getX());
+	    		setX(getX()+24);
 	    		body = anim.nextState();
 				break;
 			}
@@ -170,7 +170,7 @@ public class shell extends GameObject {
 				course = cs;
 	    		anim.setCourse(cs);
 	    		dx = -dx;
-	    		setX(getX());
+	    		setX(getX()-24);
 	    		body = anim.nextState();
 				break;
 			}
