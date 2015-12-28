@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import core.model.GameObject;
 import core.model.GameObjectCategory;
-import test.WallObject;
+import game.object.WallObject;
 
 /**
  * Created by Евгений on 15.12.2015.

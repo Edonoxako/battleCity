@@ -7,32 +7,26 @@ import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.utils.ResourceLoader;
 
-/**
- * Created by Евгений on 24.11.2015.
- *
- * Объект тайла стены.
- */
-public class BgObject extends GameObject {
-
+public class TreeObject extends GameObject {
     public static final int WALL_SIZE = 48;
-
-    public static final int SAND = 0;
-    public static final int SNOW = 1;
-    public static final int STONE = 2;
+    
+	public static final int TREE = 0;
+	public static final int SHADOW_TREE = 1;
+    public static final int SNOW_TREE = 2;
 
     private Image wallImage;
 
-    public BgObject(int id, int subtype) {
-        super(id, GameObjectCategory.Background);
+    public TreeObject(int id, int subtype) {
+        super(id, GameObjectCategory.Environment);
         switch (subtype) {
-            case SAND:
-                wallImage = ResourceLoader.loadImage("bg\\main_sand.png");
+            case TREE:
+                wallImage = ResourceLoader.loadImage("object\\tree.png");
                 break;
-            case SNOW:
-            	wallImage = ResourceLoader.loadImage("bg\\snow.png");
+            case SHADOW_TREE:
+            	wallImage = ResourceLoader.loadImage("object\\tree_shadow.png");
             	break;
-            case STONE:
-            	wallImage = ResourceLoader.loadImage("bg\\stone_road.png");
+            case SNOW_TREE:
+            	wallImage = ResourceLoader.loadImage("object\\tree_snow.png");
             	break;
         }
     }
@@ -55,3 +49,4 @@ public class BgObject extends GameObject {
 
     }
 }
+
