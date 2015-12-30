@@ -4,6 +4,10 @@ import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.model.GameObjectType;
 import core.utils.IdService;
+import game.object.BgObject;
+import game.object.HouseObject;
+import game.object.RoadObject;
+import game.object.TreeObject;
 import game.object.WallObject;
 
 /**

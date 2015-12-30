@@ -8,6 +8,8 @@ public abstract class GameObject implements GameObjectInf {
 
 	protected int x;
 	protected int y;
+	public int dmx;
+	public int dmy;
 	private boolean draw, update;
 
     public GameObject(int id, GameObjectCategory category) {

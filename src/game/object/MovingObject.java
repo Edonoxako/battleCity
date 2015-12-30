@@ -126,8 +126,8 @@ public class MovingObject extends GameObject {
     @Override
     public void draw(Graphics2D g) {
         if (frameCount > START_FRAME_COUNT) {
-        	g.drawImage(body, x - body.getWidth(null)/2, 
-    				y - body.getHeight(null)/2, null);
+        	g.drawImage(body, dmx + x - body.getWidth(null)/2, 
+    				dmy + y - body.getHeight(null)/2, null);
         }
     }
 

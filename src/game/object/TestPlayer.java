@@ -120,8 +120,8 @@ public class TestPlayer extends GameObject{
 	
 	@Override
 	public void draw(Graphics2D g) {
-		g.drawImage(body, x - body.getWidth(null)/2, 
-				y - body.getHeight(null)/2, null);
+		g.drawImage(body, dmx + x - body.getWidth(null)/2, 
+				dmy + y - body.getHeight(null)/2, null);
 	}
 
 	@Override
@@ -178,7 +178,24 @@ public class TestPlayer extends GameObject{
 			y = h/2;
 		}else y +=dy;
 		dy = 0;
-		
+		int sceneWidth = Scene.getSize().width;
+		int sceneHeight = Scene.getSize().height;
+		int mapWidth = App.objectManager.getMapWidth();
+		int mapHeight = App.objectManager.getMapHeight();
+		if( x < sceneWidth / 2) {
+			App.objectManager.moveObjectX(0);
+		}else if( x > mapWidth - sceneWidth / 2 ){
+			App.objectManager.moveObjectX((int)((sceneWidth / 2) - (mapWidth - sceneWidth / 2)));
+		}else {
+			App.objectManager.moveObjectX((int)(sceneWidth /2 - x));
+		}
+		if( y < sceneHeight / 2) {
+			App.objectManager.moveObjectY(0);
+		}else if( y > mapHeight - sceneHeight / 2){
+			App.objectManager.moveObjectY((int)((sceneHeight / 2) - (mapHeight - sceneHeight / 2)));
+		}else {
+			App.objectManager.moveObjectY((int)(sceneHeight /2 - y));
+		}
 		
 		if(in.getKey(KeyEvent.VK_SPACE)){
 			if (count_push == 0){

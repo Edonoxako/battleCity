@@ -10,18 +10,14 @@ import test.GameObjectFactory;
 import test.TileMap;
 
 public class ObjectManager {
-
+	private int mapWidth, mapHeight;
 	private LinkedList<GameObject> objects;
-
-//	private int backgroundObjectsCount = 0;
-//	private int entityObjectsCount = 0;
-//	private int environmentObjectsCount = 0;
-//	private int uiObjectsCount = 0;
 
 	public ObjectManager() {
 		objects = new LinkedList<>();
+		mapWidth = 0;
+		mapHeight = 0;
 	}
-
 
 	public LinkedList<GameObject> getObjects() {
 		return objects;
@@ -141,6 +137,8 @@ public class ObjectManager {
 
 	public boolean createMap(TileMap map) {
 		if (map == null) return false;
+		mapWidth = map.getWidth();
+		mapHeight = map.getHeight();
         map.getMapObjects().stream().forEach(obj -> {
                     GameObjectCategory category = GameObjectCategory.toCategory(obj.getCategory());
                     GameObjectType type = GameObjectType.toType(obj.getType());
@@ -153,7 +151,24 @@ public class ObjectManager {
                 });
         return true;
     }
-
+	//Задает сдвиг объектов по оси х
+	public void moveObjectX(int dmx){
+		for(int i = 0; i < objects.size(); i++){
+			objects.get(i).dmx = dmx;
+		}
+	}
+	//Задает сдвиг объектов по оси у
+	public void moveObjectY(int dmy){
+		for(int i = 0; i < objects.size(); i++){
+			objects.get(i).dmy = dmy;
+		}
+	}
+	public int getMapHeight(){
+		return mapHeight*48;
+	}
+	public int getMapWidth(){
+		return mapWidth*48;
+	}
 	//Внутрений класс-компаратор для сортировки списка объектов
 	public class GameObjectComparator implements Comparator<GameObject> {
 

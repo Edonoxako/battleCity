@@ -130,6 +130,8 @@ public class shell extends GameObject {
 		anim = new Animator();
         setX(x);
         setY(y);
+        dmx = 0;
+        dmy = 0;
         Start(Course.toCourse(cs));
         //this.objectManager = objectManager;
 		
@@ -138,8 +140,8 @@ public class shell extends GameObject {
     @Override
     public void draw(Graphics2D g) {
 
-		g.drawImage(body, getX() - body.getWidth(null)/2,
-				getY() - body.getHeight(null)/2, null);
+		g.drawImage(body, dmx + getX() - body.getWidth(null)/2,
+				dmy + getY() - body.getHeight(null)/2, null);
 
     }
     private void Start(Course cs){

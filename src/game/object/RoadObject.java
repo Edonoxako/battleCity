@@ -1,5 +1,5 @@
 
-package test;
+package game.object;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -71,7 +71,7 @@ public class RoadObject extends GameObject {
 		g.drawImage(wallImage, x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
 		g.setComposite(tc);*/
 
-		g.drawImage(wallImage, x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
+		g.drawImage(wallImage, dmx + x * WALL_SIZE, dmy + y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
         
     }
 

@@ -1,4 +1,4 @@
-package test;
+package game.object;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -7,26 +7,32 @@ import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.utils.ResourceLoader;
 
-public class TreeObject extends GameObject {
+/**
+ * Created by Евгений on 24.11.2015.
+ *
+ * Объект тайла стены.
+ */
+public class BgObject extends GameObject {
+
     public static final int WALL_SIZE = 48;
-    
-	public static final int TREE = 0;
-	public static final int SHADOW_TREE = 1;
-    public static final int SNOW_TREE = 2;
+
+    public static final int SAND = 0;
+    public static final int SNOW = 1;
+    public static final int STONE = 2;
 
     private Image wallImage;
 
-    public TreeObject(int id, int subtype) {
-        super(id, GameObjectCategory.Environment);
+    public BgObject(int id, int subtype) {
+        super(id, GameObjectCategory.Background);
         switch (subtype) {
-            case TREE:
-                wallImage = ResourceLoader.loadImage("object\\tree.png");
+            case SAND:
+                wallImage = ResourceLoader.loadImage("bg\\main_sand.png");
                 break;
-            case SHADOW_TREE:
-            	wallImage = ResourceLoader.loadImage("object\\tree_shadow.png");
+            case SNOW:
+            	wallImage = ResourceLoader.loadImage("bg\\snow.png");
             	break;
-            case SNOW_TREE:
-            	wallImage = ResourceLoader.loadImage("object\\tree_snow.png");
+            case STONE:
+            	wallImage = ResourceLoader.loadImage("bg\\stone_road.png");
             	break;
         }
     }
@@ -40,7 +46,7 @@ public class TreeObject extends GameObject {
 		g.drawImage(wallImage, x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
 		g.setComposite(tc);*/
 
-		g.drawImage(wallImage, x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
+		g.drawImage(wallImage, dmx + x * WALL_SIZE, dmy + y * WALL_SIZE, WALL_SIZE, WALL_SIZE, null);
         
     }
 
@@ -49,4 +55,3 @@ public class TreeObject extends GameObject {
 
     }
 }
-
