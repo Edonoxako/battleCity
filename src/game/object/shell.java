@@ -140,8 +140,8 @@ public class shell extends GameObject {
     @Override
     public void draw(Graphics2D g) {
 
-		g.drawImage(body, dmx + getX() - body.getWidth(null)/2,
-				dmy + getY() - body.getHeight(null)/2, null);
+		g.drawImage(body, dmx + getX() - (int)body.getWidth(null)/2,
+				dmy + getY() - (int)body.getHeight(null)/2, null);
 
     }
     private void Start(Course cs){
@@ -188,7 +188,7 @@ public class shell extends GameObject {
         }else{
         	setX(getX()+dx);
         }
-        if (frameCount == 600) {
+        if (frameCount == 100) {
         	App.objectManager.removeObject(this.getId());
         	return;
 //           frameCount=0;
