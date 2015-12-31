@@ -12,6 +12,7 @@ import test.TileMap;
 public class ObjectManager {
 	private int mapWidth, mapHeight;
 	private LinkedList<GameObject> objects;
+	private GameObject[][] dumpMap;
 
 	public ObjectManager() {
 		objects = new LinkedList<>();
@@ -139,6 +140,7 @@ public class ObjectManager {
 		if (map == null) return false;
 		mapWidth = map.getWidth();
 		mapHeight = map.getHeight();
+		dumpMap = new GameObject[mapHeight+1][mapWidth+1];
         map.getMapObjects().stream().forEach(obj -> {
                     GameObjectCategory category = GameObjectCategory.toCategory(obj.getCategory());
                     GameObjectType type = GameObjectType.toType(obj.getType());
@@ -146,11 +148,20 @@ public class ObjectManager {
 
                     object.setX(obj.getCoordX());
                     object.setY(obj.getCoordY());
-
+                    
                     addObject(object);
+                    
+                    if (object.getCategory() == GameObjectCategory.Environment) 
+                    	dumpMap[(int)(object.getY())][(int)(object.getX())] = object;
                 });
         return true;
     }
+	public boolean checkObject(int x, int y){
+		if(dumpMap[y][x]!=null){
+			return true;
+		}
+		else return false;
+	}
 	//Задает сдвиг объектов по оси х
 	public void moveObjectX(int dmx){
 		for(int i = 0; i < objects.size(); i++){

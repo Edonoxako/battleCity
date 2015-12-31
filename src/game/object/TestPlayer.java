@@ -128,6 +128,10 @@ public class TestPlayer extends GameObject{
 	public void update() {
 		int width = Scene.content.getSize().width;
 		int height = Scene.content.getSize().height;
+		int sceneWidth = Scene.getSize().width;
+		int sceneHeight = Scene.getSize().height;
+		int mapWidth = App.objectManager.getMapWidth();
+		int mapHeight = App.objectManager.getMapHeight();
 		if (count_push == 30){
 			count_push = 0;
 			tank_fire = false;
@@ -165,23 +169,25 @@ public class TestPlayer extends GameObject{
 			dy = 1f;
 			body = anim.nextState();
 		}
+		if(!collision(x + dx, y + dy)){
+			if(x+dx>=mapWidth -h/2){
+				x = mapWidth -h/2;
+			}else if(x+dx<=h/2){
+				x = h/2;
+			}else x +=dx;
+			dx = 0;
+			if(y+dy>=mapHeight -h/2){
+				y = mapHeight -h/2;
+			}else if(y+dy<=h/2){
+				y = h/2;
+			}else y +=dy;
+			dy = 0;
+		}else{
+			dx = 0;
+			dy = 0;
+		}
 		
-		if(x+dx>=width -h/2){
-			x = width -h/2;
-		}else if(x+dx<=h/2){
-			x = h/2;
-		}else x +=dx;
-		dx = 0;
-		if(y+dy>=height -h/2){
-			y = height -h/2;
-		}else if(y+dy<=h/2){
-			y = h/2;
-		}else y +=dy;
-		dy = 0;
-		int sceneWidth = Scene.getSize().width;
-		int sceneHeight = Scene.getSize().height;
-		int mapWidth = App.objectManager.getMapWidth();
-		int mapHeight = App.objectManager.getMapHeight();
+		
 		if( x < sceneWidth / 2) {
 			App.objectManager.moveObjectX(0);
 		}else if( x > mapWidth - sceneWidth / 2 ){
@@ -202,10 +208,6 @@ public class TestPlayer extends GameObject{
 					App.objectManager.addObject(new shell(800, GameObjectCategory.Entity,
 							x, y, course.value));
 
-					//Эта штука работала, когда в ObjectManager был ArrayList
-					//App.objectManager.getObjects().trimToSize();
-
-					//App.objectManager.sortObjects();
 					tank_fire = true;
 			}
 		}
@@ -213,6 +215,11 @@ public class TestPlayer extends GameObject{
 			count_push++;
 		}
 		
+	}
+	
+	public boolean collision(double x, double y){
+			
+		return App.objectManager.checkObject((int)(x)/48, (int)(y)/48);
 	}
 	
 }

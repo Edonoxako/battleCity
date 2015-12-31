@@ -22,6 +22,12 @@ public class GameState extends State{
 	public GameState(){
 		super();
 		map = ResourceLoader.loadMap("res/testmap.txt");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void init(){
@@ -29,9 +35,15 @@ public class GameState extends State{
 		if(!App.objectManager.getObjects().isEmpty()){
 			App.objectManager.removeAllObject();
 		}
-		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 100, 100, App.input, GameObjectCategory.Entity));
+		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 150, 150, App.input, GameObjectCategory.Entity));
 		App.objectManager.addObject(new MovingObject(IdService.generateId(), GameObjectCategory.Entity, App.objectManager));
 		App.objectManager.createMap(map);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		App.objectManager.addObject(new UiFrame(Scene.getSize().width, Scene.getSize().height, 100));
 		gm = new Game("GameProcessTest", IdService.generateId());
 		App.processManager.addProc(gm);
