@@ -10,6 +10,9 @@ import test.GameObjectFactory;
 import test.TileMap;
 
 public class ObjectManager {
+	private int backgroundObjectsCount = 0;
+	private int entityObjectsCount = 0;
+	private int environmentObjectsCount = 0;
 	private int mapWidth, mapHeight;
 	private LinkedList<GameObject> objects;
 	private GameObject[][] dumpMap;

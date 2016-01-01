@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 
 import core.App;
+import core.graphics.Scene;
 import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.utils.ResourceLoader;
@@ -121,15 +122,18 @@ public class shell extends GameObject {
     private int frameCount;
     private int dx = 4;
     private int dy = 4;
+    private int h = 48;
     //private ObjectManager objectManager;
 
     //public MovingObject(int id, GameObjectCategory type, ObjectManager objectManager) {
-    public shell(int id, GameObjectCategory type, int x, int y, int cs) {
+    public shell(int id, GameObjectCategory type, int x, int y, int dmx, int dmy, int cs) {
         super(id, type);
         frameCount = 0;
 		anim = new Animator();
         setX(x);
         setY(y);
+        this.dmx = dmx;
+        this.dmy = dmy;
         Start(Course.toCourse(cs));
         //this.objectManager = objectManager;
 		
@@ -181,27 +185,28 @@ public class shell extends GameObject {
     public void update() {
     	//System.out.println("shlee");
         frameCount++;
-        if (course.value <= 1){
-        	setY(getY()+dy);
-        }else{
-        	setX(getX()+dx);
-        }
+        if(!collision(x + dx, y + dy)){
+        	if (course.value <= 1){
+            	setY(getY()+dy);
+            }else{
+            	setX(getX()+dx);
+            }
+		}else{
+			App.objectManager.removeObject(this.getId());
+			App.objectManager.addObject(new SplashEfect(x, y, dmx, dmy));
+			
+		}
+        
         if (frameCount == 100) {
         	App.objectManager.removeObject(this.getId());
+        	App.objectManager.addObject(new SplashEfect(x, y, dmx, dmy));
         	return;
-//           frameCount=0;
-//           dx = -dx;
-//           if (dx > 0){
-//				course = Course.East;
-//				anim.setCourse(course);
-//				body = anim.nextState();
-//           } else {
-//				course = Course.West;
-//				anim.setCourse(course);
-//				body = anim.nextState();
-//           }
         }
         body = anim.nextState();
         
     }
+    public boolean collision(double x, double y){
+		
+		return App.objectManager.checkObject((int)(x)/48, (int)(y)/48);
+	}
 }

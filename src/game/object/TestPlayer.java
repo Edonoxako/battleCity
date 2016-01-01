@@ -210,7 +210,7 @@ public class TestPlayer extends GameObject{
 		if(in.getKey(KeyEvent.VK_SPACE)){
 			if (count_push == 0){
 					App.objectManager.addObject(new shell(800, GameObjectCategory.Entity,
-							x, y, course.value));
+							x, y, dmx, dmy, course.value));
 					hp -=5;
 					tank_fire = true;
 			}
