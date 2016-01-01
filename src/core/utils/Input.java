@@ -14,7 +14,7 @@ public class Input extends JComponent{
 	
 	public Input(){
 		
-		map = new boolean[256];
+		map = new boolean[600];
 		
 		for (int i = 0; i < map.length; i++) {
 			

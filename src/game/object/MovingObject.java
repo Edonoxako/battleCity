@@ -2,6 +2,8 @@ package game.object;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+
+import core.App;
 import core.managers.ObjectManager;
 import core.model.GameObject;
 import core.model.GameObjectCategory;
@@ -133,7 +135,10 @@ public class MovingObject extends GameObject {
 
     @Override
     public void update() {
-        setX(getX() + dx);
+    	
+    	if(!collision(x + dx, y)){
+    		setX(getX() + dx);
+		}
         frameCount++;
         if (frameCount == 360) {
            frameCount=0;
@@ -150,4 +155,9 @@ public class MovingObject extends GameObject {
         }
         body = anim.nextState();
     }
+    
+    public boolean collision(double x, double y){
+		
+		return App.objectManager.checkObject((int)(x)/48, (int)(y)/48, getId(), getId());
+	}
 }

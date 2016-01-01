@@ -13,6 +13,7 @@ public class ObjectManager {
 	private int backgroundObjectsCount = 0;
 	private int entityObjectsCount = 0;
 	private int environmentObjectsCount = 0;
+	private int uiObjectsCount = 0;
 	private int mapWidth, mapHeight;
 	private LinkedList<GameObject> objects;
 	private GameObject[][] dumpMap;
@@ -46,58 +47,96 @@ public class ObjectManager {
 	//Добавляет объект на сцену
 	public void addObject(GameObject obj) {
 
-		int backgroundObjectsCount = 0;
-		int entityObjectsCount = 0;
-		int environmentObjectsCount = 0;
-
 		switch (obj.getCategory()) {
 
 			case Background:
-				backgroundObjectsCount = (int) objects.stream()
-						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Background)
-						.count();
+//				backgroundObjectsCount = (int) objects.stream()
+//						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Background)
+//						.count();
 				objects.add(backgroundObjectsCount, obj);
+				backgroundObjectsCount++;
 				break;
 			case Entity:
-				backgroundObjectsCount = (int) objects.stream()
-						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Background)
-						.count();
-
-				entityObjectsCount = (int) objects.stream()
-						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Entity)
-						.count();
-
+//				backgroundObjectsCount = (int) objects.stream()
+//						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Background)
+//						.count();
+//
+//				entityObjectsCount = (int) objects.stream()
+//						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Entity)
+//						.count();
 				objects.add(backgroundObjectsCount + entityObjectsCount, obj);
+				entityObjectsCount++;
 				break;
 			case Environment:
-				backgroundObjectsCount = (int) objects.stream()
-						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Background)
-						.count();
-
-				entityObjectsCount = (int) objects.stream()
-						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Entity)
-						.count();
-
-				environmentObjectsCount = (int) objects.stream()
-						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Environment)
-						.count();
+//				backgroundObjectsCount = (int) objects.stream()
+//						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Background)
+//						.count();
+//
+//				entityObjectsCount = (int) objects.stream()
+//						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Entity)
+//						.count();
+//
+//				environmentObjectsCount = (int) objects.stream()
+//						.filter(gameObject -> gameObject.getCategory() == GameObjectCategory.Environment)
+//						.count();
 
 				objects.add(backgroundObjectsCount + entityObjectsCount + environmentObjectsCount, obj);
+				environmentObjectsCount++;
 				break;
 			case UI:
 				objects.add(obj);
+				uiObjectsCount++;
 				break;
 
 		}
 	}
 
 	//Удаляет объекты из сцены
-	public void removeObject(int id) {
-		//Ищем объект с помощью итератора
-		Iterator<GameObject> iterator = objects.iterator();
+	public void removeObject(int id, GameObjectCategory goc) {
+		int first = 0, last = 0;
+		switch (goc) {
+			case Background:
+				first = 0;
+				last = backgroundObjectsCount;
+				break;
+			case Entity:
+				first = backgroundObjectsCount;
+				last = first+entityObjectsCount;
+				break;
+			case Environment:
+				first = backgroundObjectsCount+entityObjectsCount;
+				last = first+environmentObjectsCount;
+				break;
+			case UI:
+				first = backgroundObjectsCount+entityObjectsCount+environmentObjectsCount;
+				last = first+uiObjectsCount;
+				break;
+	
+			default:
+				break;
+		}
+		//Получаем срез с листа
+		Iterator<GameObject> iterator = objects.subList(first, last).iterator();
+		GameObject temp;
 		while (iterator.hasNext()) {
-			//Если нашли, то удаляем
-			if (iterator.next().hasId(id)) {
+			//Уменьшаем счетчики объектов
+			temp = iterator.next();
+			if (temp.hasId(id)) {
+				switch (temp.getCategory()) {
+					case Background:
+						backgroundObjectsCount--;
+						break;
+					case Entity:
+						entityObjectsCount--;
+						break;
+					case Environment:
+						environmentObjectsCount--;
+						break;
+					case UI:
+						uiObjectsCount--;
+						break;
+				}
+				//удаляем объект
 				iterator.remove();
 				return;
 			}
@@ -105,6 +144,10 @@ public class ObjectManager {
 	}
 	
 	public void removeAllObject(){
+		backgroundObjectsCount =0;
+		entityObjectsCount = 0;
+		environmentObjectsCount = 0;
+		uiObjectsCount = 0;
 		objects.removeAll(objects);
 	}
 
@@ -159,11 +202,20 @@ public class ObjectManager {
                 });
         return true;
     }
-	public boolean checkObject(int x, int y){
+	public boolean checkObject(int x, int y, int myId, int ignoreId){
 		if(dumpMap[y][x]!=null){
 			return true;
 		}
-		else return false;
+		Iterator<GameObject> iterator = objects.subList(backgroundObjectsCount, 
+				backgroundObjectsCount+entityObjectsCount).iterator();
+		GameObject temp;
+		while (iterator.hasNext()) {
+			temp = iterator.next();
+			if (temp.getX()/48 == x && temp.getY()/48 == y && !temp.hasId(myId) && !temp.hasId(ignoreId)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	//Задает сдвиг объектов по оси х
 	public void moveObjectX(int dmx){

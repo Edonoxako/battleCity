@@ -8,6 +8,7 @@ import core.App;
 import core.graphics.Scene;
 import core.model.GameObject;
 import core.model.GameObjectCategory;
+import core.utils.IdService;
 import core.utils.Input;
 import core.utils.ResourceLoader;
 import game.ui.frame.UiFrame;
@@ -105,6 +106,7 @@ public class TestPlayer extends GameObject{
 	private UiFrame ui;
 	private Animator anim;
 	private int count_push;
+	private double speed = 10;
 	private boolean tank_fire;
 	private int hp = 100;
 	public TestPlayer(int id, int x, int y, Input inp, UiFrame ui,GameObjectCategory type){
@@ -146,7 +148,7 @@ public class TestPlayer extends GameObject{
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dx = -4f;
+			dx = -speed;
 			body = anim.nextState();
 		}else if(in.getKey(KeyEvent.VK_W)){
 			if(course.getCourse() != Course.North.getCourse()){
@@ -154,7 +156,7 @@ public class TestPlayer extends GameObject{
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dy = -4f;
+			dy = -speed;
 			body = anim.nextState();
 		}else if(in.getKey(KeyEvent.VK_D)){
 			if(course.getCourse() != Course.East.getCourse()){
@@ -162,7 +164,7 @@ public class TestPlayer extends GameObject{
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dx = 4f;
+			dx = speed;
 			body = anim.nextState();
 		}else if(in.getKey(KeyEvent.VK_S)){
 			if(course.getCourse() != Course.South.getCourse()){
@@ -170,7 +172,7 @@ public class TestPlayer extends GameObject{
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dy = 4f;
+			dy = speed;
 			body = anim.nextState();
 		}
 		if(!collision(x + dx, y + dy)){
@@ -209,12 +211,31 @@ public class TestPlayer extends GameObject{
 		
 		if(in.getKey(KeyEvent.VK_SPACE)){
 			if (count_push == 0){
-					App.objectManager.addObject(new shell(800, GameObjectCategory.Entity,
+					App.objectManager.addObject(new shell(IdService.generateId(), getId(), GameObjectCategory.Entity,
 							x, y, dmx, dmy, course.value));
 					hp -=5;
 					tank_fire = true;
 			}
 		}
+		
+		if(in.getKey(KeyEvent.VK_EQUALS)){
+			if (count_push == 0){
+					speed+=1;
+					System.out.println("plus");
+					tank_fire = true;
+			}
+		}
+		
+		if(in.getKey(KeyEvent.VK_MINUS)){
+			if (count_push == 0){
+				System.out.println("minus");
+					if(speed>1){
+						speed-=1;
+					}
+					tank_fire = true;
+			}
+		}
+		
 		if(tank_fire){
 			count_push++;
 		}
@@ -223,7 +244,7 @@ public class TestPlayer extends GameObject{
 	
 	public boolean collision(double x, double y){
 			
-		return App.objectManager.checkObject((int)(x)/48, (int)(y)/48);
+		return App.objectManager.checkObject((int)(x)/48, (int)(y)/48, getId(), getId());
 	}
 	
 }

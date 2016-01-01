@@ -69,7 +69,7 @@ public class SplashEfect extends GameObject{
 	public void update() {
 		body = anim.nextState();
 		if (body == null){
-			App.objectManager.removeObject(this.getId());
+			App.objectManager.removeObject(this.getId(), this.getCategory());
 		}
 	}
 

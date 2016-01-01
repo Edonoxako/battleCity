@@ -123,15 +123,17 @@ public class shell extends GameObject {
     private int dx = 4;
     private int dy = 4;
     private int h = 48;
+    private int parentId;
     //private ObjectManager objectManager;
 
     //public MovingObject(int id, GameObjectCategory type, ObjectManager objectManager) {
-    public shell(int id, GameObjectCategory type, int x, int y, int dmx, int dmy, int cs) {
+    public shell(int id, int parentId, GameObjectCategory type, int x, int y, int dmx, int dmy, int cs) {
         super(id, type);
         frameCount = 0;
 		anim = new Animator();
         setX(x);
         setY(y);
+        this.parentId = parentId;
         this.dmx = dmx;
         this.dmy = dmy;
         Start(Course.toCourse(cs));
@@ -192,13 +194,13 @@ public class shell extends GameObject {
             	setX(getX()+dx);
             }
 		}else{
-			App.objectManager.removeObject(this.getId());
+			App.objectManager.removeObject(this.getId(), this.getCategory());
 			App.objectManager.addObject(new SplashEfect(x, y, dmx, dmy));
 			
 		}
         
         if (frameCount == 100) {
-        	App.objectManager.removeObject(this.getId());
+        	App.objectManager.removeObject(this.getId(), this.getCategory());
         	App.objectManager.addObject(new SplashEfect(x, y, dmx, dmy));
         	return;
         }
@@ -207,6 +209,6 @@ public class shell extends GameObject {
     }
     public boolean collision(double x, double y){
 		
-		return App.objectManager.checkObject((int)(x)/48, (int)(y)/48);
+		return App.objectManager.checkObject((int)(x)/48, (int)(y)/48, getId(), parentId);
 	}
 }
