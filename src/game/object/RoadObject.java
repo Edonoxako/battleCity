@@ -12,7 +12,6 @@ public class RoadObject extends GameObject {
 	
     public static final int WALL_SIZE = 48;
 
-    //public static final int LEFT_UP_CORNER_BRICK_WALL = 0;
     public static final int ROAD_VERT = 1;
     public static final int ROAD_GOR = 2;
     public static final int ROAD_LEFT_UP = 3;

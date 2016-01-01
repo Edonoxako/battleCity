@@ -10,6 +10,7 @@ import core.model.GameObject;
 import core.model.GameObjectCategory;
 import core.utils.Input;
 import core.utils.ResourceLoader;
+import game.ui.frame.UiFrame;
 
 public class TestPlayer extends GameObject{
 	private class Animator{
@@ -101,16 +102,19 @@ public class TestPlayer extends GameObject{
 	private int h = 48;
 	private Course course;
 	private Image body;
+	private UiFrame ui;
 	private Animator anim;
 	private int count_push;
 	private boolean tank_fire;
-	public TestPlayer(int id, int x, int y, Input inp, GameObjectCategory type){
+	private int hp = 100;
+	public TestPlayer(int id, int x, int y, Input inp, UiFrame ui,GameObjectCategory type){
 		//adadad
 		super(id, type);
 		this.x = x;
 		this.y = y;
 		count_push = 0;
 		in = inp;
+		this.ui = ui;
 		course = Course.North;
 		anim = new Animator();
 		anim.setCourse(course);
@@ -142,7 +146,7 @@ public class TestPlayer extends GameObject{
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dx = -1f;
+			dx = -4f;
 			body = anim.nextState();
 		}else if(in.getKey(KeyEvent.VK_W)){
 			if(course.getCourse() != Course.North.getCourse()){
@@ -150,7 +154,7 @@ public class TestPlayer extends GameObject{
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dy = -1f;
+			dy = -4f;
 			body = anim.nextState();
 		}else if(in.getKey(KeyEvent.VK_D)){
 			if(course.getCourse() != Course.East.getCourse()){
@@ -158,7 +162,7 @@ public class TestPlayer extends GameObject{
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dx = 1f;
+			dx = 4f;
 			body = anim.nextState();
 		}else if(in.getKey(KeyEvent.VK_S)){
 			if(course.getCourse() != Course.South.getCourse()){
@@ -166,7 +170,7 @@ public class TestPlayer extends GameObject{
 				anim.setCourse(course);
 				body = anim.nextState();
 			}
-			dy = 1f;
+			dy = 4f;
 			body = anim.nextState();
 		}
 		if(!collision(x + dx, y + dy)){
@@ -190,31 +194,31 @@ public class TestPlayer extends GameObject{
 		
 		if( x < sceneWidth / 2) {
 			App.objectManager.moveObjectX(0);
-		}else if( x > mapWidth - sceneWidth / 2 ){
-			App.objectManager.moveObjectX((int)((sceneWidth / 2) - (mapWidth - sceneWidth / 2)));
+		}else if( x > mapWidth + 48 - sceneWidth / 2 ){
+			App.objectManager.moveObjectX((int)((sceneWidth / 2) - (mapWidth + 48 - sceneWidth / 2)));
 		}else {
 			App.objectManager.moveObjectX((int)(sceneWidth /2 - x));
 		}
-		if( y < sceneHeight / 2) {
-			App.objectManager.moveObjectY(0);
-		}else if( y > mapHeight - sceneHeight / 2){
-			App.objectManager.moveObjectY((int)((sceneHeight / 2) - (mapHeight - sceneHeight / 2)));
+		if( y < sceneHeight / 2 ) {
+			App.objectManager.moveObjectY(ui.getTopHeight());
+		}else if( y > mapHeight + 48*2 - sceneHeight / 2){
+			App.objectManager.moveObjectY(((int)((sceneHeight / 2) - (mapHeight + ui.getDownPanelHeight() - sceneHeight / 2))));
 		}else {
-			App.objectManager.moveObjectY((int)(sceneHeight /2 - y));
+			App.objectManager.moveObjectY((int)((ui.getDownPanelHeight() + sceneHeight )/2 - y));
 		}
 		
 		if(in.getKey(KeyEvent.VK_SPACE)){
 			if (count_push == 0){
 					App.objectManager.addObject(new shell(800, GameObjectCategory.Entity,
 							x, y, course.value));
-
+					hp -=5;
 					tank_fire = true;
 			}
 		}
 		if(tank_fire){
 			count_push++;
 		}
-		
+		ui.setLife(hp/1);
 	}
 	
 	public boolean collision(double x, double y){

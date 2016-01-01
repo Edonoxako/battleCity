@@ -35,7 +35,7 @@ public class GameState extends State{
 		if(!App.objectManager.getObjects().isEmpty()){
 			App.objectManager.removeAllObject();
 		}
-		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 150, 150, App.input, GameObjectCategory.Entity));
+		
 		App.objectManager.addObject(new MovingObject(IdService.generateId(), GameObjectCategory.Entity, App.objectManager));
 		App.objectManager.createMap(map);
 		try {
@@ -44,7 +44,9 @@ public class GameState extends State{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		App.objectManager.addObject(new UiFrame(Scene.getSize().width, Scene.getSize().height, 100));
+		UiFrame frame = new UiFrame(Scene.getSize().width, Scene.getSize().height, 100);
+		App.objectManager.addObject(frame);
+		App.objectManager.addObject(new TestPlayer(IdService.generateId(), 150, 150, App.input, frame, GameObjectCategory.Entity));
 		gm = new Game("GameProcessTest", IdService.generateId());
 		App.processManager.addProc(gm);
 		setInit(true);

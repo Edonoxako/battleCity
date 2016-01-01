@@ -75,6 +75,14 @@ public class UiFrame extends GameObject{
 		return topPanel.getGraphics();
 	}
 	
+	public int getDownPanelHeight(){
+		return downPanel.getHeight();
+	}
+	
+	public int getTopHeight(){
+		return topPanel.getHeight();
+	}
+	
 	public void setLife(int percent){
 		Image hp = null;
 		switch (percent) {

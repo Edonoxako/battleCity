@@ -174,6 +174,7 @@ public class ObjectManager {
 			objects.get(i).dmy = dmy;
 		}
 	}
+
 	public int getMapHeight(){
 		return mapHeight*48;
 	}

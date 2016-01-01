@@ -130,8 +130,6 @@ public class shell extends GameObject {
 		anim = new Animator();
         setX(x);
         setY(y);
-        dmx = 0;
-        dmy = 0;
         Start(Course.toCourse(cs));
         //this.objectManager = objectManager;
 		
