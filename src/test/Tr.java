@@ -32,6 +32,12 @@ public class Tr extends GameObject{
 		
 	}
 
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
 //	public int getId() {
 //		return id;
 //	}

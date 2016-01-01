@@ -133,4 +133,10 @@ public class TestButtonContainer extends GameObject{
 			ny +=dy;
 		}
 	}
+
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
+	}
 }

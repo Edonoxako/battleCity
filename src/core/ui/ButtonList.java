@@ -144,5 +144,10 @@ public class ButtonList extends GameObject{
 	public void setDelay(int delay) {
 		this.delay = delay;
 	}
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

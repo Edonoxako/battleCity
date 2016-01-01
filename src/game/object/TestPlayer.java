@@ -8,6 +8,7 @@ import core.App;
 import core.graphics.Scene;
 import core.model.GameObject;
 import core.model.GameObjectCategory;
+import core.model.GameObjectType;
 import core.utils.IdService;
 import core.utils.Input;
 import core.utils.ResourceLoader;
@@ -111,7 +112,7 @@ public class TestPlayer extends GameObject{
 	private int hp = 100;
 	public TestPlayer(int id, int x, int y, Input inp, UiFrame ui,GameObjectCategory type){
 		//adadad
-		super(id, type);
+		super(id, type, GameObjectType.PLAYER);
 		this.x = x;
 		this.y = y;
 		count_push = 0;
@@ -245,6 +246,12 @@ public class TestPlayer extends GameObject{
 	public boolean collision(double x, double y){
 			
 		return App.objectManager.checkObject((int)(x)/48, (int)(y)/48, getId(), getId());
+	}
+
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

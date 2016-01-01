@@ -54,4 +54,10 @@ public class BgObject extends GameObject {
     public void update() {
 
     }
+
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
+	}
 }

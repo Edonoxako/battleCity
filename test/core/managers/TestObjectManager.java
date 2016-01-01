@@ -31,6 +31,12 @@ public class TestObjectManager {
         public void update() {
 
         }
+
+		@Override
+		public void collision(int x, int y, GameObject obj) {
+			// TODO Auto-generated method stub
+			
+		}
     }
 
 

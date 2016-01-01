@@ -2,6 +2,7 @@ package game.ui.button;
 
 import java.awt.Graphics2D;
 
+import core.model.GameObject;
 import core.ui.Button;
 import core.utils.ResourceLoader;
 
@@ -23,6 +24,11 @@ public class ExitButton extends Button{
 	@Override
 	public void action(){
 		System.exit(0);
+	}
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

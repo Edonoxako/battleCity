@@ -7,6 +7,7 @@ import core.App;
 import core.managers.ObjectManager;
 import core.model.GameObject;
 import core.model.GameObjectCategory;
+import core.model.GameObjectType;
 import core.utils.ResourceLoader;
 
 /**
@@ -107,6 +108,7 @@ public class MovingObject extends GameObject {
 	private Animator anim;
     private int frameCount;
     private int dx = 1;
+    private int hp = 100;
     //private ObjectManager objectManager;
 
     //public MovingObject(int id, GameObjectCategory type, ObjectManager objectManager) {
@@ -135,7 +137,15 @@ public class MovingObject extends GameObject {
 
     @Override
     public void update() {
-    	
+    	if(hp <0){
+    		int splash_delay = 10;
+    		App.objectManager.addObject(new SplashEfect(x, 24+y, dmx, dmy, splash_delay));
+    		App.objectManager.addObject(new SplashEfect(x, y, dmx, dmy, splash_delay));
+    		App.objectManager.addObject(new SplashEfect(x+24, y, dmx, dmy, splash_delay));
+    		App.objectManager.addObject(new SplashEfect(x-24, y, dmx, dmy, splash_delay));
+    		App.objectManager.addObject(new SplashEfect(x, y-24, dmx, dmy, splash_delay));
+    		App.objectManager.removeObject(getId(), getCategory());
+    	}
     	if(!collision(x + dx, y)){
     		setX(getX() + dx);
 		}
@@ -159,5 +169,13 @@ public class MovingObject extends GameObject {
     public boolean collision(double x, double y){
 		
 		return App.objectManager.checkObject((int)(x)/48, (int)(y)/48, getId(), getId());
+	}
+
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		if(obj.getType() == GameObjectType.SHELL){
+			hp -=15;
+		}
+		
 	}
 }

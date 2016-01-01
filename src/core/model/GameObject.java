@@ -1,6 +1,6 @@
 package core.model;
 
-public abstract class GameObject implements GameObjectInf {
+public abstract class GameObject implements GameObjectInf, Collision{
 
 	private int id;
 	private GameObjectCategory category;

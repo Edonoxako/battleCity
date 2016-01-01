@@ -7,6 +7,7 @@ import core.App;
 import core.graphics.Scene;
 import core.model.GameObject;
 import core.model.GameObjectCategory;
+import core.model.GameObjectType;
 import core.utils.ResourceLoader;
 
 public class shell extends GameObject {
@@ -128,7 +129,7 @@ public class shell extends GameObject {
 
     //public MovingObject(int id, GameObjectCategory type, ObjectManager objectManager) {
     public shell(int id, int parentId, GameObjectCategory type, int x, int y, int dmx, int dmy, int cs) {
-        super(id, type);
+        super(id, type, GameObjectType.SHELL);
         frameCount = 0;
 		anim = new Animator();
         setX(x);
@@ -189,8 +190,10 @@ public class shell extends GameObject {
         frameCount++;
         if(!collision(x + dx, y + dy)){
         	if (course.value <= 1){
-            	setY(getY()+dy);
+        		if(getY()+dy<App.objectManager.getMapHeight()&&getY()+dy>0)
+        		setY(getY()+dy);
             }else{
+            	if(getX()+dx<App.objectManager.getMapWidth()&&getX()+dx>0)
             	setX(getX()+dx);
             }
 		}else{
@@ -210,5 +213,11 @@ public class shell extends GameObject {
     public boolean collision(double x, double y){
 		
 		return App.objectManager.checkObject((int)(x)/48, (int)(y)/48, getId(), parentId);
+	}
+
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -34,4 +34,10 @@ public class PauseObjectText extends GameObject{
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

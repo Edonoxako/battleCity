@@ -137,6 +137,7 @@ public class ObjectManager {
 						break;
 				}
 				//удаляем объект
+				dumpMap[temp.getY()/48][temp.getX()/48] = null;
 				iterator.remove();
 				return;
 			}
@@ -148,6 +149,8 @@ public class ObjectManager {
 		entityObjectsCount = 0;
 		environmentObjectsCount = 0;
 		uiObjectsCount = 0;
+		if(dumpMap!=null)
+		Arrays.fill(dumpMap, null);
 		objects.removeAll(objects);
 	}
 
@@ -204,6 +207,7 @@ public class ObjectManager {
     }
 	public boolean checkObject(int x, int y, int myId, int ignoreId){
 		if(dumpMap[y][x]!=null){
+			dumpMap[y][x].collision(x, myId, getObjectForId(myId));
 			return true;
 		}
 		Iterator<GameObject> iterator = objects.subList(backgroundObjectsCount, 
@@ -212,11 +216,20 @@ public class ObjectManager {
 		while (iterator.hasNext()) {
 			temp = iterator.next();
 			if (temp.getX()/48 == x && temp.getY()/48 == y && !temp.hasId(myId) && !temp.hasId(ignoreId)) {
+				temp.collision(x, myId, getObjectForId(myId));
 				return true;
 			}
 		}
 		return false;
 	}
+	
+	public GameObject getObjectForId(int id){
+		for (GameObject object : objects) {
+            if (object.hasId(id)) return object;
+        }
+		return null;
+	}
+	
 	//Задает сдвиг объектов по оси х
 	public void moveObjectX(int dmx){
 		for(int i = 0; i < objects.size(); i++){

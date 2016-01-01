@@ -3,8 +3,10 @@ package game.object;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import core.App;
 import core.model.GameObject;
 import core.model.GameObjectCategory;
+import core.model.GameObjectType;
 import core.utils.ResourceLoader;
 
 /**
@@ -119,4 +121,19 @@ public class WallObject extends GameObject {
     public void update() {
 
     }
+
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		System.out.println("Wall collision call");
+		if(obj.getType() == GameObjectType.SHELL){
+			int splash_delay = 10;
+    		App.objectManager.addObject(new SplashEfect(x, 24+y, dmx, dmy, splash_delay));
+    		App.objectManager.addObject(new SplashEfect(x, y, dmx, dmy, splash_delay));
+    		App.objectManager.addObject(new SplashEfect(x+24, y, dmx, dmy, splash_delay));
+    		App.objectManager.addObject(new SplashEfect(x-24, y, dmx, dmy, splash_delay));
+    		App.objectManager.addObject(new SplashEfect(x, y-24, dmx, dmy, splash_delay));
+    		App.objectManager.removeObject(getId(), getCategory());
+		}
+		
+	}
 }

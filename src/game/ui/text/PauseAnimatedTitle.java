@@ -59,4 +59,10 @@ public class PauseAnimatedTitle extends GameObject{
 		}
 		position.setLocation(nx, ny);
 	}
+
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
+	}
 }

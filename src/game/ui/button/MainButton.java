@@ -3,6 +3,7 @@ package game.ui.button;
 import java.awt.Graphics2D;
 
 import core.App;
+import core.model.GameObject;
 import core.ui.Button;
 import core.utils.ResourceLoader;
 import game.state.MainState;
@@ -32,5 +33,10 @@ public class MainButton extends Button{
 		}
 		App.stateManager.push(new MainState());
 		App.pauseFlag = false;
+	}
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
 	}
 }

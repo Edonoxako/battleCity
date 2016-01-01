@@ -107,5 +107,11 @@ public class UiFrame extends GameObject{
 					hp.getWidth(null), hp.getHeight(null), null);
 		}
 	}
+
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

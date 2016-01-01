@@ -15,8 +15,9 @@ public class SplashEfect extends GameObject{
 		private Image expMin, expMid, expBig, expMax, current;
 		private Image[] frames = new Image[8];
 		private int frames_counter;
+		private int delay;
 		
-		public Animator(){
+		public Animator(int delay){
 			expMin = ResourceLoader.loadImage("blocks/explose_min.png");
 			expMid = ResourceLoader.loadImage("blocks/explose_middle.png");
 			expBig = ResourceLoader.loadImage("blocks/explose_big.png");
@@ -31,13 +32,14 @@ public class SplashEfect extends GameObject{
 			frames[7] = expMax;
 			animate_frame = 0;
 			frames_counter = 0;
+			this.delay = delay;
 
 		}
 		
 		public Image nextState(){
 			animate_frame++;
 			current = frames[frames_counter];
-			if(animate_frame > 1){
+			if(animate_frame > delay){
 				animate_frame = 0;
 				frames_counter++;
 			}
@@ -50,7 +52,16 @@ public class SplashEfect extends GameObject{
 	private Image body;
 	public SplashEfect(int x, int y, int dmx, int dmy) {
 		super(IdService.generateId(), GameObjectCategory.Environment);
-		anim = new Animator();
+		anim = new Animator(1);
+		setX(x);
+		setY(y);
+		this.dmx = dmx;
+		this.dmy = dmy;
+		body = anim.nextState();
+	}
+	public SplashEfect(int x, int y, int dmx, int dmy, int delay) {
+		super(IdService.generateId(), GameObjectCategory.Environment);
+		anim = new Animator(delay);
 		setX(x);
 		setY(y);
 		this.dmx = dmx;
@@ -71,6 +82,12 @@ public class SplashEfect extends GameObject{
 		if (body == null){
 			App.objectManager.removeObject(this.getId(), this.getCategory());
 		}
+	}
+
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

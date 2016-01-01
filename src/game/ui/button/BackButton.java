@@ -3,6 +3,7 @@ package game.ui.button;
 import java.awt.Graphics2D;
 
 import core.App;
+import core.model.GameObject;
 import core.ui.Button;
 import core.utils.ResourceLoader;
 
@@ -33,5 +34,10 @@ public class BackButton extends Button{
 		
 		//App.stateManager.push(gm);
 		App.pauseFlag = false;
+	}
+	@Override
+	public void collision(int x, int y, GameObject obj) {
+		// TODO Auto-generated method stub
+		
 	}
 }
