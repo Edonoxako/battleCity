@@ -5,7 +5,7 @@ package core.model;
  */
 public enum GameObjectType {
 
-    BG(0), WALL(1), ROAD(2), TREE(3), HOUSE(4), PLAYER(5), ENEMY(6), SHELL(7);
+    BG(0), WALL(1), ROAD(2), TREE(3), HOUSE(4), PLAYER(5), ENEMY(6), SHELL(7), EFFECTS(8);
 
     private int type;
 

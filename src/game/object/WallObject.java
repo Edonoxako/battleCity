@@ -124,14 +124,13 @@ public class WallObject extends GameObject {
 
 	@Override
 	public void collision(int x, int y, GameObject obj) {
-		System.out.println("Wall collision call");
 		if(obj.getType() == GameObjectType.SHELL){
 			int splash_delay = 10;
-    		App.objectManager.addObject(new SplashEfect(x, 24+y, dmx, dmy, splash_delay));
-    		App.objectManager.addObject(new SplashEfect(x, y, dmx, dmy, splash_delay));
-    		App.objectManager.addObject(new SplashEfect(x+24, y, dmx, dmy, splash_delay));
-    		App.objectManager.addObject(new SplashEfect(x-24, y, dmx, dmy, splash_delay));
-    		App.objectManager.addObject(new SplashEfect(x, y-24, dmx, dmy, splash_delay));
+//    		App.objectManager.addObject(new SplashEfect(x*48, 24+y*48, dmx, dmy, splash_delay));
+//    		App.objectManager.addObject(new SplashEfect(x*48, y*48, dmx, dmy, splash_delay));
+//    		App.objectManager.addObject(new SplashEfect(x*48+24, y*48, dmx, dmy, splash_delay));
+//    		App.objectManager.addObject(new SplashEfect(x*48-24, y*48, dmx, dmy, splash_delay));
+//    		App.objectManager.addObject(new SplashEfect(x*48, y*48-24, dmx, dmy, splash_delay));
     		App.objectManager.removeObject(getId(), getCategory());
 		}
 		

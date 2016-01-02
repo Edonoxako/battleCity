@@ -6,6 +6,7 @@ import java.awt.Image;
 import core.App;
 import core.model.GameObject;
 import core.model.GameObjectCategory;
+import core.model.GameObjectType;
 import core.utils.IdService;
 import core.utils.ResourceLoader;
 
@@ -51,24 +52,23 @@ public class SplashEfect extends GameObject{
 	private Animator anim;
 	private Image body;
 	public SplashEfect(int x, int y, int dmx, int dmy) {
-		super(IdService.generateId(), GameObjectCategory.Environment);
+		super(IdService.generateId(), GameObjectCategory.Environment, GameObjectType.EFFECTS);
 		anim = new Animator(1);
-		setX(x);
-		setY(y);
-		this.dmx = dmx;
-		this.dmy = dmy;
-		body = anim.nextState();
+		init(x, y, dmx, dmy);
 	}
 	public SplashEfect(int x, int y, int dmx, int dmy, int delay) {
-		super(IdService.generateId(), GameObjectCategory.Environment);
+		super(IdService.generateId(), GameObjectCategory.Environment, GameObjectType.EFFECTS);
 		anim = new Animator(delay);
+		init(x, y, dmx, dmy);
+	}
+	public void init(int x, int y, int dmx, int dmy){
+		
 		setX(x);
 		setY(y);
 		this.dmx = dmx;
 		this.dmy = dmy;
 		body = anim.nextState();
 	}
-
 	@Override
 	public void draw(Graphics2D g) {
 		g.drawImage(body, dmx + getX() - (int)body.getWidth(null)/2,

@@ -137,6 +137,7 @@ public class ObjectManager {
 						break;
 				}
 				//удаляем объект
+				if(temp.getType()!=GameObjectType.EFFECTS)
 				dumpMap[temp.getY()/48][temp.getX()/48] = null;
 				iterator.remove();
 				return;
@@ -207,7 +208,7 @@ public class ObjectManager {
     }
 	public boolean checkObject(int x, int y, int myId, int ignoreId){
 		if(dumpMap[y][x]!=null){
-			dumpMap[y][x].collision(x, myId, getObjectForId(myId));
+			dumpMap[y][x].collision(x, y, getObjectForId(myId));
 			return true;
 		}
 		Iterator<GameObject> iterator = objects.subList(backgroundObjectsCount, 
@@ -216,7 +217,7 @@ public class ObjectManager {
 		while (iterator.hasNext()) {
 			temp = iterator.next();
 			if (temp.getX()/48 == x && temp.getY()/48 == y && !temp.hasId(myId) && !temp.hasId(ignoreId)) {
-				temp.collision(x, myId, getObjectForId(myId));
+				temp.collision(x, y, getObjectForId(myId));
 				return true;
 			}
 		}
