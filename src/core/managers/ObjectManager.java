@@ -137,8 +137,9 @@ public class ObjectManager {
 						break;
 				}
 				//удаляем объект
-				if(temp.getType()!=GameObjectType.EFFECTS)
-				dumpMap[temp.getY()/48][temp.getX()/48] = null;
+				if(temp.getType()!=GameObjectType.EFFECTS){
+					dumpMap[temp.getY()/48][temp.getX()/48] = null;
+				}
 				iterator.remove();
 				return;
 			}
